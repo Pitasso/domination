@@ -1,0 +1,32 @@
+<header class="header" ng-controller="AuthCtrl">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <a class="logo" ui-sref="Home"><img src="images/logo.png" alt="Domination"></a>                   
+                <a class="login-btn btn btn-brown" ng-if="!currentUser" ng-click="userLogin()">Login</a>
+                
+                <div class="user-group" ng-cloak ng-show="currentUser" ng-contoller="DropdwonCtrl">
+                    <span uib-dropdown on-toggle="toggled(open)">
+                        <img ng-src="{{currentUser.profileImg}}" id="simple-dropdown" uib-dropdown-toggle class="profile-img img-circle" />
+                        <ul class="uib-dropdown-menu user-menu" aria-labelledby="simple-dropdown">
+                            <li><a href="#" ui-sref="Profile({ displayName : currentUser.displayName })">Profile</a></li>
+                            <li><a href="#" ng-click="logout()">Logout</a></li>
+                        </ul>
+                    </span>
+                    <div ng-controller="IndexViewCtrl">
+                        <a class="submit-btn" ng-click="newPost()" ng-show="currentUser"><i class="icon ion-plus"></i></a>
+                    </div>
+                </div>
+                
+                    <form class="search" role="search" ng-submit="search()">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search for an event, video, etc..."
+                            ng-model-options="{ debounce: 1000 }"
+                            ng-model="post_query" />
+                        </div>
+                        <input type="submit" style="display:none">
+                    </form>
+            </div>
+        </div>
+    </div>
+</header>

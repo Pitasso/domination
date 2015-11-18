@@ -1,0 +1,202 @@
+<style>
+			.modal {
+	  text-align: center;
+	}
+
+	@media screen and (min-width: 768px) { 
+	  .modal:before {
+	    display: inline-block;
+	    vertical-align: middle;
+	    content: " ";
+	    height: 100%;
+	  }
+	}
+
+	.modal-dialog {
+	  display: inline-block;
+	  text-align: left;
+	  vertical-align: middle;
+	}
+
+	.submit-window .modal-content {
+		background: #221306;
+		border: 1px solid #4A2D13;
+		box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.50);
+		border-radius: 3px;
+	}
+	.submit-window-close {
+		position: absolute;
+		top: 5px;
+		right: 10px;
+		font-size: 24px;
+		z-index: 999;
+		cursor: pointer;
+	}
+	.submit-header {
+	    display: block;
+    	position: absolute;
+    	text-align: center;
+    	margin: 10px;
+    	width: 100%;
+    	color: #C17A24;
+	}
+	.submit-header h3 {
+		margin: 15px 0 5px;
+		font-size: 26px; 
+	}
+	.submit-window ul {
+		padding-top: 90px;
+		background-image: url(../images/popup-bg.jpg);
+	}
+	.submit-window .tab-content {
+		padding: 5px 20px 15px;
+	}
+	.submit-window .input-field {
+		margin: 15px 0;
+		display: flex;
+	}
+	.submit-window .input-field label {
+		font-size: 14px;
+		color: #704715;
+		line-height: 40px;
+		margin-bottom: 0;
+		text-transform: uppercase;
+		width: 100px;
+	}
+	.submit-window .input-field label i {
+		margin-right: 10px;
+	}
+	.submit-window .input-field input {
+		background: rgba(31,25,17,0.80);
+		border: 1px solid #4A2D14;
+		border-radius: 3px;
+		font-size: 15px;
+		color: #8B572A;
+		padding: 6px 12px;
+		outline: none;
+		flex-grow: 1;
+	}
+	.submit-window .input-field textarea {
+	    background: rgba(31,25,17,0.80);
+	    border: 1px solid #4A2D14;
+	    border-radius: 3px;
+	    font-size: 15px;
+	    color: #704715;
+	    line-height: 18px;
+	    padding: 6px;
+	    outline: none;
+	    resize: none;
+	    flex-grow: 1;
+	}
+	.submit-window .input-field button {
+		margin: 15px auto 0;
+
+	}
+	.submit-window .nav {
+	    text-transform: uppercase;
+	}
+
+	.submit-window .nav-tabs > li > a {
+		border: 0;
+		border-radius: 0;
+		border-bottom: 2px solid rgba(112,70,21,0.55);
+	}
+	.submit-window .nav-tabs > li.active > a, 
+	.submit-window .nav-tabs > li.active > a:focus,
+	.submit-window .nav-tabs > li.active > a:hover {
+		color: #C17A24;
+		background: transparent;
+		border: 0;
+		cursor: pointer;
+		border-bottom: 2px solid #C17A24;
+	}
+	.input-field.date-select input {
+		width: auto;
+		flex-grow: 0;
+	}
+	.input-field.date-select button {
+		background: transparent;
+		margin-top: 0;
+		border: 1px solid #4A2D14;
+		color: #825319;	
+		outline: none;
+	}
+	.input-field.date-select button:focus,
+	.input-field.date-select button:active, {
+		outline: none;
+	}
+	.input-field.date-select button i {
+		padding: 5px 3px 7px;
+	}
+</style>
+
+
+<div>
+	<a class="submit-window-close" ng-click="$dismiss()"><i class="icon ion-ios-close-outline"></i></a>
+	<div class="submit-header">
+		<h3>Submit a new post</h3>
+		<p>Know something interesting? Share it with mates!</p>
+	</div>
+	<uib-tabset justified="true">
+	    
+	    <uib-tab heading="Link">
+	    	<form ng-submit="newPost()">		            
+	            <div class="input-field">
+	                <label><i class="icon ion-ios-lightbulb"></i>Title</label>
+	                <input type="text" ng-model="tabs.post.title" placeholder="Enter post title..." autofocus>
+	            </div>
+	            <div class="input-field">
+	                <label><i class="icon ion-link"></i>Link</label>
+	                <input type="text" ng-model="tabs.post.url" placeholder="http://www...">
+	            </div>
+	            <div class="input-field">
+	                <label><i class="icon ion-android-create"></i>Desc</label>
+	                <textarea type="text" ng-model="tabs.post.desc" placeholder="Describe the post briefly..."></textarea>
+	            </div>
+	            <div class="input-field">
+	            	<input type="hidden" ng-init="tabs.post.type = tabs.post.type || 'link'" ng-model="tabs.post.type">
+	                <button type="submit" class="btn btn-brown">Submit</button>
+	            </div>
+	        </form>
+		</uib-tab>
+
+	    <uib-tab heading="Game">	    
+	        <form ng-submit="newPost()">
+	        	<div class="input-field">
+	                <label><i class="icon ion-ios-lightbulb"></i>Title</label>
+	                <input type="text" ng-model="tabs.post.title" placeholder="Enter post title..." autofocus>
+	            </div>		            
+	            <div class="input-field dropdown-select">
+	                <label><i class="icon ion-ios-people"></i>Team 1</label>
+	                <input type="text" ng-model="tabs.post.team_1" placeholder="Enter first team name..." autofocus>
+	            </div>
+	            <div class="input-field dropdown-select">
+	                <label><i class="icon ion-ios-people"></i>Team 2</label>	                
+	                <input type="text" ng-model="tabs.post.team_2" placeholder="Enter second team name...">
+	            </div>
+	            <div class="input-field date-select">
+	                <label><i class="icon ion-android-calendar"></i>Date</label>
+
+	                	<input type="date" placeholder="Pick the date..." uib-datepicker-popup ng-model="tabs.post.date" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+						<span class="input-group-btn">
+							<button type="button" class="btn" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+						</span>
+	            </div>	           
+	            <div class="input-field">
+	                <label><i class="icon ion-link"></i>Link</label>
+	                <input type="text" ng-model="tabs.post.url" placeholder="http://www...">
+	            </div>
+	            <div class="input-field">
+	                <label><i class="icon ion-android-create"></i>Desc</label>
+	                <textarea type="text" ng-model="tabs.post.desc" placeholder="Describe the game briefly..."></textarea>
+	            </div>
+	            <div class="input-field">
+	            	<input type="hidden" ng-init="tabs.post.type = tabs.post.type || 'game'" ng-model="tabs.post.type">
+	                <button type="submit" class="btn btn-brown">Submit</button>
+	            </div>
+
+	        </form>		  
+		</uib-tab>
+
+	</uib-tabset>
+</div>

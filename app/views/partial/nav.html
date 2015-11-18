@@ -1,0 +1,23 @@
+<nav class="navbar">
+    <div class="container">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">            
+            <li><a ng-click="orderBy('instance.actions.votes.total')">Trending</a></li>
+            <li><a ng-click="orderBy('dt_create')">Latest</a></li>
+            <li><a ng-click="orderBy('instance.actions.comments.length')">Most discussed</a></li>
+            
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a ng-click="filterBy('')">All</a></li>
+                <li><a ng-click="filterBy('Game')">Games</a></li>
+                <li><a ng-click="filterBy('Link')">Links</a></li>
+              </ul>
+            </li>
+        </ul>                    
+    </div> 
+    </div>            
+</nav>
