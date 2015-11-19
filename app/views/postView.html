@@ -336,7 +336,7 @@
 					</h1>
 				</div>
 
-				<div ng-if="post.instance.type === 'Game'">
+				<div ng-if="post.instance.type === 'game'">
 					<h1 class="post-title">
 						<img src="images/eg.png" />{{post.instance.team_1}}<span>vs</span>{{post.instance.team_2}}<img src="images/navi.png" />
 					</h1>
@@ -363,7 +363,7 @@
 				<div id="info">
 
 					<uib-tabset>
-					    <uib-tab active="true" ng-if="post.instance.type === 'Game'" >
+					    <uib-tab active="true" ng-if="post.instance.type === 'game'" >
 							<uib-tab-heading><h3 class="tab-heading">Video</h3></uib-tab-heading>
 							<div class="video embed-responsive embed-responsive-16by9">
 								<iframe src="http://player.twitch.tv/?channel=dota2ruhub" scrolling="no"></iframe>

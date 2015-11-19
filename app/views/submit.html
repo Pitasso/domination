@@ -153,7 +153,7 @@
 		<p>Know something interesting? Share it with mates!</p>
 	</div>
 	<uib-tabset justified="true">
-	    <uib-tab heading="Link">
+	    <uib-tab heading="Link" select="tabs.post.type = 'link'">
 	    	<form ng-submit="newPost()">
 	            <div class="input-field">
 	                <label><i class="icon ion-ios-lightbulb"></i>Title</label>
@@ -168,13 +168,12 @@
 	                <textarea type="text" ng-model="tabs.post.desc" placeholder="Describe the post briefly..."></textarea>
 	            </div>
 	            <div class="input-field">
-	            	<input type="hidden" ng-init="tabs.post.type = tabs.post.type || 'link'" ng-model="tabs.post.type">
 	                <button type="submit" class="btn btn-brown">Submit</button>
 	            </div>
 	        </form>
 		</uib-tab>
 
-	    <uib-tab heading="Game">
+	    <uib-tab heading="Game" select="tabs.post.type = 'game'">
 	        <form ng-submit="newPost()">
 	        	<div class="input-field">
 	                <label><i class="icon ion-ios-lightbulb"></i>Title</label>
@@ -208,7 +207,6 @@
 	                <textarea type="text" ng-model="tabs.post.desc" placeholder="Describe the game briefly..."></textarea>
 	            </div>
 	            <div class="input-field">
-	            	<input type="hidden" ng-init="tabs.post.type = tabs.post.type || 'game'" ng-model="tabs.post.type">
 	                <button type="submit" class="btn btn-brown">Submit</button>
 	            </div>
 
