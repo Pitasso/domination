@@ -69,6 +69,7 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 			// 	});
 			// };
 
+
 	$scope.predicate = 'instance.actions.votes.total';
 	$scope.orderBy = function(predicate) {
 		$scope.predicate = predicate;
@@ -79,15 +80,19 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 		$scope.type = type;
 	}
 
-	Post.getPosts().then(function(posts) {
-		if(posts.instance.length) {
-			$scope.noResults = false;
-			$rootScope.postCollection = posts.instance;
-		} else {
-			$scope.postCollection = [];
-			$scope.noResults = true;
-		}
-	})
+	$scope.getPosts = function(type) {
+		Post.getPosts(type).then(function(posts, type) {
+			if(posts.instance.length) {
+				$scope.noResults = false;
+				$rootScope.postCollection = posts.instance;
+			} else {
+				$scope.postCollection = [];
+				$scope.noResults = true;
+			}
+		})
+	}
+	// Initial Posts Fetch - Latest
+	$scope.getPosts('dt_create');
 
 	if($stateParams.search) {
 		Search.searchPosts($stateParams.search).then(function(posts) {

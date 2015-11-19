@@ -1,13 +1,14 @@
 /* global app:true */
 
 'use strict';
-
+angular.module('infinite-scroll').value('THROTTLE_MILLISECONDS', 3000)
 var app = angular.module("Domination", [
     "ui.router",
     "ui.bootstrap",
     "ngStamplay",
     "algoliasearch",
-    "angularMoment"
+    "angularMoment",
+    "infinite-scroll"
     ])
 .config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -25,7 +26,7 @@ var app = angular.module("Domination", [
             url: "/user/:displayName",
             templateUrl: "app/views/profile.html",
             controller: "ProfileCtrl"
-        }) 
+        })
         .state("Membership", {
             url: "/membership",
             templateUrl: "app/views/membership.html",
@@ -43,4 +44,4 @@ var app = angular.module("Domination", [
             $rootScope.currentUser = false;
         }
     });
-}])
+}]);
