@@ -119,6 +119,11 @@
 		text-transform: uppercase;
 		border: 1px solid;
 	}
+	.post-reply .user-img {
+		position: relative !important;
+top: 40px;
+left: -50px;
+	}
 	a.btn-vote {
 		border: 1px solid #C17A24;
 		color: #000;
@@ -379,9 +384,9 @@
 				<section id="discussion">
 					<h3>Discussion</h3>
 
-					<div class="no-data" ng-if="post.instance.actions.comments.length === 0">No comments have been left yet.</div>
+					<div class="no-data" ng-if="comments.length === 0">No comments have been left yet.</div>
 
-                    <span uib-dropdown on-toggle="toggled(open)" class="comment-filter" ng-hide="post.instance.actions.comments.length === 0">
+                    <span uib-dropdown on-toggle="toggled(open)" class="comment-filter" ng-hide="comments.length === 0">
                         <a href="" id="simple-dropdown" uib-dropdown-toggle>Most upvoted <i class="icon ion-arrow-down-b"></i></a>
                         <ul class="uib-dropdown-menu user-menu" aria-labelledby="simple-dropdown">
                             <li><a href="#" ng-click="">most upvoted</a></li>
@@ -390,20 +395,36 @@
                         </ul>
                     </span>
 
-					<div class="post-comment" ng-repeat="comment in comments | orderBy : '-dt_create'" >
-						<img ng-src="{{ comment.picture }}" class="user-img"/>
+					<div class="post-comment" ng-repeat="comment in comments track by $index | orderBy : '-dt_create'" >
+						<img ng-src="{{ comment.instance.owner.profileImg }}" class="user-img"/>
 						<div class="comment-header">
-							<span class="user-name">{{ comment.displayName }}</span>
+							<span class="user-name">{{ comment.instance.owner.displayName }}</span>
 							<span class="user-title">Ganker</span>
 						</div>
 						<div class="comment-body">
-							<p>{{ comment.text }}</p>
+							<p>{{ comment.instance.body }}</p>
 						</div>
 						<div class="comment-actions">
 							<a href=""><i class="icon ion-chevron-up"></i> 3</a>
-							<a href=""><i class="icon ion-reply"></i> Reply</a>
+							<a href="" ng-click="reply_open = !reply_open"><i class="icon ion-reply"></i> Reply</a>
 							<a href="" class="share"><i class="icon ion-share"></i> Share</a>
-							<span am-time-ago="comment.dt_create"></span>
+							<span am-time-ago="comment.instance.dt_create"></span>
+						</div>
+						<div ng-show="reply_open" class="comment-input">
+							<textarea type="text" placeholder="Leave your reply..." ng-model="reply"></textarea>
+							<button type="button" class="btn btn-brown" ng-click="addReply(comment, reply, $index); reply_open = false; reply = ''">Submit</button>
+						</div>
+						<div class="post-reply" ng-repeat="reply in comment.instance.actions.comments">
+							<img ng-src="{{ reply.picture }}" class="user-img" style="position:relative"/>
+							<div class="comment-header">
+								<span class="user-name">{{ reply.displayName }}</span>
+							</div>
+							<div class="comment-body">
+								<p>{{ reply.text }}</p>
+							</div>
+							<div class="comment-actions">
+								<span am-time-ago="reply.dt_create"></span>
+							</div>
 						</div>
 					</div>
 

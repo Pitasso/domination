@@ -10,6 +10,7 @@ app.factory('Post', ['$q', '$stamplay', '$rootScope', 'algolia', function($q, $s
 			var post = $stamplay.Cobject('post').Model;
 			var q = $q.defer();
 			post.set('type', details.type);
+			post.set('slug', details.slug);
 			post.set('title', details.title);
 			post.set('desc', details.desc);
 			post.set('url', details.url);
@@ -36,35 +37,33 @@ app.factory('Post', ['$q', '$stamplay', '$rootScope', 'algolia', function($q, $s
 			})
 			return q.promise;
 		},
-		getPostDetails: function(id) {
-			var post = $stamplay.Cobject('post').Model;
+		getPostDetails: function(slug) {
+			var post = $stamplay.Cobject('post').Collection;
+			var comments = $stamplay.Cobject('comment').Collection;
 			var user = $stamplay.User().Model;
 			var q = $q.defer();
-			post.fetch(id).then(function() {
-				user.fetch(post.instance.owner).then(function() {
-					post.instance.owner = user.instance;
-					q.resolve(post);
+			post.equalTo('slug', slug).fetch().then(function() {
+				comments.equalTo('slug', slug).populateOwner().fetch().then(function() {
+					user.fetch(post.instance[0].instance.owner).then(function() {
+						post.instance[0].instance.owner = user.instance;
+
+						q.resolve({ post : post.instance[0], comments : comments });
+					}, function(data) { q.reject(data) })
 				})
 			})
 			return q.promise;
 		},
-	 	addComment: function(body, id, owner_email) {
+	 	addComment: function(body, slug, owner_email) {
             var q = $q.defer();
             var comment = $stamplay.Cobject("comment").Model;
-            var post = $stamplay.Cobject("post").Model;
+            // var post = $stamplay.Cobject("post").Model;
             comment.set("body", body);
+						comment.set("slug", slug)
             if(owner_email) {
                 comment.set("comment_owner", owner_email);
             }
             comment.save().then(function() {
-                post.fetch(id).then(function() {
-                    post.set("comment_id", comment.instance._id);
-                    post.save().then(function() {
-                        comment.fetch(post.instance.comment_id[0]).then(function() {
-                            q.resolve(comment);
-                        })
-                    })
-                })
+                q.resolve(comment);
             })
             return q.promise;
         },
