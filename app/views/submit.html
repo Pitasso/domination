@@ -3,7 +3,7 @@
 	  text-align: center;
 	}
 
-	@media screen and (min-width: 768px) { 
+	@media screen and (min-width: 768px) {
 	  .modal:before {
 	    display: inline-block;
 	    vertical-align: middle;
@@ -42,7 +42,7 @@
 	}
 	.submit-header h3 {
 		margin: 15px 0 5px;
-		font-size: 26px; 
+		font-size: 26px;
 	}
 	.submit-window ul {
 		padding-top: 90px;
@@ -101,7 +101,7 @@
 		border-radius: 0;
 		border-bottom: 2px solid rgba(112,70,21,0.55);
 	}
-	.submit-window .nav-tabs > li.active > a, 
+	.submit-window .nav-tabs > li.active > a,
 	.submit-window .nav-tabs > li.active > a:focus,
 	.submit-window .nav-tabs > li.active > a:hover {
 		color: #C17A24;
@@ -118,7 +118,7 @@
 		background: transparent;
 		margin-top: 0;
 		border: 1px solid #4A2D14;
-		color: #825319;	
+		color: #825319;
 		outline: none;
 	}
 	.input-field.date-select button:focus,
@@ -128,6 +128,21 @@
 	.input-field.date-select button i {
 		padding: 5px 3px 7px;
 	}
+	.date_picker {
+		width:calc(100% - 146px) !important;
+		height:40px;
+	}
+	.date_picker + ul {
+		background-image:none;
+		padding:15px;
+		outline:0;
+		top:5px !important;
+		right:20px;
+	}
+	.date_picker + ul > li > div > table {
+		width:100%;
+	}
+	*:focus { outline:0; }
 </style>
 
 
@@ -138,9 +153,8 @@
 		<p>Know something interesting? Share it with mates!</p>
 	</div>
 	<uib-tabset justified="true">
-	    
-	    <uib-tab heading="Link">
-	    	<form ng-submit="newPost()">		            
+	    <uib-tab heading="Link" select="tabs.post.type = 'link'">
+	    	<form ng-submit="newPost()">
 	            <div class="input-field">
 	                <label><i class="icon ion-ios-lightbulb"></i>Title</label>
 	                <input type="text" ng-model="tabs.post.title" placeholder="Enter post title..." autofocus>
@@ -154,34 +168,36 @@
 	                <textarea type="text" ng-model="tabs.post.desc" placeholder="Describe the post briefly..."></textarea>
 	            </div>
 	            <div class="input-field">
-	            	<input type="hidden" ng-init="tabs.post.type = tabs.post.type || 'link'" ng-model="tabs.post.type">
 	                <button type="submit" class="btn btn-brown">Submit</button>
 	            </div>
 	        </form>
 		</uib-tab>
 
-	    <uib-tab heading="Game">	    
+	    <uib-tab heading="Game" select="tabs.post.type = 'game'">
 	        <form ng-submit="newPost()">
 	        	<div class="input-field">
 	                <label><i class="icon ion-ios-lightbulb"></i>Title</label>
 	                <input type="text" ng-model="tabs.post.title" placeholder="Enter post title..." autofocus>
-	            </div>		            
+	            </div>
 	            <div class="input-field dropdown-select">
 	                <label><i class="icon ion-ios-people"></i>Team 1</label>
 	                <input type="text" ng-model="tabs.post.team_1" placeholder="Enter first team name..." autofocus>
 	            </div>
 	            <div class="input-field dropdown-select">
-	                <label><i class="icon ion-ios-people"></i>Team 2</label>	                
+	                <label><i class="icon ion-ios-people"></i>Team 2</label>
 	                <input type="text" ng-model="tabs.post.team_2" placeholder="Enter second team name...">
 	            </div>
-	            <div class="input-field date-select">
-	                <label><i class="icon ion-android-calendar"></i>Date</label>
+	            <div class="input-field date-select" style="display:flex">
+								<label><i class="icon ion-android-calendar"></i>Date</label>
 
-	                	<input type="date" placeholder="Pick the date..." uib-datepicker-popup ng-model="tabs.post.date" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-						<span class="input-group-btn">
-							<button type="button" class="btn" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-						</span>
-	            </div>	           
+								<input type="text" class="date_picker" show-weeks="false" class="form-control" placeholder="Select A Date.." ng-model="tabs.post.date" ng-click="status = !status" uib-datepicker-popup is-open="status" close-text="Close" />
+								<span class="input-group-btn">
+
+
+                <button type="button" class="btn btn-default" ng-click="status = !status"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+
+	            </div>
 	            <div class="input-field">
 	                <label><i class="icon ion-link"></i>Link</label>
 	                <input type="text" ng-model="tabs.post.url" placeholder="http://www...">
@@ -191,11 +207,10 @@
 	                <textarea type="text" ng-model="tabs.post.desc" placeholder="Describe the game briefly..."></textarea>
 	            </div>
 	            <div class="input-field">
-	            	<input type="hidden" ng-init="tabs.post.type = tabs.post.type || 'game'" ng-model="tabs.post.type">
 	                <button type="submit" class="btn btn-brown">Submit</button>
 	            </div>
 
-	        </form>		  
+	        </form>
 		</uib-tab>
 
 	</uib-tabset>

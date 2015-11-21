@@ -9,8 +9,8 @@
         <div ng-hide="post_query" >
             <!-- Temp -->
             <div ng-show="noResults" class="center-align grey-text">No Questions Have Been Posted Yet<span ng-if="!currentUser">, Sign In To Post a Question</span></div>
-
             <div class="row" ng-repeat="post in postCollection" | filter: type : strict"">
+
                 <div class="post-item col-md-10 col-md-offset-1">
                     <a class="post-upvote" ng-click="upvotePost($index, post);">
                         <span class="vote-arrow glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
@@ -21,8 +21,13 @@
                     </div>
                     <div class="post-desc">
                         <a class="post-category btn btn-brown btn-xs">{{post.instance.type}}</a>
-                        <a class="post-title" ui-sref="Post({ id : post.instance._id })">{{post.instance.team_1}} <span>vs</span> {{post.instance.team_2}}</a>
-                        <div class="post-meta">{{post.instance.title}}</div>
+                        <a class="post-title" ui-sref="Post({ id : post.instance._id })" ng-if="post.instance.type === 'game'">
+                          {{post.instance.team_1}} <span>vs</span> {{post.instance.team_2}}
+                        </a>
+                        <a class="post-title" ui-sref="Post({ id : post.instance._id })" ng-if="post.instance.type === 'link'">
+                          {{post.instance.title}}
+                        </a>
+                        <div class="post-meta" ng-if="post.instance.type === 'game'">{{post.instance.title}}</div>
                     </div>
                     <div class="post-details">
                         <img ng-src="{{post.instance.owner.profileImg}}" uib-popover-template="'app/views/partial/user.html'" popover-placement="bottom" popover-trigger="mouseenter mouseleave" class="author-avatar img-circle">

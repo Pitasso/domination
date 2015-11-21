@@ -7,7 +7,7 @@
 		min-height: 690px;
 		height: 100%;
 		position: relative;
-	
+
 		display: -webkit-box;
 	    display: -moz-box;
 	    display: box;
@@ -23,7 +23,7 @@
 	}
 	#post-details aside {
 		background: #2D1805;
-		border-left: 1px solid #4A2D13; 
+		border-left: 1px solid #4A2D13;
 		flex: 0 0 325px;
 		padding: 15px;
 	}
@@ -69,7 +69,7 @@
 	#post-info {
 		padding: 15px;
 		justify-content: space-between;
-		
+
 		-webkit-box-align: end;
 	    -moz-box-align: end;
 	    box-align: end;
@@ -79,9 +79,9 @@
 	    -ms-align-items: flex-end;
 	    -o-align-items: flex-end;
 	    align-items: flex-end;
-	    
+
 	    -ms-flex-align: end;
-	    
+
 	    display: -webkit-box;
 	    display: -moz-box;
 	    display: box;
@@ -89,21 +89,21 @@
 	    display: -moz-flex;
 	    display: -ms-flexbox;
 	    display: flex;
-	    
+
 	    -webkit-flex-flow: row nowrap;
 	    -moz-flex-flow: row nowrap;
 	    flex-flow: row nowrap;
-	    
+
 	    -webkit-box-pack: justify;
 	    -moz-box-pack: justify;
 	    box-pack: justify;
-	    
+
 	    -webkit-justify-content: space-between;
 	    -moz-justify-content: space-between;
 	    -ms-justify-content: space-between;
 	    -o-justify-content: space-between;
 	    justify-content: space-between;
-	    
+
 	    -ms-flex-pack: justify;
 	}
 	.post-meta .dates {
@@ -212,7 +212,7 @@
 	.comment-actions .share {
 		display: none;
 	}
-	.comment-actions span {		
+	.comment-actions span {
 		display: none;
 		color: #5E4322;
 		font-size: 13px;
@@ -238,7 +238,7 @@
     	background: transparent;
     	padding-bottom: 15px;
     	color: #C17A24;
-	} 
+	}
 	#info .nav > li:first-child > a {
 		padding-left: 0;
 	}
@@ -319,9 +319,9 @@
 		color: #704715;
 	}
 	.no-data {
-		text-align:center; 
-		width:100%; 
-		padding:50px; 
+		text-align:center;
+		width:100%;
+		padding:50px;
 		border:1px dashed #4A2D13;
 	}
 </style>
@@ -329,11 +329,21 @@
 <div class="main">
     <div class="post-view">
 
-    	<section id="post-header">	 
-			<h1 class="post-title">
-				<img src="images/eg.png" />{{post.instance.team_1}}<span>vs</span>{{post.instance.team_2}}<img src="images/navi.png" />
-			</h1>
-			<h2 class="post-subtitle">{{post.instance.title}}</h2>
+    	<section id="post-header">
+				<div ng-if="post.instance.type === 'link'">
+					<h1 class="post-title" >
+						{{ post.instance.title}}
+					</h1>
+				</div>
+
+				<div ng-if="post.instance.type === 'game'">
+					<h1 class="post-title">
+						<img src="images/eg.png" />{{post.instance.team_1}}<span>vs</span>{{post.instance.team_2}}<img src="images/navi.png" />
+					</h1>
+					<p>
+						{{ post.instance.title}}
+					</p>
+				</div>
 		</section>
 
 		<section id="post-info">
@@ -348,12 +358,12 @@
 			</div>
 		</section>
 
-		<section id="post-details">	
+		<section id="post-details">
 			<main>
 				<div id="info">
 
-					<uib-tabset>					   
-					    <uib-tab>
+					<uib-tabset>
+					    <uib-tab active="true" ng-if="post.instance.type === 'game'" >
 							<uib-tab-heading><h3 class="tab-heading">Video</h3></uib-tab-heading>
 							<div class="video embed-responsive embed-responsive-16by9">
 								<iframe src="http://player.twitch.tv/?channel=dota2ruhub" scrolling="no"></iframe>
@@ -362,13 +372,13 @@
 					    <uib-tab>
 							<uib-tab-heading><h3 class="tab-heading">Details</h3></uib-tab-heading>
 							<p>{{post.instance.desc}}</p>
-					    </uib-tab>					    
+					    </uib-tab>
 					</uib-tabset>
 
   				</div>
 				<section id="discussion">
 					<h3>Discussion</h3>
-					
+
 					<div class="no-data" ng-if="post.instance.actions.comments.length === 0">No comments have been left yet.</div>
 
                     <span uib-dropdown on-toggle="toggled(open)" class="comment-filter" ng-hide="post.instance.actions.comments.length === 0">
@@ -379,7 +389,7 @@
                             <li><a href="#" ng-click="">oldest</a></li>
                         </ul>
                     </span>
-		                    
+
 					<div class="post-comment" ng-repeat="comment in comments | orderBy : '-dt_create'" >
 						<img ng-src="{{ comment.picture }}" class="user-img"/>
 						<div class="comment-header">
@@ -394,13 +404,13 @@
 							<a href=""><i class="icon ion-reply"></i> Reply</a>
 							<a href="" class="share"><i class="icon ion-share"></i> Share</a>
 							<span am-time-ago="comment.dt_create"></span>
-						</div>	
-					</div>	
+						</div>
+					</div>
 
 					<div class="no-data" ng-if="!currentUser">Commenting is limited to community members. <br/> Please <a ng-click="login()">Login</a> or <a ui-sref="Membership">Request</a> your membership.</div>
 
 					<div class="comment-input" ng-hide="!currentUser">
-						<img ng-src="{{currentUser.profileImg}}" class="user-img"/>						
+						<img ng-src="{{currentUser.profileImg}}" class="user-img"/>
                         <div class="input-group">
 							<textarea type="text" placeholder="Leave your comment..." ng-model="new_comment"></textarea>
 							<button type="button" class="btn btn-brown" ng-click="addComment(post, new_comment); post.instance.actions.comments">Submit</button>
@@ -423,18 +433,18 @@
 					<label>PLAYED</label>
 					<div class="team">
 						<img class="user-img" ng-src="images/dire-side.png" />
-						<img class="user-img" ng-src="{{currentUser.profileImg}}" />										
+						<img class="user-img" ng-src="{{currentUser.profileImg}}" />
 					</div>
 					<div class="team">
 						<img class="user-img" ng-src="images/dire-side.png" />
-						<img class="user-img" ng-src="{{currentUser.profileImg}}" />						
+						<img class="user-img" ng-src="{{currentUser.profileImg}}" />
 					</div>
 				</section>
 
 				<section id="upvoted-by" ng-show="post.instance.actions.votes.total != 0">
 					<label>UPVOTED</label>
 					<div>
-						<img class="user-img" ng-src="{{currentUser.profileImg}}" ng-repeat="user in userList"/>						
+						<img class="user-img" ng-src="{{currentUser.profileImg}}" ng-repeat="user in userList"/>
 					</div>
 				</section>
 
@@ -446,11 +456,11 @@
 							<div class="similar-post-header">{{ post.instance.title }} <span><i class="icon ion-chevron-up"></i> {{post.instance.actions.upvotes}}</span></div>
 							<p>{{ post.instance.title }}</p>
 						</div>
-					</div>						
+					</div>
 				</section>
 
 			</aside>
-			
+
 		</section>
     </div>
 </div>

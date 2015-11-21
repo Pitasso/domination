@@ -24,7 +24,6 @@ app.factory('Post', ['$q', '$stamplay', '$rootScope', 'algolia', function($q, $s
 			return q.promise;
 		},
 		getPosts: function(type, page) {
-			console.log(page);
 			var postCollection = $stamplay.Cobject('post').Collection;
 			var q = $q.defer();
 			postCollection
