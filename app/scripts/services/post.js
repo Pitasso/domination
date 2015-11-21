@@ -53,23 +53,17 @@ app.factory('Post', ['$q', '$stamplay', '$rootScope', 'algolia', function($q, $s
 			})
 			return q.promise;
 		},
-	 	addComment: function(body, id, owner_email) {
+	 	addComment: function(body, slug, owner_email) {
             var q = $q.defer();
             var comment = $stamplay.Cobject("comment").Model;
-            var post = $stamplay.Cobject("post").Model;
+            // var post = $stamplay.Cobject("post").Model;
             comment.set("body", body);
+						comment.set("slug", slug)
             if(owner_email) {
                 comment.set("comment_owner", owner_email);
             }
             comment.save().then(function() {
-                post.fetch(id).then(function() {
-                    post.set("comment_id", comment.instance._id);
-                    post.save().then(function() {
-                        comment.fetch(post.instance.comment_id[0]).then(function() {
-                            q.resolve(comment);
-                        })
-                    })
-                })
+                q.resolve(comment);
             })
             return q.promise;
         },

@@ -119,6 +119,11 @@
 		text-transform: uppercase;
 		border: 1px solid;
 	}
+	.post-reply .user-img {
+		position: relative !important;
+top: 40px;
+left: -50px;
+	}
 	a.btn-vote {
 		border: 1px solid #C17A24;
 		color: #000;
@@ -390,7 +395,7 @@
                         </ul>
                     </span>
 
-					<div class="post-comment" ng-repeat="comment in comments | orderBy : '-dt_create'" >
+					<div class="post-comment" ng-repeat="comment in comments track by $index | orderBy : '-dt_create'" >
 						<img ng-src="{{ comment.instance.owner.profileImg }}" class="user-img"/>
 						<div class="comment-header">
 							<span class="user-name">{{ comment.instance.owner.displayName }}</span>
@@ -401,9 +406,25 @@
 						</div>
 						<div class="comment-actions">
 							<a href=""><i class="icon ion-chevron-up"></i> 3</a>
-							<a href=""><i class="icon ion-reply"></i> Reply</a>
+							<a href="" ng-click="reply_open = !reply_open"><i class="icon ion-reply"></i> Reply</a>
 							<a href="" class="share"><i class="icon ion-share"></i> Share</a>
-							<span am-time-ago="comment.dt_create"></span>
+							<span am-time-ago="comment.instance.dt_create"></span>
+						</div>
+						<div ng-show="reply_open" class="comment-input">
+							<textarea type="text" placeholder="Leave your reply..." ng-model="reply"></textarea>
+							<button type="button" class="btn btn-brown" ng-click="addReply(comment, reply, $index); reply_open = false; reply = ''">Submit</button>
+						</div>
+						<div class="post-reply" ng-repeat="reply in comment.instance.actions.comments">
+							<img ng-src="{{ reply.picture }}" class="user-img" style="position:relative"/>
+							<div class="comment-header">
+								<span class="user-name">{{ reply.displayName }}</span>
+							</div>
+							<div class="comment-body">
+								<p>{{ reply.text }}</p>
+							</div>
+							<div class="comment-actions">
+								<span am-time-ago="reply.dt_create"></span>
+							</div>
 						</div>
 					</div>
 

@@ -11,7 +11,7 @@ var app = angular.module("Domination", [
     "infinite-scroll"
     ])
 .config(["$stateProvider", "$urlRouterProvider", "$locationProvider", function($stateProvider, $urlRouterProvider, $locationProvider) {
-  // $locationProvider.html5Mode(true)
+  $locationProvider.html5Mode(true)
     $stateProvider
         .state("Home", {
             url: "/{search}",
@@ -41,6 +41,9 @@ var app = angular.module("Domination", [
     Auth.currentUser().then(function(user) {
         if(user.isLogged()) {
             $rootScope.currentUser = user.instance;
+            if(user.instance && !user.instance.username) {
+              $rootScope.welcome();
+            }
         } else {
             $rootScope.currentUser = false;
         }

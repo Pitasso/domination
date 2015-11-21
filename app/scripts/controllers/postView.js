@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('PostViewCtrl', ['Post', '$scope', '$state', '$stateParams', '$stamplay', function(Post, $scope, $state, $stateParams, $stamplay) {
+app.controller('PostViewCtrl', ['Post', '$scope', '$rootScope', '$state', '$stateParams', '$stamplay', function(Post, $scope, $rootScope, $state, $stateParams, $stamplay) {
     var vm = this;
 	vm.time = new Date();
 
@@ -17,25 +17,23 @@ app.controller('PostViewCtrl', ['Post', '$scope', '$state', '$stateParams', '$st
 		})
 	}
 
-    $scope.addComment = function(comment, id) {
+    $scope.addComment = function(comment) {
         $scope.processing_comment = true;
-        Post.addComment(comment, id, $scope.post.instance.owner.email).then(function(res) {
-            $scope.post_comment = res;
+        Post.addComment(comment, $stateParams.slug, $scope.post.instance.owner.email).then(function(res) {
+            res.instance.owner = $rootScope.currentUser;
+            $scope.comments.push(res);
             $scope.comment_form = false;
             $scope.processing_comment = false;
             Materialize.toast("Comment has been added.", 2000)
-
+        })
+      }
+  	$scope.addReply = function(comment, reply, idx) {
+          comment.comment(reply).then(function() {
+            $scope.comments[idx].instance.actions.comments = comment.instance.actions.comments;
+            $scope.$apply();
           })
-        }
-	// $scope.addReply = function(post, reply) {
- //        var post_model = new $stamplay.Cobject("post").Model;
- //        post.comment(comment);
- //        post_model.fetch($scope.comment.instance._id).then(function(){
- //            $scope.comments = post_model.getComments();
- //            $scope.new_comment = "";
- //            $scope.$apply();
- //        });
- //    }
+          $scope.reply_open = false;
+      }
 
 
 
