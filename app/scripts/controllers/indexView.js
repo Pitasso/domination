@@ -75,7 +75,7 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 	}
 
 
-	$rootScope.postCollection = [];
+	$scope.postCollection = [];
 	var page = 1;
 	var pagination = false;
 	$scope.getPosts = function(type, page_number, pagination) {
@@ -90,10 +90,10 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 				$scope.noResults = false;
 				if(pagination) {
 					posts.instance.forEach(function(item, idx, arr) {
-						$rootScope.postCollection.push(item);
+						$scope.postCollection.push(item);
 					})
 				} else {
-					$rootScope.postCollection = posts.instance;
+					$scope.postCollection = posts.instance;
 				}
 			} else {
 				// $scope.postCollection = [];
@@ -152,8 +152,8 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 			var newpost = new $stamplay.Cobject("post").Collection;
 			newpost.equalTo("_id", post.instance._id).populateOwner().fetch().then(function() {
 				console.log(newpost.instance[0])
-				$rootScope.postCollection.push(newpost.instance[0]);
-				$rootScope.$apply();
+				$scope.postCollection.push(newpost.instance[0]);
+				$scope.$apply();
 			})
 		})
 	}
