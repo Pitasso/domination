@@ -9,7 +9,7 @@
         <div ng-hide="post_query" >
             <!-- Temp -->
             <div ng-show="noResults" class="center-align grey-text">No Questions Have Been Posted Yet<span ng-if="!currentUser">, Sign In To Post a Question</span></div>
-            <div class="row" ng-repeat="post in postCollection" | filter: type : strict"">
+            <div class="row" ng-repeat="post in postCollection | filter: post_type : strict">
 
                 <div class="post-item col-md-10 col-md-offset-1">
                     <a class="post-upvote" ng-click="upvotePost($index, post);">
@@ -67,7 +67,8 @@
         </div>
 
         <div class="load-more row">
-            <a infinite-scroll="loadMorePosts()" infinite-scroll-disabled="{{ paginationInProgress }}" class="btn">More Posts...</a>
+            <a ng-hide="noMore" infinite-scroll="loadNextPosts()" infinite-scroll-immediate-check="false"  class="btn">More Posts...</a>
+            <a ng-show="noMore" href="#">No more posts..</a>
         </div>
     </div>
 </div>

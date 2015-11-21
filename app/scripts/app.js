@@ -40,6 +40,7 @@ var app = angular.module("Domination", [
     Auth.currentUser().then(function(user) {
         if(user.isLogged()) {
             $rootScope.currentUser = user.instance;
+            console.log(user)
         } else {
             $rootScope.currentUser = false;
         }

@@ -70,22 +70,50 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 			// };
 
 
-	$scope.getPosts = function(type, page) {
-		if(type === $scope.fetchBy) return;
+	$scope.filterBy = function(type) {
+		$scope.post_type = type;
+	}
+
+
+	$rootScope.postCollection = [];
+	var page = 1;
+	var pagination = false;
+	$scope.getPosts = function(type, page_number, pagination) {
+		if(!pagination && page_number === 1) {
+			page = 1;
+			$scope.noMore = false;
+		}
+		$scope.type = type;
 		$scope.fetchBy = type;
-		Post.getPosts(type, page).then(function(posts, type) {
+		Post.getPosts(type, page_number).then(function(posts, type) {
 			if(posts.instance.length) {
 				$scope.noResults = false;
-				$rootScope.postCollection = posts.instance;
+				if(pagination) {
+					posts.instance.forEach(function(item, idx, arr) {
+						$rootScope.postCollection.push(item);
+					})
+				} else {
+					$rootScope.postCollection = posts.instance;
+				}
 			} else {
-				$scope.postCollection = [];
-				$scope.noResults = true;
+				// $scope.postCollection = [];
+				// $scope.noResults = true;
+				if(posts.instance.length === 0) {
+					$scope.noMore = true;
+				}
 			}
 		})
 	}
-	$scope.getPosts('dt_create', 1);
+	$scope.getPosts('dt_create', page);
 	$scope.fetchBy = 'dt_create';
-	
+
+	$scope.loadNextPosts = function() {
+		if(!$scope.noMore) {
+			page += 1
+			pagination = true
+			$scope.getPosts($scope.type, page, pagination);
+		}
+	}
 	// Initial Posts Fetch - Latest
 
 	if($stateParams.search) {
