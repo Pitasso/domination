@@ -9,7 +9,7 @@
 	    display: -moz-flex;
 	    display: -ms-flexbox;
 	    display: flex;
-	    
+
 	    -webkit-box-align: center;
 		align-items: center;
 	}
@@ -36,7 +36,7 @@
 	.profile-subtitle {
 		font-size: 18px;
 		color: #8B572A;
-		line-height: 24px;		
+		line-height: 24px;
 		margin: 0 0 10px;
 	}
 	.profile-subtitle img {
@@ -66,7 +66,7 @@
 		border-radius: 0;
 		border-bottom: 2px solid rgba(112,70,21,0.55);
 	}
-	#profile-main .nav-tabs > li.active > a, 
+	#profile-main .nav-tabs > li.active > a,
 	#profile-main .nav-tabs > li.active > a:focus,
 	#profile-main .nav-tabs > li.active > a:hover {
 		color: #C17A24;
@@ -113,11 +113,11 @@
 
 	    <section id="profile-header">
 	    	<div class="profile-avatar">
-				<img ng-src="{{user_profile.profileImg}}" />
+				<img ng-src="{{user_profile.instance.profileImg}}" />
 			</div>
-    		
+
     		<div class="profile-info">
-    			<h1 class="profile-title">{{ user_profile.displayName }}</h1>
+    			<h1 class="profile-title">{{ user_profile.instance.displayName }}</h1>
     			<h2 class="profile-subtitle">Ganker - <span>Domination Team</span><img src="images/eg.png" /></h2>
     			<div class="profile-social">
     				<a href=""><i class="icon ion-social-twitter"></i></a>
@@ -126,10 +126,10 @@
     				<a href=""><i class="icon ion-social-youtube"></i></a>
     			</div>
 			</div>
-			
+
 			<div class="profile-actions">
-				<a class="btn btn-brown" href="">Follow</a>
-				<a class="btn btn-brown" href="">Share</a>
+				<a class="btn btn-brown" ng-click="follow()">Follow</a>
+				<a class="btn btn-brown">Share</a>
 			</div>
 
 	    </section>
@@ -142,7 +142,7 @@
 						<div class="post-list container">
 							<div ng-hide="post_query">
 					            <div ng-show="noResults" class="center-align grey-text">No Questions Have Been Posted Yet<span ng-if="!currentUser">, Sign In To Post a Question</span></div>
-					            
+
 					            <div class="row" ng-repeat="post in postCollection track by $index" ui-sref="Post({ id : post.instance._id })">
 					                <div class="post-item col-md-10 col-md-offset-1">
 					                    <a class="post-upvote" ng-click="upvotePost($index, post);">
@@ -155,7 +155,7 @@
 					                    <div class="post-desc">
 					                        <a class="post-category btn btn-brown btn-xs" href="">{{post.instance.type}}</a>
 					                        <a href="#" class="post-title">{{post.instance.title}}</a>
-					                        <div class="post-meta">{{post.instance.desc}}</div>   
+					                        <div class="post-meta">{{post.instance.desc}}</div>
 					                    </div>
 					                    <div class="post-details">
 					                        <img ng-src="{{post.instance.owner.profileImg}}" class="author-avatar img-circle">
@@ -166,29 +166,43 @@
 					        </div>
 			    		</div>
 					</uib-tab>
-					
+
 					<uib-tab heading="Submited">
+						<div class="follower-list row">
+							<div>
+											<div ng-repeat="post in submitted track by $index" ui-sref="Post({ id : post.instance._id })">
+													<div class="col-md-4">
+														<div class="follower-item">
+																<div class="follower-avatar">
+																		<img ng-src="{{post.instance.owner.profileImg}}" />
+																</div>
+																<div class="follower-desc">
+																		<a href="#" class="follower-title">{{post.instance.title}}</a>
+																		<div class="follower-subtitle">{{post.instance.desc}} <img src="images/eg.png" /> </div>
+																</div>
+														</div>
+													</div>
+											</div>
+									</div>
+							</div>
+					</uib-tab>
+
+					<uib-tab heading="Played">
 
 					</uib-tab>
-					
-					<uib-tab heading="Played">
-					
-					</uib-tab>
-					
+
 					<uib-tab heading="Followers">
 						<div class="follower-list row">
 							<div ng-hide="post_query">
-					            
-					            
 					            <div ng-repeat="post in postCollection track by $index" ui-sref="Post({ id : post.instance._id })">
 					                <div class="col-md-4">
 						                <div class="follower-item">
 						                    <div class="follower-avatar">
-						                        <img ng-src="{{post.instance.owner.profileImg}}" />					                       
+						                        <img ng-src="{{post.instance.owner.profileImg}}" />
 						                    </div>
 						                    <div class="follower-desc">
 						                        <a href="#" class="follower-title">{{post.instance.title}}</a>
-						                        <div class="follower-subtitle">{{post.instance.desc}} <img src="images/eg.png" /> </div>   
+						                        <div class="follower-subtitle">{{post.instance.desc}} <img src="images/eg.png" /> </div>
 						                    </div>
 						                </div>
 					                </div>
@@ -196,16 +210,14 @@
 					        </div>
 			    		</div>
 					</uib-tab>
-					
+
 					<uib-tab heading="Following">
 
 					</uib-tab>
 				</uib-tabset>
-	
+
 			</main>
 		</section>
 
 	</div>
 </div>
-
-       

@@ -1,21 +1,27 @@
 'use strict';
 
-app.factory('User', ['$q', '$stamplay', '$rootScope', function($q, $stamplay, $rootScope) {
+app.factory('User', ['$q', '$http', '$stamplay', '$rootScope', function($q, $http, $stamplay, $rootScope) {
 
 	return {
-		followUser: function(userId) {			
-			var user = new Stamplay.User().Model;
+		followUser: function(userId) {
 			var q = $q.defer();
-			user.follow('_id_of_user').then(function(followed){
-			  //followed is the followed user
-			},function(err){
-			  //manage error
-			});
+			$rootScope.currentUser.follow(userId).then(function(followed) {
+				console.log("following")
+				console.log(followed)
+			})
 			return q.promise;
-		}
+		},
+		getUser: function(username) {
+			var q = $q.defer();
+			var user = new $stamplay.User().Collection;
+			user.equalTo('username', username).fetch().then(function() {
+				q.resolve(user.instance[0]);
+			})
+			return q.promise;
+		},
 		getFollowers: function(userId) {
-
-		}
+			// var
+		},
 		getFollow: function(userId) {
 
 		}
