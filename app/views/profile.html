@@ -111,20 +111,20 @@
 <div class="main">
 	<div class="profile-view container">
 
-	    <section id="profile-header">
-	    	<div class="profile-avatar">
+		<section id="profile-header">
+			<div class="profile-avatar">
 				<img ng-src="{{user_profile.instance.profileImg}}" />
 			</div>
 
-    		<div class="profile-info">
-    			<h1 class="profile-title">{{ user_profile.instance.displayName }}</h1>
-    			<h2 class="profile-subtitle">Ganker - <span>Domination Team</span><img src="images/eg.png" /></h2>
-    			<div class="profile-social">
-    				<a href=""><i class="icon ion-social-twitter"></i></a>
-    				<a href=""><i class="icon ion-social-twitch-outline"></i></a>
-    				<a href=""><i class="icon ion-social-facebook"></i></a>
-    				<a href=""><i class="icon ion-social-youtube"></i></a>
-    			</div>
+			<div class="profile-info">
+				<h1 class="profile-title">{{ user_profile.instance.displayName }}</h1>
+				<h2 class="profile-subtitle">Ganker - <span>Domination Team</span><img src="images/eg.png" /></h2>
+				<div class="profile-social">
+					<a href=""><i class="icon ion-social-twitter"></i></a>
+					<a href=""><i class="icon ion-social-twitch-outline"></i></a>
+					<a href=""><i class="icon ion-social-facebook"></i></a>
+					<a href=""><i class="icon ion-social-youtube"></i></a>
+				</div>
 			</div>
 
 			<div class="profile-actions">
@@ -132,7 +132,7 @@
 				<a class="btn btn-brown">Share</a>
 			</div>
 
-	    </section>
+		</section>
 
 		<section id="profile-main">
 			<main>
@@ -141,36 +141,65 @@
 					<uib-tab heading="Upvoted">
 						<div class="post-list container">
 							<div>
-					        <div ng-show="noResults" class="center-align grey-text">No Questions Have Been Posted Yet<span ng-if="!currentUser">, Sign In To Post a Question</span></div>
+								<div ng-show="noResults" class="center-align grey-text">No Questions Have Been Posted Yet<span ng-if="!currentUser">, Sign In To Post a Question</span></div>
 
-					            <div class="row" ng-repeat="post in upvoted" ui-sref="Post({ id : post.instance.slug })">
-					                <div class="post-item col-md-10 col-md-offset-1">
-					                    <a class="post-upvote">
-					                        <span class="vote-arrow glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
-					                        <span class="vote-counter">{{post.actions.votes.total}}</span>
-					                    </a>
-					                    <div class="post-thumbnail">
-					                        <img src="images/video.png" alt="" class="img-responsive">
-					                    </div>
-					                    <div class="post-desc">
-					                        <a class="post-category btn btn-brown btn-xs" href="">{{post.type}}</a>
-					                        <a href="#" class="post-title">{{post.title}}</a>
-					                        <div class="post-meta">{{post.desc}}</div>
-					                    </div>
-					                    <div class="post-details">
-					                        <img ng-src="{{post.owner.profileImg}}" class="author-avatar img-circle">
-					                        <div class="comments"><span class="icon ion-ios-chatbubble-outline" aria-hidden="true"></span>&nbsp;{{ post.actions.comments.length}}</div>
-					                    </div>
-					                </div>
-					            </div>
-					        </div>
-			    		</div>
+								<div class="row" ng-repeat="post in upvoted" ui-sref="Post({ slug : post.slug })">
+									<div class="post-item col-md-10 col-md-offset-1">
+										<a class="post-upvote">
+											<span class="vote-arrow glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+											<span class="vote-counter">{{post.actions.votes.total}}</span>
+										</a>
+										<div class="post-thumbnail">
+											<img src="images/video.png" alt="" class="img-responsive">
+										</div>
+										<div class="post-desc">
+											<a class="post-category btn btn-brown btn-xs" href="">{{post.type}}</a>
+											<a href="#" class="post-title">{{post.title}}</a>
+											<div class="post-meta">{{post.desc}}</div>
+										</div>
+										<div class="post-details">
+											<img ng-src="{{post.owner.profileImg}}" class="author-avatar img-circle">
+											<div class="comments"><span class="icon ion-ios-chatbubble-outline" aria-hidden="true"></span>&nbsp;{{ post.actions.comments.length}}</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</uib-tab>
 
-					<uib-tab heading="Submited">
+					<uib-tab heading="Submitted">
+						<div class="post-list container">
+							<div class="row" ng-repeat="post in submitted" ui-sref="Post({ slug : post.instance.slug })">
+								<div class="post-item col-md-10 col-md-offset-1">
+									<a class="post-upvote">
+										<span class="vote-arrow glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+										<span class="vote-counter">{{post.instance.actions.votes.total}}</span>
+									</a>
+									<div class="post-thumbnail">
+										<img src="images/video.png" alt="" class="img-responsive">
+									</div>
+									<div class="post-desc">
+										<a class="post-category btn btn-brown btn-xs" href="">{{post.instance.type}}</a>
+										<a href="#" class="post-title">{{post.instance.title}}</a>
+										<div class="post-meta">{{post.instance.desc}}</div>
+									</div>
+									<div class="post-details">
+										<img ng-src="{{post.instance.owner.profileImg}}" class="author-avatar img-circle">
+										<div class="comments"><span class="icon ion-ios-chatbubble-outline" aria-hidden="true"></span>&nbsp;{{ post.instance.actions.comments.length}}</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</uib-tab>
+
+					<uib-tab heading="Played">
+
+					</uib-tab>
+
+					<uib-tab heading="Followers">
 						<div class="follower-list row">
-							<div>
-								<div ng-repeat="post in submitted track by $index" ui-sref="Post({ slug : post.instance.slug })">
+							<div ng-hide="post_query">
+								<div ng-repeat="post in postCollection track by $index" ui-sref="Post({ id : post.instance._id })">
 									<div class="col-md-4">
 										<div class="follower-item">
 											<div class="follower-avatar">
@@ -185,30 +214,6 @@
 								</div>
 							</div>
 						</div>
-					</uib-tab>
-
-					<uib-tab heading="Played">
-
-					</uib-tab>
-
-					<uib-tab heading="Followers">
-						<div class="follower-list row">
-							<div ng-hide="post_query">
-					            <div ng-repeat="post in postCollection track by $index" ui-sref="Post({ id : post.instance._id })">
-					                <div class="col-md-4">
-						                <div class="follower-item">
-						                    <div class="follower-avatar">
-						                        <img ng-src="{{post.instance.owner.profileImg}}" />
-						                    </div>
-						                    <div class="follower-desc">
-						                        <a href="#" class="follower-title">{{post.instance.title}}</a>
-						                        <div class="follower-subtitle">{{post.instance.desc}} <img src="images/eg.png" /> </div>
-						                    </div>
-						                </div>
-					                </div>
-					            </div>
-					        </div>
-			    		</div>
 					</uib-tab>
 
 					<uib-tab heading="Following">
