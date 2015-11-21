@@ -412,8 +412,8 @@
 					<div class="comment-input" ng-hide="!currentUser">
 						<img ng-src="{{currentUser.profileImg}}" class="user-img"/>
                         <div class="input-group">
-							<textarea type="text" placeholder="Leave your comment..." ng-model="new_comment"></textarea>
-							<button type="button" class="btn btn-brown" ng-click="addComment(post, new_comment); post.instance.actions.comments">Submit</button>
+							<textarea type="text" placeholder="Leave your comment..." ng-model="comment"></textarea>
+							<button type="button" class="btn btn-brown" ng-click="addComment(comment, post.instance._id)">Submit</button>
 						</div>
                     </div>
 
