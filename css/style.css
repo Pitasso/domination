@@ -5,13 +5,13 @@ body {
 	font-family: LucidaSansUnicode;
 	background-image: url(../images/background-img.jpg);
 	background-position: top center;
-	background-repeat: no-repeat;	  
+	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-size: 100%;
 	background-color: #000000;
 }
 body .layer {
-	background-color: rgba(0,0,0,0.75);	
+	background-color: rgba(0,0,0,0.75);
 	display: block;
 	position: absolute;
 	top: 0;
@@ -59,7 +59,7 @@ header {
 	    display: -webkit-box;
 	    display: -moz-box;
 	    display: box;
-	    
+
 	    display: -webkit-flex;
 	    display: -moz-flex;
 	    display: -ms-flexbox;
@@ -125,6 +125,7 @@ header {
 }
 .navbar-nav > li > a {
 	padding: 18px 20px;
+	cursor: pointer;
 }
 .post-list .title {
 	font-family: LucidaGrande;
@@ -147,11 +148,11 @@ header {
 	margin-bottom: 10px;
 
 	/* background: #2B1105; */
-    
+
     display: -webkit-box;
     display: -moz-box;
     display: box;
-    
+
     display: -webkit-flex;
     display: -moz-flex;
     display: -ms-flexbox;
@@ -177,6 +178,10 @@ header {
 }
 .follower-item:hover {
 	cursor: pointer;
+}
+.current-post-sort {
+	color: #C17A24 !important;
+	font-weight: 600;
 }
 .post-upvote {
 	display: inline-block;
@@ -258,7 +263,7 @@ header {
 	.post-meta li {
 		position: relative;
 		display: block;
-		float: left; 
+		float: left;
 		list-style: none;
 		margin-right: 10px;
 	}

@@ -70,18 +70,10 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 			// };
 
 
-	$scope.predicate = 'instance.actions.votes.total';
-	$scope.orderBy = function(predicate) {
-		$scope.predicate = predicate;
-	};
-
-	$scope.type = '';
-	$scope.filterBy = function(type) {
-		$scope.type = type;
-	}
-
-	$scope.getPosts = function(type) {
-		Post.getPosts(type).then(function(posts, type) {
+	$scope.getPosts = function(type, page) {
+		if(type === $scope.fetchBy) return;
+		$scope.fetchBy = type;
+		Post.getPosts(type, page).then(function(posts, type) {
 			if(posts.instance.length) {
 				$scope.noResults = false;
 				$rootScope.postCollection = posts.instance;
@@ -91,8 +83,10 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 			}
 		})
 	}
+	$scope.getPosts('dt_create', 1);
+	$scope.fetchBy = 'dt_create';
+	
 	// Initial Posts Fetch - Latest
-	$scope.getPosts('dt_create');
 
 	if($stateParams.search) {
 		Search.searchPosts($stateParams.search).then(function(posts) {

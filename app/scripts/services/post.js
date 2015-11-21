@@ -23,14 +23,15 @@ app.factory('Post', ['$q', '$stamplay', '$rootScope', 'algolia', function($q, $s
 			})
 			return q.promise;
 		},
-		getPosts: function(type) {
+		getPosts: function(type, page) {
+			console.log(page);
 			var postCollection = $stamplay.Cobject('post').Collection;
 			var q = $q.defer();
 			postCollection
 			.sortDescending(type)
 			.equalTo('approved', true)
 			.populateOwner()
-			.pagination(1, 10)
+			.pagination(page, 10)
 			.fetch().then(function() {
 				q.resolve(postCollection);
 			})
