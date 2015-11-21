@@ -379,9 +379,9 @@
 				<section id="discussion">
 					<h3>Discussion</h3>
 
-					<div class="no-data" ng-if="post.instance.actions.comments.length === 0">No comments have been left yet.</div>
+					<div class="no-data" ng-if="comments.length === 0">No comments have been left yet.</div>
 
-                    <span uib-dropdown on-toggle="toggled(open)" class="comment-filter" ng-hide="post.instance.actions.comments.length === 0">
+                    <span uib-dropdown on-toggle="toggled(open)" class="comment-filter" ng-hide="comments.length === 0">
                         <a href="" id="simple-dropdown" uib-dropdown-toggle>Most upvoted <i class="icon ion-arrow-down-b"></i></a>
                         <ul class="uib-dropdown-menu user-menu" aria-labelledby="simple-dropdown">
                             <li><a href="#" ng-click="">most upvoted</a></li>
@@ -391,13 +391,13 @@
                     </span>
 
 					<div class="post-comment" ng-repeat="comment in comments | orderBy : '-dt_create'" >
-						<img ng-src="{{ comment.picture }}" class="user-img"/>
+						<img ng-src="{{ comment.instance.owner.profileImg }}" class="user-img"/>
 						<div class="comment-header">
-							<span class="user-name">{{ comment.displayName }}</span>
+							<span class="user-name">{{ comment.instance.owner.displayName }}</span>
 							<span class="user-title">Ganker</span>
 						</div>
 						<div class="comment-body">
-							<p>{{ comment.text }}</p>
+							<p>{{ comment.instance.body }}</p>
 						</div>
 						<div class="comment-actions">
 							<a href=""><i class="icon ion-chevron-up"></i> 3</a>

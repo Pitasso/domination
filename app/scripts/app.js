@@ -10,7 +10,8 @@ var app = angular.module("Domination", [
     "angularMoment",
     "infinite-scroll"
     ])
-.config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
+.config(["$stateProvider", "$urlRouterProvider", "$locationProvider", function($stateProvider, $urlRouterProvider, $locationProvider) {
+  // $locationProvider.html5Mode(true)
     $stateProvider
         .state("Home", {
             url: "/{search}",
@@ -18,7 +19,7 @@ var app = angular.module("Domination", [
             controller: "IndexViewCtrl"
         })
         .state("Post", {
-            url: "/post/:id",
+            url: "/post/:slug",
             templateUrl: "app/views/postView.html",
             controller: "PostViewCtrl"
         })
@@ -40,7 +41,6 @@ var app = angular.module("Domination", [
     Auth.currentUser().then(function(user) {
         if(user.isLogged()) {
             $rootScope.currentUser = user.instance;
-            console.log(user)
         } else {
             $rootScope.currentUser = false;
         }
