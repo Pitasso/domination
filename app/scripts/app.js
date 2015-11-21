@@ -13,7 +13,7 @@ var app = angular.module("Domination", [
 .config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state("Home", {
-            url: "/{search}",
+            url: "/",
             templateUrl: "app/views/indexView.html",
             controller: "IndexViewCtrl"
         })
