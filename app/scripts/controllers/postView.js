@@ -9,6 +9,7 @@ app.controller('PostViewCtrl', ['Post', '$scope', '$rootScope', '$state', '$stat
     Post.getPostDetails($stateParams.slug).then(function(res) {
         $scope.post = res.post;
         $scope.comments = res.comments.instance;
+        getUpvoters(res.post.instance.actions.votes.users)
     })
 
 	$scope.upvotePost = function(post) {
@@ -35,6 +36,18 @@ app.controller('PostViewCtrl', ['Post', '$scope', '$rootScope', '$state', '$stat
           $scope.reply_open = false;
       }
 
+      var getUpvoters = function(upvoters) {
+        var user = new Stamplay.User().Model;
+        upvoters.forEach(function(item, idx, arr) {
+          user.fetch(item).then(function() {
+            upvoters[idx] = user.instance;
+            if(idx === arr.length - 1) {
+              $scope.upvoters = upvoters;
+              $scope.$apply();
+            }
+          })
+        })
+      }
 
 
 }])

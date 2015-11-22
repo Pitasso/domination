@@ -227,7 +227,6 @@ header {
 	overflow: hidden;
 }
 .post-thumbnail img {
-	margin-top: -16px;
 }
 .post-desc {
 	display: inline-block;

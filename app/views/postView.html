@@ -332,23 +332,23 @@ left: -50px;
 </style>
 
 <div class="main">
-    <div class="post-view">
+	<div class="post-view">
 
-    	<section id="post-header">
-				<div ng-if="post.instance.type === 'link'">
-					<h1 class="post-title" >
-						{{ post.instance.title}}
-					</h1>
-				</div>
+		<section id="post-header">
+			<div ng-if="post.instance.type === 'link'">
+				<h1 class="post-title" >
+					{{ post.instance.title}}
+				</h1>
+			</div>
 
-				<div ng-if="post.instance.type === 'game'">
-					<h1 class="post-title">
-						<img src="images/eg.png" />{{post.instance.team_1}}<span>vs</span>{{post.instance.team_2}}<img src="images/navi.png" />
-					</h1>
-					<p>
-						{{ post.instance.title}}
-					</p>
-				</div>
+			<div ng-if="post.instance.type === 'game'">
+				<h1 class="post-title">
+					<img src="images/eg.png" />{{post.instance.team_1}}<span>vs</span>{{post.instance.team_2}}<img src="images/navi.png" />
+				</h1>
+				<p>
+					{{ post.instance.title}}
+				</p>
+			</div>
 		</section>
 
 		<section id="post-info">
@@ -368,32 +368,32 @@ left: -50px;
 				<div id="info">
 
 					<uib-tabset>
-					    <uib-tab active="true" ng-if="post.instance.type === 'game'" >
+						<uib-tab active="true" ng-if="post.instance.type === 'game'" >
 							<uib-tab-heading><h3 class="tab-heading">Video</h3></uib-tab-heading>
 							<div class="video embed-responsive embed-responsive-16by9">
 								<iframe src="http://player.twitch.tv/?channel=dota2ruhub" scrolling="no"></iframe>
 							</div>
-					    </uib-tab>
-					    <uib-tab>
+						</uib-tab>
+						<uib-tab>
 							<uib-tab-heading><h3 class="tab-heading">Details</h3></uib-tab-heading>
 							<p>{{post.instance.desc}}</p>
-					    </uib-tab>
+						</uib-tab>
 					</uib-tabset>
 
-  				</div>
+				</div>
 				<section id="discussion">
 					<h3>Discussion</h3>
 
 					<div class="no-data" ng-if="comments.length === 0">No comments have been left yet.</div>
 
-                    <span uib-dropdown on-toggle="toggled(open)" class="comment-filter" ng-hide="comments.length === 0">
-                        <a href="" id="simple-dropdown" uib-dropdown-toggle>Most upvoted <i class="icon ion-arrow-down-b"></i></a>
-                        <ul class="uib-dropdown-menu user-menu" aria-labelledby="simple-dropdown">
-                            <li><a href="#" ng-click="">most upvoted</a></li>
-                            <li><a href="#" ng-click="">newest</a></li>
-                            <li><a href="#" ng-click="">oldest</a></li>
-                        </ul>
-                    </span>
+					<span uib-dropdown on-toggle="toggled(open)" class="comment-filter" ng-hide="comments.length === 0">
+						<a href="" id="simple-dropdown" uib-dropdown-toggle>Most upvoted <i class="icon ion-arrow-down-b"></i></a>
+						<ul class="uib-dropdown-menu user-menu" aria-labelledby="simple-dropdown">
+							<li><a href="#" ng-click="">most upvoted</a></li>
+							<li><a href="#" ng-click="">newest</a></li>
+							<li><a href="#" ng-click="">oldest</a></li>
+						</ul>
+					</span>
 
 					<div class="post-comment" ng-repeat="comment in comments track by $index | orderBy : '-dt_create'" >
 						<img ng-src="{{ comment.instance.owner.profileImg }}" class="user-img"/>
@@ -432,11 +432,11 @@ left: -50px;
 
 					<div class="comment-input" ng-hide="!currentUser">
 						<img ng-src="{{currentUser.profileImg}}" class="user-img"/>
-                        <div class="input-group">
+						<div class="input-group">
 							<textarea type="text" placeholder="Leave your comment..." ng-model="comment"></textarea>
 							<button type="button" class="btn btn-brown" ng-click="addComment(comment, post.instance._id)">Submit</button>
 						</div>
-                    </div>
+					</div>
 
 				</section>
 			</main>
@@ -462,10 +462,10 @@ left: -50px;
 					</div>
 				</section>
 
-				<section id="upvoted-by" ng-show="post.instance.actions.votes.total != 0">
+				<section id="upvoted-by" ng-show="post.instance.actions.votes.total != 0" style="max-height:300px;overflow:scroll;">
 					<label>UPVOTED</label>
 					<div>
-						<img class="user-img" ng-src="{{currentUser.profileImg}}" ng-repeat="user in userList"/>
+						<img class="user-img" ng-src="{{user.profileImg}}" ng-repeat="user in upvoters"/>
 					</div>
 				</section>
 
@@ -483,5 +483,5 @@ left: -50px;
 			</aside>
 
 		</section>
-    </div>
+	</div>
 </div>
