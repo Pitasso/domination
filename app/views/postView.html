@@ -414,7 +414,7 @@ left: -50px;
 							<textarea type="text" placeholder="Leave your reply..." ng-model="reply"></textarea>
 							<button type="button" class="btn btn-brown" ng-click="addReply(comment, reply, $index); reply_open = false; reply = ''">Submit</button>
 						</div>
-						<div class="post-reply" ng-repeat="reply in comment.instance.actions.comments">
+						<div class="post-reply" ng-repeat="reply in comment.instance.actions.comments track by $index">
 							<img ng-src="{{ reply.picture }}" class="user-img" style="position:relative"/>
 							<div class="comment-header">
 								<span class="user-name">{{ reply.displayName }}</span>
@@ -465,13 +465,13 @@ left: -50px;
 				<section id="upvoted-by" ng-show="post.instance.actions.votes.total != 0" style="max-height:300px;overflow:scroll;">
 					<label>UPVOTED</label>
 					<div>
-						<img class="user-img" ng-src="{{user.profileImg}}" ng-repeat="user in upvoters"/>
+						<img class="user-img" ng-src="{{user.profileImg}}" ng-repeat="user in upvoters track by $index"/>
 					</div>
 				</section>
 
 				<section id="similar-posts" ng-hide="">
 					<label>SIMILAR POSTS</label>
-					<div class="similar-post" ng-repeat="post in posts">
+					<div class="similar-post" ng-repeat="post in posts track by $index">
 						<img src="images/video.png" class="similar-post-thumbnail" />
 						<div class="similar-post-description">
 							<div class="similar-post-header">{{ post.instance.title }} <span><i class="icon ion-chevron-up"></i> {{post.instance.actions.upvotes}}</span></div>

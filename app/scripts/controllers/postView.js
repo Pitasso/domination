@@ -21,11 +21,11 @@ app.controller('PostViewCtrl', ['Post', '$scope', '$rootScope', '$state', '$stat
     $scope.addComment = function(comment) {
         $scope.processing_comment = true;
         Post.addComment(comment, $stateParams.slug, $scope.post.instance.owner.email).then(function(res) {
-            res.instance.owner = $rootScope.currentUser;
+            res.instance.owner = $rootScope.currentUser.instance;
             $scope.comments.push(res);
             $scope.comment_form = false;
             $scope.processing_comment = false;
-            Materialize.toast("Comment has been added.", 2000)
+            $scope.$apply();
         })
       }
   	$scope.addReply = function(comment, reply, idx) {
