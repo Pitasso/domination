@@ -30,7 +30,8 @@
                         <div class="post-meta" ng-if="post.instance.type === 'game'">{{post.instance.title}}</div>
                     </div>
                     <div class="post-details">
-                        <img ng-src="{{post.instance.owner.profileImg}}" uib-popover-template="'app/views/partial/user.html'" popover-placement="bottom" popover-trigger="mouseenter mouseleave" class="author-avatar img-circle">
+                        <img ng-src="{{post.instance.owner.profileImg}}" uib-popover-template="'app/views/partial/user.html'" popover-placement="bottom" popover-trigger="mouseenter mouseleave" class="author-avatar img-circle"
+                        ui-sref="Profile({ username : post.instance.owner.username})">
                         <div class="comments"><span class="icon ion-ios-chatbubble-outline" aria-hidden="true"></span>  {{post.instance.actions.comments.length}}</div>
                     </div>
                 </div>

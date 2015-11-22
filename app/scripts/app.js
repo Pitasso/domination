@@ -8,10 +8,11 @@ var app = angular.module("Domination", [
     "ngStamplay",
     "algoliasearch",
     "angularMoment",
-    "infinite-scroll"
+    "infinite-scroll",
+    "ngMessages"
     ])
-.config(["$stateProvider", "$urlRouterProvider", "$locationProvider", function($stateProvider, $urlRouterProvider, $locationProvider) {
-  $locationProvider.html5Mode(true)
+.config(["$stateProvider", "$urlRouterProvider", "$locationProvider", "$httpProvider", function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+  // $locationProvider.html5Mode(true)
     $stateProvider
         .state("Home", {
             url: "/",
@@ -24,7 +25,7 @@ var app = angular.module("Domination", [
             controller: "PostViewCtrl"
         })
         .state("Profile", {
-            url: "/user/:displayName",
+            url: "/user/:username",
             templateUrl: "app/views/profile.html",
             controller: "ProfileCtrl"
         })
@@ -34,13 +35,14 @@ var app = angular.module("Domination", [
             controller: "MembershipCtrl"
         })
     $urlRouterProvider.otherwise("/");
+
 }])
 
 .run(["$stamplay", "$rootScope", "Auth", function($stamplay, $rootScope, Auth) {
     Stamplay.init("Domination");
     Auth.currentUser().then(function(user) {
         if(user.isLogged()) {
-            $rootScope.currentUser = user.instance;
+            $rootScope.currentUser = user;
             if(user.instance && !user.instance.username) {
               $rootScope.welcome();
             }
