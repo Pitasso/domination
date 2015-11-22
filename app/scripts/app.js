@@ -12,7 +12,6 @@ var app = angular.module("Domination", [
     "ngMessages"
     ])
 .config(["$stateProvider", "$urlRouterProvider", "$locationProvider", "$httpProvider", function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
-  // $locationProvider.html5Mode(true)
     $stateProvider
         .state("Home", {
             url: "/{search}",
@@ -42,10 +41,15 @@ var app = angular.module("Domination", [
     Stamplay.init("Domination");
     Auth.currentUser().then(function(user) {
         if(user.isLogged()) {
-            $rootScope.currentUser = user;
-            if(user.instance && !user.instance.username) {
-              $rootScope.welcome();
-            }
+            Auth.getRole(user.instance.givenRole)
+            .then(function(role) {
+              user.instance.givenRole = role;
+              $rootScope.currentUser = user;
+              if(user.instance && !user.instance.username) {
+                $rootScope.welcome();
+              }
+            })
+
         } else {
             $rootScope.currentUser = false;
         }

@@ -28,10 +28,13 @@
 	}
 	.profile-title {
 		font-size: 28px;
-		color: #EE8709;
 		line-height: 32px;
 		text-shadow: 0px 2px 4px rgba(0,0,0,0.50);
 		margin: 5px 0 10px;
+	}
+	.profile-title > b{
+		color: #EE8709;
+		text-shadow: 0px 4px 8px rgba(0,0,0,0.70);
 	}
 	.profile-subtitle {
 		font-size: 18px;
@@ -117,7 +120,7 @@
 			</div>
 
 			<div class="profile-info">
-				<h1 class="profile-title">{{ user_profile.instance.displayName }}</h1>
+				<h1 class="profile-title" style="font-weight:200 !important">{{ firstname }} <b>{{username}}</b> {{ lastname }}</h1>
 				<h2 class="profile-subtitle">Ganker - <span>Domination Team</span><img src="images/eg.png" /></h2>
 				<div class="profile-social">
 					<a href=""><i class="icon ion-social-twitter"></i></a>

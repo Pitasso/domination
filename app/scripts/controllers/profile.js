@@ -45,6 +45,10 @@ app.controller('ProfileCtrl', ['User', '$scope', '$state', "$stateParams", funct
 
 	User.getUser(username).then(function(profile) {
 		$scope.user_profile = profile;
+		var names = profile.instance.displayName.split(" ");
+		$scope.firstname = names[0];
+		$scope.username = profile.instance.username;
+		$scope.lastname = names.length > 1 ? names[names.length - 1] : "";
 		getSubmitted(profile);
 		getUpvoted(profile.instance._id);
 	});

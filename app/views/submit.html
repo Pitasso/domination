@@ -164,8 +164,20 @@ span[ng-message] {
 }
 </style>
 
+<!-- Show if Register User Tries To Post New Link -->
+<div ng-show="currentUser.instance.givenRole.name === 'registered'">
+	<div class="submit-header container">
+		<h3>Posting new Links and Games is for members only.</h3>
+		<h4>If you'd like to become part of our community of members and have full access to all the features, you can request member. Click below to request membership now.
+		</h4>
+	<p>
+		<button class="btn btn-brown btn-block col-sm-6">Request Membership</button>
+	</p>
+	</div>
+</div>
 
-<div>
+<!-- Show if Member User Tries To Post New Link -->
+<div ng-hide="currentUser.instance.givenRole.name === 'registered' || !currentUser.instance">
 	<a class="submit-window-close" ng-click="$dismiss()"><i class="icon ion-ios-close-outline"></i></a>
 	<div class="submit-header">
 		<h3>Submit a new post</h3>
