@@ -1,5 +1,27 @@
 @import 'brown.css';
 
+@font-face {
+    font-family: 'LucidaGrande';
+    src: url('LucidaGrande.eot');
+    src: url('LucidaGrande.eot?#iefix') format('embedded-opentype'),
+         url('LucidaGrande.woff') format('woff'),
+         url('LucidaGrande.ttf') format('truetype'),
+         url('LucidaGrande.svg#FontName') format('svg');
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+	font-family: 'LucidaSansUnicode';
+    src: url('LucidaSansUnicode.eot');
+    src: url('LucidaSansUnicode.eot?#iefix') format('embedded-opentype'),
+         url('LucidaSansUnicode.woff') format('woff'),
+         url('LucidaSansUnicode.ttf') format('truetype'),
+         url('LucidaSansUnicode.svg#FontName') format('svg');
+    font-style: normal;
+    font-weight: normal;
+}
+
 body {
 	font-size: 15px;
 	font-family: LucidaSansUnicode;
@@ -295,4 +317,33 @@ header {
 .load-more {
 	text-align: center;
 	margin-top: 10px;
+}
+.spinner {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	background-color: #C17A24;
+
+	border-radius: 100%;  
+	-webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+	animation: sk-scaleout 1.0s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-scaleout {
+	0% { -webkit-transform: scale(0) }
+		100% {
+		-webkit-transform: scale(1.0);
+		opacity: 0;
+	}
+}
+
+@keyframes sk-scaleout {
+	0% { 
+		-webkit-transform: scale(0);
+		transform: scale(0);
+		} 100% {
+		-webkit-transform: scale(1.0);
+		transform: scale(1.0);
+		opacity: 0;
+	}
 }

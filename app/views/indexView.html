@@ -2,9 +2,6 @@
 
 <div class="main">
     <div class="post-list container">
-        <div class="row">
-            <div class="title">Last 30 days</div>
-        </div>
 
         <div ng-hide="post_query" >
             <!-- Temp -->
@@ -68,7 +65,7 @@
         </div>
 
         <div class="load-more row">
-            <a ng-hide="noMore" infinite-scroll="loadNextPosts()" infinite-scroll-immediate-check="false"  class="btn">More Posts...</a>
+            <a ng-hide="noMore" infinite-scroll="loadNextPosts()" infinite-scroll-immediate-check="false"  class="btn"><div class="spinner"></div> Loading posts...</a>
             <a ng-show="noMore" href="#">No more posts..</a>
         </div>
     </div>

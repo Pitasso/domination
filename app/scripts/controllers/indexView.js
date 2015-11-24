@@ -139,8 +139,7 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 			$scope.newPost = function() {
 				if($rootScope.currentUser.instance.givenRole.name === 'registered') {
 					var loginModal = $uibModal.open({
-						templateUrl: "app/views/login.html",
-						controller: "AuthCtrl",
+						templateUrl: "app/views/partial/permission.html",
 						windowClass: "login-window",
 						animation: false,
 						resolve: {
