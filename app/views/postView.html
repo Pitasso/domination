@@ -230,7 +230,7 @@
 		.post-comment:hover span.comment-time,
 		.comment-reply:hover .reply-time {
 		display: inline-block;
-		}		
+		}
 	.comment-filter {
 		position: absolute;
 		top: 2px;
@@ -401,12 +401,12 @@
 
 					<div class="post-comment" ng-repeat="comment in comments track by $index | orderBy : '-dt_create'" >
 						<img ng-src="{{ comment.instance.owner.profileImg }}" class="user-img"/>
-						
+
 						<div class="comment-header">
 							<span class="user-name">{{ comment.instance.owner.displayName }}</span>
 							<span class="user-title">Ganker</span>
 						</div>
-						
+
 						<div class="comment-body">
 							<p>{{ comment.instance.body }}</p>
 						</div>
@@ -428,10 +428,15 @@
 							<div class="reply-header">
 								<span class="user-name">{{ reply.displayName }}</span>
 							</div>
-							<div class="reply-body">
-								<p>{{ reply.text }}<span class="reply-time" am-time-ago="reply.dt_create"></span></p>
+
+							<div class="comment-body">
+								<p>{{ reply.text }}</p>
 							</div>
-							
+							<div class="comment-actions">
+								<span am-time-ago="reply.dt_create"></span>
+								<!-- <span ng-click="removeReply(comment, $index)" class="btn"><i class="icon ion-ios-close-outline"></i></span> -->
+							</div>
+
 						</div>
 
 					</div>
