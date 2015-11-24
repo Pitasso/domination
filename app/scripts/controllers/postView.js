@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('PostViewCtrl', ['Post', '$scope', '$rootScope', '$state', '$stateParams', '$stamplay', function(Post, $scope, $rootScope, $state, $stateParams, $stamplay) {
+app.controller('PostViewCtrl', ['Post', '$scope', '$rootScope', '$state', '$stateParams', '$stamplay', "$http", function(Post, $scope, $rootScope, $state, $stateParams, $stamplay, $http) {
     var vm = this;
 	vm.time = new Date();
 
@@ -14,18 +14,20 @@ app.controller('PostViewCtrl', ['Post', '$scope', '$rootScope', '$state', '$stat
 
 	$scope.upvotePost = function(post) {
 		post.upVote().then(function() {
+      if(!$scope.upvoters) $scope.upvoters = [];
+      $scope.upvoters.push($rootScope.currentUser.instance);
 			$scope.$apply();
 		})
 	}
 
     $scope.addComment = function(comment) {
-        $scope.processing_comment = true;
+        // $scope.processing_comment = true;
         Post.addComment(comment, $stateParams.slug, $scope.post.instance.owner.email).then(function(res) {
             res.instance.owner = $rootScope.currentUser.instance;
             $scope.comments.push(res);
             $scope.comment_form = false;
-            $scope.processing_comment = false;
-            $scope.$apply();
+            // $scope.processing_comment = false;
+            // $scope.$apply();
         })
       }
   	$scope.addReply = function(comment, reply, idx) {
@@ -35,6 +37,8 @@ app.controller('PostViewCtrl', ['Post', '$scope', '$rootScope', '$state', '$stat
           })
           $scope.reply_open = false;
       }
+
+
 
       var getUpvoters = function(upvoters) {
         var user = new Stamplay.User().Model;
