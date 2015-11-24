@@ -19,6 +19,7 @@ app.factory('Post', ['$q', '$stamplay', '$rootScope', 'algolia', function($q, $s
 			post.set('team_2', details.team_2);
 			post.set('date', details.date);
 			post.set('approved', false);
+			post.set('comment_count', 0);
 			post.save().then(function(){
 				q.resolve(post);
 			})

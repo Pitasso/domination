@@ -39,6 +39,7 @@
 	}
 	#post-header {
 		text-align: center;
+		min-height:135px;
 		flex: 1;
 	}
 	h1.post-title {
@@ -333,6 +334,21 @@
 		padding:50px;
 		border:1px dashed #4A2D13;
 	}
+	.spinner {
+		margin: 50px;
+		height: 28px;
+		width: 28px;
+		animation: rotate 1s infinite linear;
+		border: 4px solid rgba(255, 255, 255, 0.5);
+		border-right-color: transparent;
+		border-radius: 50%;
+	}
+
+	@keyframes rotate {
+		0%    { transform: rotate(0deg); }
+		50%    { transform: rotate(180deg); }
+		100%  { transform: rotate(360deg); }
+	}
 </style>
 
 <div class="main">
@@ -357,8 +373,8 @@
 
 		<section id="post-info">
 			<div class="post-meta">
-				<a class="category btn btn-brown">{{post.instance.type}}</a>
-				<div class="dates"><i class="icon ion-calendar"></i> {{post.instance.date | date: 'EEE, d MMM'}} {{ post.instance.time }}</div>
+				<a class="category btn btn-brown" ng-show='post.instance.type'>{{post.instance.type}}</a>
+				<div class="dates" ng-if="post.instance.type === 'game'"><i class="icon ion-calendar"></i> {{post.instance.date | date: 'EEE, d MMM'}} {{ post.instance.time }}</div>
 			</div>
 			<div class="post-actions">
 				<a class="btn btn-brown btn-vote" ng-click="upvotePost(post);"><span class="counter">{{post.instance.actions.votes.total}}</span><span>Upvote</span></a>
@@ -369,8 +385,7 @@
 
 		<section id="post-details">
 			<main>
-				<div id="info">
-
+				<div id="info" >
 					<uib-tabset>
 						<uib-tab active="true" ng-if="post.instance.type === 'game'" >
 							<uib-tab-heading><h3 class="tab-heading">Video</h3></uib-tab-heading>
@@ -385,7 +400,12 @@
 					</uib-tabset>
 
 				</div>
-				<section id="discussion">
+				<section id="discussion" ng-hide="post.instance">
+					<div class="spinner" style="position: absolute;right: calc(50% - 60px);">
+
+					</div>
+				</section>
+				<section id="discussion" ng-show="post.instance">
 					<h3>Discussion</h3>
 
 					<div class="no-data" ng-if="comments.length === 0">No comments have been left yet.</div>
@@ -436,34 +456,38 @@
 								<span am-time-ago="reply.dt_create"></span>
 								<!-- <span ng-click="removeReply(comment, $index)" class="btn"><i class="icon ion-ios-close-outline"></i></span> -->
 							</div>
-
 						</div>
 
 					</div>
-
-					<div class="no-data" ng-if="!currentUser">Commenting is limited to community members. <br/> Please <a ng-click="login()">Login</a> or <a ui-sref="Membership">Request</a> your membership.</div>
-
-					<div class="comment-input" ng-hide="!currentUser">
-						<img ng-src="{{currentUser.instance.profileImg}}" class="user-img"/>
-						<div class="input-group">
-							<textarea type="text" placeholder="Leave your comment..." ng-model="comment"></textarea>
-							<button type="button" class="btn btn-brown" ng-click="addComment(comment, post.instance._id)">Submit</button>
+					<div ng-show="post.instance">
+						<div ng-show="currentUser.instance.givenRole.name === 'registered'  || currentUser.instance.givenRole.name === 'guest'">
+							<div class="no-data" >Commenting is limited to community members. <br/> Please <a ng-click="login()">Login</a> or <a ui-sref="Membership">Request</a> your membership.</div>
 						</div>
 					</div>
+
+					<div ng-show="post.instance">
+						<div class="comment-input" ng-show="currentUser.instance.givenRole.name === 'moderator'  || currentUser.instance.givenRole.name === 'member'">
+							<img ng-src="{{currentUser.instance.profileImg}}" class="user-img"/>
+							<div class="input-group">
+								<textarea type="text" placeholder="Leave your comment..." ng-model="comment"></textarea>
+								<button type="button" class="btn btn-brown" ng-click="addComment(comment, post.instance._id)">Submit</button>
+							</div>
+						</div>
+					</div>
+
 
 				</section>
 			</main>
 
-
 			<aside>
-				<section id="submited-by">
+				<section id="submited-by" ng-show="post.instance">
 					<label>SUBMITED ON {{ post.instance.dt_create | date:'MMM d' }}</label>
 					<div>
-						<img class="user-img" ng-src="{{post.instance.owner.profileImg}}" ui-sref="Profile ({id : post.userId})"/>
+						<img class="user-img" ng-src="{{post.instance.owner.profileImg || 'http://ga.ng.mil/_layouts/15/images/person.gif'}}" ui-sref="Profile ({id : post.userId})"/>
 					</div>
 				</section>
 
-				<section id="played-by" ng-show="post.instance.type === game">
+				<section id="played-by" ng-show="post.instance.type === game && played">
 					<label>PLAYED</label>
 					<div class="team">
 						<img class="user-img" ng-src="images/dire-side.png" />
@@ -475,14 +499,14 @@
 					</div>
 				</section>
 
-				<section id="upvoted-by" ng-show="post.instance.actions.votes.total != 0" style="max-height:300px;overflow:scroll;">
+				<section id="upvoted-by" ng-show="post.instance.actions.votes.total !== 0 && post.instance" style="max-height:300px;overflow:scroll;">
 					<label>UPVOTED</label>
 					<div>
 						<img class="user-img" ng-src="{{user.profileImg}}" ng-repeat="user in upvoters track by $index"/>
 					</div>
 				</section>
 
-				<section id="similar-posts" ng-hide="">
+				<section id="similar-posts" ng-show="similar">
 					<label>SIMILAR POSTS</label>
 					<div class="similar-post" ng-repeat="post in posts track by $index">
 						<img src="images/video.png" class="similar-post-thumbnail" />

@@ -24,21 +24,30 @@ app.controller('PostViewCtrl', ['Post', '$scope', '$rootScope', '$state', '$stat
         // $scope.processing_comment = true;
         Post.addComment(comment, $stateParams.slug, $scope.post.instance.owner.email).then(function(res) {
             res.instance.owner = $rootScope.currentUser.instance;
+            incrementCommentCount();
             $scope.comments.push(res);
             $scope.comment_form = false;
-            // $scope.processing_comment = false;
-            // $scope.$apply();
         })
       }
   	$scope.addReply = function(comment, reply, idx) {
           comment.comment(reply).then(function() {
             $scope.comments[idx].instance.actions.comments = comment.instance.actions.comments;
-            $scope.$apply();
+            incrementCommentCount();
           })
           $scope.reply_open = false;
       }
 
 
+      var incrementCommentCount = function() {
+        var owner = $scope.post.instance.owner;
+        var count = $scope.post.instance.comment_count ? $scope.post.instance.comment_count + 1 : 1;
+        $scope.post.set("comment_count", count);
+        $scope.post.set("owner", $scope.post.instance.owner._id);
+        $scope.post.save().then(function() {
+          $scope.post.instance.owner = owner;
+          $scope.$apply();
+        })
+      }
 
       var getUpvoters = function(upvoters) {
         var user = new Stamplay.User().Model;
