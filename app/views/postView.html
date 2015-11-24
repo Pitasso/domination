@@ -119,11 +119,6 @@
 		text-transform: uppercase;
 		border: 1px solid;
 	}
-	.post-reply .user-img {
-		position: relative !important;
-top: 40px;
-left: -50px;
-	}
 	a.btn-vote {
 		border: 1px solid #C17A24;
 		color: #000;
@@ -181,14 +176,21 @@ left: -50px;
 	.video {
 		border: 1px solid #4A2D13;
 	}
-	.post-comment {
+	.post-comment,
+	.comment-reply {
 		position: relative;
 		padding: 10px 10px 10px 50px;
 	}
-	.post-comment .comment-header {
+	.comment-reply {
+		padding-bottom: 0;
+		padding-right: 0;
+	}
+	.post-comment .comment-header,
+	.post-comment .reply-header {
 		margin-bottom: 10px;
 	}
-	.post-comment img {
+	.post-comment img,
+	.comment-reply img {
 		position: absolute;
 		top: 12px;
 		left: 2px;
@@ -217,16 +219,18 @@ left: -50px;
 	.comment-actions .share {
 		display: none;
 	}
-	.comment-actions span {
+	.comment-actions span.comment-time,
+	.reply-time {
 		display: none;
 		color: #5E4322;
 		font-size: 13px;
 		float: right;
 	}
 		.post-comment:hover .share,
-		.post-comment:hover span {
+		.post-comment:hover span.comment-time,
+		.comment-reply:hover .reply-time {
 		display: inline-block;
-		}
+		}		
 	.comment-filter {
 		position: absolute;
 		top: 2px;
@@ -397,41 +401,45 @@ left: -50px;
 
 					<div class="post-comment" ng-repeat="comment in comments track by $index | orderBy : '-dt_create'" >
 						<img ng-src="{{ comment.instance.owner.profileImg }}" class="user-img"/>
+						
 						<div class="comment-header">
 							<span class="user-name">{{ comment.instance.owner.displayName }}</span>
 							<span class="user-title">Ganker</span>
 						</div>
+						
 						<div class="comment-body">
 							<p>{{ comment.instance.body }}</p>
 						</div>
+
 						<div class="comment-actions">
 							<a href=""><i class="icon ion-chevron-up"></i> 3</a>
 							<a href="" ng-click="reply_open = !reply_open"><i class="icon ion-reply"></i> Reply</a>
 							<a href="" class="share"><i class="icon ion-share"></i> Share</a>
-							<span am-time-ago="comment.instance.dt_create"></span>
+							<span class="comment-time" am-time-ago="comment.instance.dt_create"></span>
 						</div>
+
 						<div ng-show="reply_open" class="comment-input">
 							<textarea type="text" placeholder="Leave your reply..." ng-model="reply"></textarea>
 							<button type="button" class="btn btn-brown" ng-click="addReply(comment, reply, $index); reply_open = false; reply = ''">Submit</button>
 						</div>
-						<div class="post-reply" ng-repeat="reply in comment.instance.actions.comments track by $index">
-							<img ng-src="{{ reply.picture }}" class="user-img" style="position:relative"/>
-							<div class="comment-header">
+
+						<div class="comment-reply" ng-repeat="reply in comment.instance.actions.comments track by $index">
+							<img ng-src="{{ reply.picture }}" class="user-img"/>
+							<div class="reply-header">
 								<span class="user-name">{{ reply.displayName }}</span>
 							</div>
-							<div class="comment-body">
-								<p>{{ reply.text }}</p>
+							<div class="reply-body">
+								<p>{{ reply.text }}<span class="reply-time" am-time-ago="reply.dt_create"></span></p>
 							</div>
-							<div class="comment-actions">
-								<span am-time-ago="reply.dt_create"></span>
-							</div>
+							
 						</div>
+
 					</div>
 
 					<div class="no-data" ng-if="!currentUser">Commenting is limited to community members. <br/> Please <a ng-click="login()">Login</a> or <a ui-sref="Membership">Request</a> your membership.</div>
 
 					<div class="comment-input" ng-hide="!currentUser">
-						<img ng-src="{{currentUser.profileImg}}" class="user-img"/>
+						<img ng-src="{{currentUser.instance.profileImg}}" class="user-img"/>
 						<div class="input-group">
 							<textarea type="text" placeholder="Leave your comment..." ng-model="comment"></textarea>
 							<button type="button" class="btn btn-brown" ng-click="addComment(comment, post.instance._id)">Submit</button>

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('MembershipCtrl', ['Post', '$scope', '$state', '$stateParams', '$stamplay', function(Post, $scope, $state, $stateParams, $stamplay) {
+app.controller('MembershipCtrl', ['$scope', '$state', '$stateParams', '$stamplay', function($scope, $state, $stateParams, $stamplay) {
 
 
 }])
