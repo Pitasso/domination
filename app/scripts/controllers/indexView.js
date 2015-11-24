@@ -104,8 +104,8 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 					}
 				})
 			}
-			$scope.getPosts('dt_create', page);
-			$scope.fetchBy = 'dt_create';
+			$scope.getPosts('actions.votes.total', page);
+			$scope.fetchBy = 'actions.votes.total';
 
 			$scope.loadNextPosts = function() {
 				if(!$scope.noMore) {
