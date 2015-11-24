@@ -390,7 +390,7 @@
 						<uib-tab active="true" ng-if="post.instance.type === 'game'" >
 							<uib-tab-heading><h3 class="tab-heading">Video</h3></uib-tab-heading>
 							<div class="video embed-responsive embed-responsive-16by9">
-								
+
 							</div>
 						</uib-tab>
 						<uib-tab>
@@ -483,7 +483,7 @@
 				<section id="submited-by" ng-show="post.instance">
 					<label>SUBMITED ON {{ post.instance.dt_create | date:'MMM d' }}</label>
 					<div>
-						<img class="user-img" ng-src="{{post.instance.owner.profileImg || 'http://ga.ng.mil/_layouts/15/images/person.gif'}}" ui-sref="Profile ({id : post.userId})"/>
+						<img class="user-img" ng-src="{{post.instance.owner.profileImg}}" ui-sref="Profile ({id : post.userId})"/>
 					</div>
 				</section>
 
