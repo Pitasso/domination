@@ -3,7 +3,8 @@
 app.controller('SubmitPostCtrl', ['Post', 'Thumbnail', '$scope', '$rootScope', '$uibModalInstance', '$state', function(Post, Thumbnail, $scope, $rootScope, $uibModalInstance, $state) {
 
 	$scope.tabs = [];
-  $scope.tabs.post = { type : 'link' };
+  	$scope.tabs.post = { type : 'link' };
+
 	$scope.newPost = function() {
 		var details = $scope.tabs.post
 		var slug = '';
@@ -18,14 +19,14 @@ app.controller('SubmitPostCtrl', ['Post', 'Thumbnail', '$scope', '$rootScope', '
 		slug = slug.toLowerCase();
 		$scope.tabs.post.slug = slug;
 		var values = $scope.tabs.post;
-		Thumbnail.getFromUrl(values.url).then(function(thumbnail) {
-			values.thumbnail = thumbnail;
+		// Thumbnail.getFromUrl(values.url).then(function(thumbnail) {
+		// 	values.thumbnail = thumbnail;
 			Post.newPost(values).then(function(post) {
 				$uibModalInstance.close(post);
 			});
-		}, function(err) {
-			alert(err.message);
-		});
+		// }, function(err) {
+		// 	alert(err.message);
+		// });
 	}
 
 }])
