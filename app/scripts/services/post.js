@@ -3,7 +3,7 @@
 app.factory('Post', ['$q', '$stamplay', '$rootScope', 'algolia', function($q, $stamplay, $rootScope, algolia) {
 
 	var client = algolia.Client('7TMV8F22UN', 'b5e5aa05c764aa1718bc96b793078703');
-    var index = client.initIndex('KBQUESTIONS');
+  var index = client.initIndex('KBQUESTIONS');
 
 	return {
 		newPost: function(details) {
@@ -18,19 +18,21 @@ app.factory('Post', ['$q', '$stamplay', '$rootScope', 'algolia', function($q, $s
 			post.set('team_1', details.team_1);
 			post.set('team_2', details.team_2);
 			post.set('date', details.date);
-			post.set('approved', true);
+			post.set('approved', false);
 			post.set('comment_count', 0);
 			post.save().then(function(){
 				q.resolve(post);
 			})
 			return q.promise;
 		},
-		getPosts: function(type, page) {
+		getPosts: function(type, page, moderator) {
 			var postCollection = $stamplay.Cobject('post').Collection;
 			var q = $q.defer();
+			var approved = true;
+			if(moderator) approved = false;
 			postCollection
 			.sortDescending(type)
-			.equalTo('approved', true)
+			.equalTo('approved', approved)
 			.populateOwner()
 			.pagination(page, 10)
 			.fetch().then(function() {

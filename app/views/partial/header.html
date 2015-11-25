@@ -3,14 +3,14 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <a class="logo" ui-sref="Home"><img src="images/logo.png" alt="Domination"></a>
-                <a class="login-btn btn btn-brown" ng-if="!currentUser" ng-click="userLogin()">Login</a>
+                <a class="login-btn btn btn-brown" ng-show="currentUser === false && currentUser !== undefined;" ng-click="userLogin()">Login</a>
 
                 <div class="user-group" ng-cloak ng-show="currentUser" ng-contoller="DropdwonCtrl">
                     <span uib-dropdown on-toggle="toggled(open)">
                         <img ng-src="{{currentUser.instance.profileImg}}" id="simple-dropdown" uib-dropdown-toggle class="profile-img img-circle" />
                         <ul class="uib-dropdown-menu user-menu" aria-labelledby="simple-dropdown">
                             <li><a href="#" ui-sref="Profile ({ username : currentUser.instance.username })">Profile</a></li>
-                            <li><a href="#" ui-sref="Membership">Membership</a></li>
+                            <li><a href="/#/membership/viral" onclick="window.location.reload(true);">Membership</a></li>
                             <li><a href="#" ng-click="logout()">Logout</a></li>
                         </ul>
                     </span>
@@ -30,4 +30,5 @@
             </div>
         </div>
     </div>
+
 </header>

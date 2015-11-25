@@ -29,7 +29,7 @@ var app = angular.module("Domination", [
             controller: "ProfileCtrl"
         })
         .state("Membership", {
-            url: "/membership",
+            url: "/membership/viral",
             templateUrl: "app/views/membership.html",
             controller: "MembershipCtrl"
         })
@@ -54,4 +54,11 @@ var app = angular.module("Domination", [
             $rootScope.currentUser = false;
         }
     });
+    // $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState) {
+    //   if(toState.name !== "Membership" || fromState.name === "Membership") {
+    //     $rootScope.membership = false;
+    //     console.log(toState);
+    //   }
+    // })
+
 }]);
