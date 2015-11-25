@@ -99,7 +99,9 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 						// $scope.postCollection = [];
 						// $scope.noResults = true;
 						if(posts.instance.length === 0) {
-							$scope.noMore = true;
+							setTimeout(function() {
+								$scope.noMore = true;
+							}, 500)
 						}
 					}
 				})
