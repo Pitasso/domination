@@ -449,11 +449,12 @@
 								<span class="user-name">{{ reply.displayName }}</span>
 							</div>
 
-							<div class="comment-body">
+							<div class="reply-body">
 								<p>{{ reply.text }}</p>
+								<span class="reply-time" am-time-ago="reply.dt_create"></span>
 							</div>
-							<div class="comment-actions">
-								<span am-time-ago="reply.dt_create"></span>
+							<div class="re-actions">
+								
 								<!-- <span ng-click="removeReply(comment, $index)" class="btn"><i class="icon ion-ios-close-outline"></i></span> -->
 							</div>
 						</div>
