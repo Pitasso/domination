@@ -1,356 +1,3 @@
-<style>
-	#post-details {
-		background: #221306;
-		border-top: 1px solid #4A2D13;
-		box-shadow: 0px -2px 4px 0px #000000;
-		display: block;
-		min-height: 690px;
-		height: 100%;
-		position: relative;
-
-		display: -webkit-box;
-	    display: -moz-box;
-	    display: box;
-
-	    display: -webkit-flex;
-	    display: -moz-flex;
-	    display: -ms-flexbox;
-	    display: flex;
-
-	}
-	#post-details main, #post-details aside {
-		flex: 1 100%;
-	}
-	#post-details aside {
-		background: #2D1805;
-		border-left: 1px solid #4A2D13;
-		flex: 0 0 325px;
-		padding: 15px;
-	}
-	#post-details main {
-		padding: 10px 20px;
-
-	}
-	#post-details h4 {
-		color: #8B572A;
-		font-size: 13px;
-		margin-bottom: 20px;
-		text-transform: uppercase;
-	}
-	#post-header {
-		text-align: center;
-		min-height:135px;
-		flex: 1;
-	}
-	h1.post-title {
-		font-size: 30px;
-		color: #C17A24;
-		line-height: 35px;
-		text-shadow: 0px 2px 4px rgba(0,0,0,0.50);
-		margin: 80px 0 20px 0;
-		align-items: center;
-	}
-	#post-header img {
-		height: 60px;
-		margin: 0 20px;
-	}
-	#post-header h1 span {
-		font-size: 18px;
-		color: #704715;
-		line-height: 21px;
-		margin: 0 20px;
-	}
-	#post-header h2.post-subtitle {
-		font-size: 18px;
-		color: #C17A24;
-		line-height: 28px;
-		text-align: center;
-		margin-top: 0;
-	}
-	#post-info {
-		padding: 15px;
-		justify-content: space-between;
-
-		-webkit-box-align: end;
-	    -moz-box-align: end;
-	    box-align: end;
-
-	    -webkit-align-items: flex-end;
-	    -moz-align-items: flex-end;
-	    -ms-align-items: flex-end;
-	    -o-align-items: flex-end;
-	    align-items: flex-end;
-
-	    -ms-flex-align: end;
-
-	    display: -webkit-box;
-	    display: -moz-box;
-	    display: box;
-	    display: -webkit-flex;
-	    display: -moz-flex;
-	    display: -ms-flexbox;
-	    display: flex;
-
-	    -webkit-flex-flow: row nowrap;
-	    -moz-flex-flow: row nowrap;
-	    flex-flow: row nowrap;
-
-	    -webkit-box-pack: justify;
-	    -moz-box-pack: justify;
-	    box-pack: justify;
-
-	    -webkit-justify-content: space-between;
-	    -moz-justify-content: space-between;
-	    -ms-justify-content: space-between;
-	    -o-justify-content: space-between;
-	    justify-content: space-between;
-
-	    -ms-flex-pack: justify;
-	}
-	.post-meta .dates {
-		display: inline-block;
-		margin-left: 10px;
-		font-size: 13px;
-		text-transform: uppercase;
-	}
-	.post-actions {
-		align-self: flex-end;
-	}
-	.post-actions a {
-		text-transform: uppercase;
-		border: 1px solid;
-	}
-	a.btn-vote {
-		border: 1px solid #C17A24;
-		color: #000;
-		background: #825319;
-		padding-left: 8px;
-	}
-	a.btn-vote:hover {
-		background: #C17A24;
-		color: #000;
-		border-color: #F99D41;
-
-	}
-	.btn-vote .counter {
-		color: #000;
-		border-right: 1px solid #C17A24;
-		padding: 6px 8px 6px 0;
-		margin-right: 8px;
-	}
-	.btn-vote:hover .counter {
-		border-color: #F99D41;
-	}
-
-	main {
-		padding: 20px;
-	}
-	aside {
-		padding-top: 15px;
-	}
-	aside section {
-		margin: 0 5px 20px;
-	}
-	aside label {
-		color: #8B572A;
-		font-size: 13px;
-		margin-bottom: 10px;
-		text-transform: uppercase;
-	}
-	#post-details h3 {
-		font-size: 13px;
-		margin-bottom: 10px;
-		text-transform: uppercase;
-	}
-	.user-img {
-		border-radius: 50%;
-		border: 2px solid #704715;
-		width: 38px;
-		margin-right: 3px;
-		cursor: pointer;
-		-webkit-transition-duration: .3s;
-    	transition-duration: .3s;
-	}
-	aside section .team {
-		margin-bottom: 7px;
-	}
-	.video {
-		border: 1px solid #4A2D13;
-	}
-	.post-comment,
-	.comment-reply {
-		position: relative;
-		padding: 10px 10px 10px 50px;
-	}
-	.comment-reply {
-		padding-bottom: 0;
-		padding-right: 0;
-	}
-	.post-comment .comment-header,
-	.post-comment .reply-header {
-		margin-bottom: 10px;
-	}
-	.post-comment img,
-	.comment-reply img {
-		position: absolute;
-		top: 12px;
-		left: 2px;
-	}
-	.user-name {
-		font-size: 16px;
-		font-weight: 600;
-		color: #C17A24;
-	}
-	.comment-actions a {
-		color: #5E4322;
-		font-size: 12px;
-		margin-right: 5px;
-		text-transform: uppercase;
-	}
-	.comment-actions a:hover {
-		text-decoration: none;
-	}
-	.comment-actions .ion-reply,
-	.comment-actions .ion-share {
-		font-size: 16px;
-	}
-	.comment-actions .ion-chevron-up {
-		font-size: 13px;
-	}
-	.comment-actions .share {
-		display: none;
-	}
-	.comment-actions span.comment-time,
-	.reply-time {
-		display: none;
-		color: #5E4322;
-		font-size: 13px;
-		float: right;
-	}
-		.post-comment:hover .share,
-		.post-comment:hover span.comment-time,
-		.comment-reply:hover .reply-time {
-		display: inline-block;
-		}
-	.comment-filter {
-		position: absolute;
-		top: 2px;
-		right: 0;
-	}
-	#discussion {
-		position: relative;
-	}
-	#info .nav-tabs {
-		border-bottom: none;
-	}
-	#info .nav > li.active > a {
-		border: none;
-    	background: transparent;
-    	padding-bottom: 15px;
-    	color: #C17A24;
-	}
-	#info .nav > li:first-child > a {
-		padding-left: 0;
-	}
-	#info h3.tab-heading {
-		margin: 0;
-	}
-	#info .nav-tabs > li > a {
-		border: none;
-	}
-	#info .nav-tabs > li:hover > a {
-		color: #C17A24;
-	}
-	.comment-filter a {
-		font-size: 12px;
-		text-transform: uppercase;
-	}
-	.comment-filter a:hover,
-	.comment-filter a:focus {
-		color: #C17A24;
-		text-decoration: none;
-	}
-	.comment-input {
-		margin: 25px 0;
-	}
-	.comment-input img {
-		position: absolute;
-	}
-	.comment-input .input-group {
-		display: inline-block;
-		padding-left: 50px;
-		width: 100%;
-	}
-	.comment-input textarea {
-	    width: 100%;
-	    background: rgba(31,25,17,0.80);
-	    border: 1px solid #4A2D14;
-	    border-radius: 3px;
-	    font-size: 15px;
-	    color: #704715;
-	    line-height: 18px;
-	    padding: 7px;
-	    outline: none;
-	    resize: none;
-	}
-	.comment-input button {
-		float: right;
-	}
-	.similar-post {
-		margin-bottom: 10px;
-	}
-	.similar-post:hover {
-		background: #221306;
-		cursor: pointer;
-	}
-	.similar-post-thumbnail {
-		float: left;
-		margin-right: 10px;
-		width: 90px;
-		box-shadow: inset 0px 0px 20px 3px #000000;
-		border: 1px solid #4A2D13;
-	}
-	.similar-post-description {
-		padding: 4px 8px 5px 95px;
-	}
-	.similar-post-header {
-		font-size: 14px;
-		padding: 2px 0 3px;
-		color: #C17A24;
-	}
-	.similar-post-header span {
-		font-size: 12px;
-		color: #704715;
-		float: right;
-	}
-	.similar-post p {
-		margin: 0;
-		font-size: 12px;
-		color: #704715;
-	}
-	.no-data {
-		text-align:center;
-		width:100%;
-		padding:50px;
-		border:1px dashed #4A2D13;
-	}
-	.spinner {
-		margin: 50px;
-		height: 28px;
-		width: 28px;
-		animation: rotate 1s infinite linear;
-		border: 4px solid rgba(255, 255, 255, 0.5);
-		border-right-color: transparent;
-		border-radius: 50%;
-	}
-
-	@keyframes rotate {
-		0%    { transform: rotate(0deg); }
-		50%    { transform: rotate(180deg); }
-		100%  { transform: rotate(360deg); }
-	}
-</style>
-
 <div class="main">
 	<div class="post-view">
 
@@ -366,20 +13,20 @@
 					<img src="images/eg.png" />{{post.instance.team_1}}<span>vs</span>{{post.instance.team_2}}<img src="images/navi.png" />
 				</h1>
 				<p>
-					{{ post.instance.title}}
+					{{ post.instance.title }}
 				</p>
 			</div>
 		</section>
 
 		<section id="post-info">
 			<div class="post-meta">
-				<a class="category btn btn-brown" ng-show='post.instance.type'>{{post.instance.type}}</a>
+				<a class="category btn btn-default" ng-show='post.instance.type'>{{post.instance.type}}</a>
 				<div class="dates" ng-if="post.instance.type === 'game'"><i class="icon ion-calendar"></i> {{post.instance.date | date: 'EEE, d MMM'}} {{ post.instance.time }}</div>
 			</div>
 			<div class="post-actions">
-				<a class="btn btn-brown btn-vote" ng-click="upvotePost(post);"><span class="counter">{{post.instance.actions.votes.total}}</span><span>Upvote</span></a>
-				<a class="btn btn-brown" href="{{post.instance.url}}/?ref=domination" target="_blank">Check</a>
-				<a class="btn btn-brown" href="">Share</a>
+				<a class="btn btn-primary btn-vote" ng-click="upvotePost(post);"><span class="counter">{{post.instance.actions.votes.total}}</span><span>Upvote</span></a>
+				<a class="btn btn-default" href="{{post.instance.url}}/?ref=domination" target="_blank">Check</a>
+				<a class="btn btn-default" href="">Share</a>
 			</div>
 		</section>
 
@@ -440,7 +87,7 @@
 
 						<div ng-show="reply_open" class="comment-input">
 							<textarea type="text" placeholder="Leave your reply..." ng-model="reply"></textarea>
-							<button type="button" class="btn btn-brown" ng-click="addReply(comment, reply, $index); reply_open = false; reply = ''">Submit</button>
+							<button type="button" class="btn btn-default" ng-click="addReply(comment, reply, $index); reply_open = false; reply = ''">Submit</button>
 						</div>
 
 						<div class="comment-reply" ng-repeat="reply in comment.instance.actions.comments track by $index">
@@ -471,7 +118,7 @@
 							<img ng-src="{{currentUser.instance.profileImg}}" class="user-img"/>
 							<div class="input-group">
 								<textarea type="text" placeholder="Leave your comment..." ng-model="comment"></textarea>
-								<button type="button" class="btn btn-brown" ng-click="addComment(comment, post.instance._id)">Submit</button>
+								<button type="button" class="btn btn-default" ng-click="addComment(comment, post.instance._id)">Submit</button>
 							</div>
 						</div>
 					</div>

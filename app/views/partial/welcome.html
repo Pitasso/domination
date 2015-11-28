@@ -1,105 +1,31 @@
-<style>
-	.login-window .modal-dialog {
-		background: transparent;
-		text-align: center;
-		width: 100%;
-		height: 100%;
-		padding: 0;
-		margin: 0;
-		background: rgba(0,0,0,.6);
-	}
-	.login-window .modal-content {
-		position: relative;
-		height: 100%;
-	    background-color: transparent;
-
-		-webkit-box-align: center;
-		-moz-box-align: center;
-		box-align: center;
-		-webkit-align-items: center;
-		-moz-align-items: center;
-		-ms-align-items: center;
-		-o-align-items: center;
-		align-items: center;
-		-ms-flex-align: center;
-		display: -webkit-box;
-		display: -moz-box;
-		display: box;
-		display: -webkit-flex;
-		display: -moz-flex;
-		display: -ms-flexbox;
-		display: flex;
-		-webkit-box-pack: center;
-		-moz-box-pack: center;
-		box-pack: center;
-		-webkit-justify-content: center;
-		-moz-justify-content: center;
-		-ms-justify-content: center;
-		-o-justify-content: center;
-		justify-content: center;
-		-ms-flex-pack: center;
-	}
-
-	.login-window .login-window-close {
-		position: absolute;
-		top: 20px;
-		right: 20px;
-		font-size: 30px;
-		z-index: 999;
-		cursor: pointer;
-	}
-
-
-	.login-window-content {
-		text-align: center;
-		width: 600px;
-	}
-
-	.login-window-content {
-
-	  display: inline-block;
-	  vertical-align: middle;
-	}
-
-	.login-window h3 {
-		color: #C17A24;
-		font-size: 24px;
-		margin-bottom: 25px;
-	}
-	.login-window p {
-		font-size: 17px
-	}
-	.login-window p.notice {
-		color: #5E4322;
-		font-size: 14px;
-
-	}
-	.login-window .btn {
-		margin: 20px 0 30px;
-	}
-	.login-window-content form {
-		margin-top: 30px;
-	}
-	input[type="text"] {
-		background: none;
-		border: 0;
-		border-bottom: 1px dotted #5E4322;
-		display: block;
-		padding: 10px;
-		margin: 0 10% 25px;
-		outline: 0;
-		width: 80%;
-		text-align: center;
-	}
-</style>
-
-<a class="login-window-close" ng-click="$dismiss()"><i class="icon ion-ios-close-outline"></i></a>
+<a class="login-window-close" ng-show="currentStep.number == 2" ng-click="$dismiss()"><i class="icon ion-ios-close-outline"></i></a>
 <div class="login-window-content">
-	<h3>Welcome to Dota Domination!</h3>
-	<p>Please finish your account setup and pick your username.</p>
-	<form ng-submit="finishProfile()">
-		<input type="text" placeholder="Pick a username.." ng-model="profile.username">
-		<input type="text" placeholder="Enter your email address.." ng-model="profile.email">
-		<input type="submit" class="btn btn-large btn-brown">
-	</form>
+	<div>
+		<h3>{{ currentUser.instance.displayName }}, welcome to Dota Domination!</h3>
+		<p>Please finish your account setup and pick your username.</p>
+		<form ng-submit="finishProfile()">
+			<input type="text" placeholder="Pick a username..." ng-model="profile.username">
+			<!-- <input type="text" placeholder="Define your game style..." ng-model="profile.gamestyle"> -->
+			<input type="text" placeholder="Enter your email address..." ng-model="profile.email">
+			<input type="submit" class="btn btn-large btn-brown" value="Finish">
+<!-- 			<input type="button" ng-click="nextStep()" class="btn btn-brown" value="Next Step"> -->
+		</form>
+	</div>
+
+
+<!-- 	<div ng-switch="currentStep.number">
+		<div ng-switch-when="1">
+			
+		</div>
+		<div ng-switch-when="2">
+			<h3>Hooray! Your account created!</h3>
+			<img src="images/badge-temp.png"/>
+			<h4>New Level Unlocked</h4>
+			<p>Now you can navigate and <span>upvote posts</span> to help your friends and other community members discover new valuable content based on your advice.</p>
+			<hr>
+			<p>To unlock new skills like <span>submitting</span> and <span>commentig on posts</span> you need to get Memebrship status.</p>
+			<a href="" class="btn btn-brown">Request Memebrship</a>
+			<p class="notice">No worries, memebrship is totally Free. We just trying to maintain a healthy volume of posts and thoughtful conversations.</p>
+		</div>
+	</div> -->
 </div>

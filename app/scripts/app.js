@@ -33,6 +33,11 @@ var app = angular.module("Domination", [
             templateUrl: "app/views/membership.html",
             controller: "MembershipCtrl"
         })
+        .state("Settings", {
+            url: "/settings",
+            templateUrl: "app/views/settings.html",
+            controller: "SettingsCtrl"
+        })
     $urlRouterProvider.otherwise("/");
 
 }])
@@ -49,7 +54,6 @@ var app = angular.module("Domination", [
                 $rootScope.welcome();
               }
             })
-
         } else {
             $rootScope.currentUser = false;
         }

@@ -23,8 +23,8 @@ app.controller('AuthCtrl', ['Auth', '$scope', '$rootScope', '$uibModal', "$state
 			windowClass: "login-window",
 			animation: false,
 			resolve: {
-						items: function() {
-								return $scope.items;
+				items: function() {
+						return $scope.items;
 				}
 			}
 		})
@@ -32,6 +32,7 @@ app.controller('AuthCtrl', ['Auth', '$scope', '$rootScope', '$uibModal', "$state
 			var user = new Stamplay.User().Model;
 			user.currentUser().then(function() {
 				user.set("username", profile.username);
+				// user.set("gamestyle", profile.gamestyle);
 				user.set("email", profile.email);
 				user.save().then(function() {
 					console.log(user);
@@ -39,8 +40,6 @@ app.controller('AuthCtrl', ['Auth', '$scope', '$rootScope', '$uibModal', "$state
 			})
 		})
 	}
-
-
 
 	$scope.login = function() {
 		Auth.login();

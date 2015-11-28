@@ -1,0 +1,21 @@
+<div id="settings-page" class="main bg-solid">
+	<div class="container">
+		<form>
+			<div class="input-field">
+				<label><i class="icon ion-ios-lightbulb"></i>Name</label>
+				<input type="text" ng-model="tabs.post.title"  ng-required="true" name="title" placeholder="Enter post title..." autofocus>
+			</div>
+			<div class="input-field">
+				<label><i class="icon ion-link"></i>Link</label>
+				<input type="text" ng-model="tabs.post.url"  ng-required="true" name="link" placeholder="http://www...">
+			</div>
+			<div class="input-field">
+				<label><i class="icon ion-android-create"></i>Desc</label>
+				<textarea type="text" ng-model="tabs.post.desc"  ng-required="true" name="desc" placeholder="Describe the post briefly..."></textarea>
+			</div>				
+			<div class="input-field submit-btn">
+				<button type="submit" class="btn btn-default">Submit</button>
+			</div>
+		</form>
+	</div>
+</div>
