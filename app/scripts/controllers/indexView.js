@@ -69,23 +69,26 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 			// 	});
 			// };
 
-
 			$scope.filterBy = function(type) {
 				$scope.post_type = type;
 			}
 
-
 			$scope.postCollection = [];
 			var page = 1;
 			var pagination = false;
-			$scope.getPosts = function(type, page_number, pagination) {
+			$scope.getPosts = function(type, page_number, pagination, moderator) {
+				if(type !== $scope.type) $scope.postCollection.length = 0;
 				if(!pagination && page_number === 1) {
 					page = 1;
 					$scope.noMore = false;
 				}
 				$scope.type = type;
-				$scope.fetchBy = type;
-				Post.getPosts(type, page_number).then(function(posts, type) {
+				if(moderator)  {
+					$scope.fetchBy = "unapproved";
+				} else {
+					$scope.fetchBy = type;
+				}
+				Post.getPosts(type, page_number, moderator).then(function(posts, type) {
 					if(posts.instance.length) {
 						$scope.noResults = false;
 						if(pagination) {
@@ -96,8 +99,6 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 							$scope.postCollection = posts.instance;
 						}
 					} else {
-						// $scope.postCollection = [];
-						// $scope.noResults = true;
 						if(posts.instance.length === 0) {
 							setTimeout(function() {
 								$scope.noMore = true;
@@ -106,6 +107,16 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 					}
 				})
 			}
+
+			$scope.approvePost = function(post, idx) {
+				$scope.postCollection.splice(idx, 1);
+				post.instance.owner = post.instance.owner._id;
+				post.set("approved", true);
+				post.save().then(function() {
+					$scope.$apply();
+				})
+			}
+
 			$scope.getPosts('actions.votes.total', page);
 			$scope.fetchBy = 'actions.votes.total';
 

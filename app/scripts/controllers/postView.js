@@ -30,7 +30,9 @@ app.controller('PostViewCtrl', ['Post', '$scope', '$rootScope', '$state', '$stat
         })
       }
   	$scope.addReply = function(comment, reply, idx) {
+          var owner = comment.instance.owner;
           comment.comment(reply).then(function() {
+            comment.instance.owner =  owner;
             $scope.comments[idx].instance.actions.comments = comment.instance.actions.comments;
             incrementCommentCount();
           })
