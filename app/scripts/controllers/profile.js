@@ -59,6 +59,8 @@ app.controller('ProfileCtrl', ['User', '$scope', "$rootScope", '$state', "$state
 		for(var i = 0; i < $scope.followedBy.length; i += 1) {
 			if($scope.followedBy[i]._id === current) {
 				$scope.followingUser = true;
+			} else if ($scope.user_profile.instance._id === current) {
+				$scope.followUser = undefined;
 			} else {
 				$scope.followingUser = false;
 			}

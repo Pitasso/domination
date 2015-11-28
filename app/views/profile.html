@@ -130,7 +130,7 @@
 				</div>
 			</div>
 
-			<div class="profile-actions" ng-show="followingUser !== undefined">
+			<div class="profile-actions">
 				<a class="btn btn-brown" ng-show="followingUser === false && followingUser !== undefined" ng-click="follow()">Follow</a>
 				<a class="btn btn-brown" ng-show="followingUser && followingUser !== undefined" ng-click="unfollow()">Unfollow</a>
 				<a class="btn btn-brown">Share</a>
@@ -221,7 +221,25 @@
 					</uib-tab>
 
 					<uib-tab heading="Following">
-
+						<div class="follower-list row">
+							<div >
+								<div ng-repeat="follower in following track by $index" ui-sref="Profile({ username : follower.username })">
+									<div class="col-md-4">
+										<div class="follower-item">
+											<div class="follower-avatar">
+												<img ng-src="{{follower.profileImg}}" />
+											</div>
+											<div class="follower-desc">
+												<a href="#" class="follower-title">
+													<div ng-if="follower.displayName">{{follower.displayName}}</div>
+												</a>
+												<div class="follower-subtitle">{{follower.username}} <img src="images/eg.png" /> </div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</uib-tab>
 				</uib-tabset>
 

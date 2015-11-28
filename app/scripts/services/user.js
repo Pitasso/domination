@@ -32,9 +32,6 @@ app.factory('User', ['$q', '$http', '$stamplay', '$rootScope', function($q, $htt
 					q.resolve(res.data);
 			})
 			return q.promise;
-		},
-		getFollow: function(userId) {
-
 		}
 
 	};
