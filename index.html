@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html ng-app="Domination" lang="en">
     <head>
-      <base href="/">
+        <base href="/">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Dota Domination</title>
-
-        <!-- Bootstrap -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        
+        <title>Gamers Net</title>
         <link href="bower_components/Ionicons/css/ionicons.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <!-- <link rel="stylesheet" href="http://css-spinners.com/css/spinner/throbber.css" type="text/css">       -->
-         <!-- JS -->
+        <!-- JS -->
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,60 +22,48 @@
     <body>
         <div class="layer">
             <div ng-include="'app/views/partial/header.html'"></div>
-
             <ui-view></ui-view>
-
         </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
 
+        <!-- bower:js -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/stamplay-js-sdk/dist/stamplay.js"></script>
+        <script src="bower_components/angular-stamplay/angular-stamplay.js"></script>
+        <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.angular.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+        <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
+        <!-- endbower -->
 
-     <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/stamplay-js-sdk/dist/stamplay.js"></script>
-    <script src="bower_components/angular-stamplay/angular-stamplay.js"></script>
-    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.angular.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
-    <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="app/scripts/app.js"></script>
 
+        <script src="app/scripts/services/post.js"></script>
+        <script src="app/scripts/services/auth.js"></script>
+        <script src="app/scripts/services/user.js"></script>
+        <script src="app/scripts/services/follow.js"></script>
+        <script src="app/scripts/services/search.js"></script>
+        <script src="app/scripts/services/thumbnail.js"></script>
 
-    <!-- endbower -->
-    <!-- endbuild -->
+        <script src="app/scripts/controllers/indexView.js"></script>
+        <script src="app/scripts/controllers/postView.js"></script>
+        <script src="app/scripts/controllers/submitPost.js"></script>
+        <script src="app/scripts/controllers/welcomeCtrl.js"></script>
+        <script src="app/scripts/controllers/auth.js"></script>
+        <script src="app/scripts/controllers/search.js"></script>
+        <script src="app/scripts/controllers/profile.js"></script>
+        <script src="app/scripts/controllers/settings.js"></script>
+        <script src="app/scripts/controllers/membership.js"></script>
+        <!-- endbuild -->
 
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="app/scripts/app.js"></script>
-
-    <script src="app/scripts/services/post.js"></script>
-    <script src="app/scripts/services/auth.js"></script>
-    <script src="app/scripts/services/user.js"></script>
-    <script src="app/scripts/services/follow.js"></script>
-    <script src="app/scripts/services/search.js"></script>
-    <script src="app/scripts/services/thumbnail.js"></script>
-
-    <script src="app/scripts/controllers/indexView.js"></script>
-    <script src="app/scripts/controllers/postView.js"></script>
-    <script src="app/scripts/controllers/submitPost.js"></script>
-    <script src="app/scripts/controllers/welcomeCtrl.js"></script>
-    <script src="app/scripts/controllers/auth.js"></script>
-    <script src="app/scripts/controllers/search.js"></script>
-    <script src="app/scripts/controllers/profile.js"></script>
-    <script src="app/scripts/controllers/membership.js"></script>
-
-
-    <!-- endbuild -->
-
-
-    <script type="text/javascript">var _pfy = _pfy || [];(function(){function pfy_load(){var pfys=document.createElement('script');pfys.type='text/javascript';pfys.async=true;pfys.src='https://domination.prefinery.com/widget/v2/szvx4dxk.js';var pfy=document.getElementsByTagName('script')[0];pfy.parentNode.insertBefore(pfys,pfy);}if (window.attachEvent){window.attachEvent('onload',pfy_load);}else{window.addEventListener('load',pfy_load,false);}})();</script>
-
+        <!-- build:js(.) scripts/vendor.js -->
+        <script type="text/javascript">var _pfy = _pfy || [];(function(){function pfy_load(){var pfys=document.createElement('script');pfys.type='text/javascript';pfys.async=true;pfys.src='https://domination.prefinery.com/widget/v2/szvx4dxk.js';var pfy=document.getElementsByTagName('script')[0];pfy.parentNode.insertBefore(pfys,pfy);}if (window.attachEvent){window.attachEvent('onload',pfy_load);}else{window.addEventListener('load',pfy_load,false);}})();</script>
+        <!-- endbuild -->
     </body>
 </html>

@@ -143,10 +143,23 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 
 
 			$scope.upvotePost = function($index, post) {
-				post.upVote().then(function() {
-					$scope.postCollection[$index] = post;
-					$scope.$apply();
-				})
+				// if(!currentUser) {
+				// 	var loginModal = $uibModal.open({
+				// 		templateUrl: "app/views/partial/permission.html",
+				// 		windowClass: "login-window",
+				// 		animation: false,
+				// 		resolve: {
+			 //        		items: function() {
+			 //          			return $scope.items;
+				// 	        }
+				//       	}
+				// 	})
+				// } else {
+					post.upVote().then(function() {
+						$scope.postCollection[$index] = post;
+						$scope.$apply();
+					})
+				// }
 			}
 
 			$scope.newPost = function() {
@@ -158,8 +171,8 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 						resolve: {
 			        		items: function() {
 			          			return $scope.items;
-			        }
-			      }
+					        }
+				      	}
 					})
 				} else {
 					var postModal = $uibModal.open({
@@ -173,7 +186,6 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 						}
 					})
 
-
 					postModal.result.then(function(post) {
 						var newpost = new $stamplay.Cobject("post").Collection;
 						newpost.equalTo("_id", post.instance._id).populateOwner().fetch().then(function() {
@@ -183,7 +195,6 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 						})
 					})
 				}
-
 			}
 
 }]);

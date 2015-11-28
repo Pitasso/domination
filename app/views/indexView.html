@@ -10,15 +10,15 @@
 
                 <div class="post-item col-md-10 col-md-offset-1">
                     <a class="post-upvote" ng-click="upvotePost($index, post);">
-                        <span  ng-hide="fetchBy === 'unapproved'" class="vote-arrow glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+                        <span  ng-hide="fetchBy === 'unapproved'" class="vote-arrow icon ion-chevron-up" aria-hidden="true"></span>
                         <span  ng-hide="fetchBy === 'unapproved'" class="vote-counter">{{post.instance.actions.votes.total}}</span>
-                      <span  ng-show="fetchBy === 'unapproved'" ng-click="approvePost(post)"><span><span class="icon ion-checkmark" aria-hidden="true"></span></span>
+                        <span  ng-show="fetchBy === 'unapproved'" ng-click="approvePost(post)"><span><span class="icon ion-checkmark" aria-hidden="true"></span></span>
                     </a>
                     <div class="post-thumbnail" ui-sref="Post({ slug : post.instance.slug })">
                         <img ng-src="{{post.instance.thumbnail}}" class="img-responsive">
                     </div>
                     <div class="post-desc" ui-sref="Post({ slug : post.instance.slug })">
-                        <a class="post-category btn btn-brown btn-xs">{{post.instance.type}}</a>
+                        <a class="post-category btn btn-default">{{post.instance.type}}</a>
                         <a class="post-title" ng-if="post.instance.type === 'game'">
                           {{post.instance.team_1}} <span>vs</span> {{post.instance.team_2}}
                         </a>
@@ -35,7 +35,6 @@
                 </div>
             </div>
         </div>
-
 
         <div ng-hide="noSearchResults">
             <div ng-show="noSearchResults" class="center-align grey-text">No results found matching, <b>{{post_query}}</b>. Please try another search.</div>
