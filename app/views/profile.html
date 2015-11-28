@@ -130,8 +130,9 @@
 				</div>
 			</div>
 
-			<div class="profile-actions">
-				<a class="btn btn-brown" ng-click="follow()">Follow</a>
+			<div class="profile-actions" ng-show="followingUser !== undefined">
+				<a class="btn btn-brown" ng-show="followingUser === false && followingUser !== undefined" ng-click="follow()">Follow</a>
+				<a class="btn btn-brown" ng-show="followingUser && followingUser !== undefined" ng-click="unfollow()">Unfollow</a>
 				<a class="btn btn-brown">Share</a>
 			</div>
 
@@ -139,13 +140,11 @@
 
 		<section id="profile-main">
 			<main>
-
 				<uib-tabset justified="true">
 					<uib-tab heading="Upvoted">
 						<div class="post-list container">
 							<div>
 								<div ng-show="noResults" class="center-align grey-text">No Questions Have Been Posted Yet<span ng-if="!currentUser">, Sign In To Post a Question</span></div>
-
 								<div class="row" ng-repeat="post in upvoted" ui-sref="Post({ slug : post.slug })">
 									<div class="post-item col-md-10 col-md-offset-1">
 										<a class="post-upvote">
@@ -201,16 +200,18 @@
 
 					<uib-tab heading="Followers">
 						<div class="follower-list row">
-							<div ng-hide="post_query">
-								<div ng-repeat="post in postCollection track by $index" ui-sref="Post({ id : post.instance._id })">
+							<div >
+								<div ng-repeat="follower in followedBy track by $index" ui-sref="Profile({ username : follower.username })">
 									<div class="col-md-4">
 										<div class="follower-item">
 											<div class="follower-avatar">
-												<img ng-src="{{post.instance.owner.profileImg}}" />
+												<img ng-src="{{follower.profileImg}}" />
 											</div>
 											<div class="follower-desc">
-												<a href="#" class="follower-title">{{post.instance.title}}</a>
-												<div class="follower-subtitle">{{post.instance.desc}} <img src="images/eg.png" /> </div>
+												<a href="#" class="follower-title">
+													<div ng-if="follower.displayName">{{follower.displayName}}</div>
+												</a>
+												<div class="follower-subtitle">{{follower.username}} <img src="images/eg.png" /> </div>
 											</div>
 										</div>
 									</div>

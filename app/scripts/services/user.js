@@ -6,8 +6,14 @@ app.factory('User', ['$q', '$http', '$stamplay', '$rootScope', function($q, $htt
 		followUser: function(userId) {
 			var q = $q.defer();
 			$rootScope.currentUser.follow(userId).then(function(followed) {
-				console.log("following")
-				console.log(followed)
+				q.resolve();
+			})
+			return q.promise;
+		},
+		unfollowUser: function(userId) {
+			var q = $q.defer();
+			$rootScope.currentUser.unfollow(userId).then(function(unfollowed) {
+				q.resolve();
 			})
 			return q.promise;
 		},

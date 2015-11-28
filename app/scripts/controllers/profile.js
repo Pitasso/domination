@@ -1,20 +1,25 @@
 'use strict';
 
-app.controller('ProfileCtrl', ['User', '$scope', '$state', "$stateParams", function(User, $scope, $state, $stateParams) {
+app.controller('ProfileCtrl', ['User', '$scope', "$rootScope", '$state', "$stateParams", function(User, $scope, $rootScope, $state, $stateParams) {
 	var username = $stateParams.username;
 
 	$scope.follow = function() {
-		console.log("attempt follow")
 		User.followUser($scope.user_profile.instance._id).then(function(followed) {
-			console.log("You are now following " + username);
-		}, function(followed) {
-			console.log(followed)
+			$scope.followingUser = true;
+			$scope.$apply();
+		})
+	}
+	$scope.unfollow = function() {
+		User.unfollowUser($scope.user_profile.instance._id).then(function(followed) {
+			$scope.followingUser = false;
+			$scope.$apply();
+			getFollowedBy();
 		})
 	}
 
-	var getSubmitted = function(profile) {
+	var getSubmitted = function(userId) {
 		var posts = new Stamplay.Cobject('post').Collection;
-		posts.equalTo("owner", profile.instance._id).populateOwner().fetch().then(function() {
+		posts.equalTo("owner", userId).populateOwner().fetch().then(function() {
 			$scope.submitted = posts.instance;
 			$scope.$apply();
 		})
@@ -36,21 +41,51 @@ app.controller('ProfileCtrl', ['User', '$scope', '$state', "$stateParams", funct
 		})
 	}
 
-	var getFollowedBy = function(profile) {
+	var getFollowedBy = function(userId) {
 		var user = new Stamplay.User().Model;
-		user.followedBy(profile.instance._id).then(function(following) {
-			console.log("Following:", following);
+		user.followedBy(userId).then(function(followedBy) {
+			$scope.followedBy = followedBy.data;
+			$scope.$apply();
+			if(followedBy.data.length === 0) {
+				$scope.followingUser = false;
+			} else {
+				isFollowing(followedBy.data);
+			}
+		})
+	}
+
+	var isFollowing = function(followedBy) {
+		var current = $rootScope.currentUser.instance._id;
+		for(var i = 0; i < $scope.followedBy.length; i += 1) {
+			if($scope.followedBy[i]._id === current) {
+				$scope.followingUser = true;
+			} else {
+				$scope.followingUser = false;
+			}
+		}
+		$scope.$apply();
+	}
+
+	var getFollowing = function(userId) {
+		var user = new Stamplay.User().Model;
+		user.following(userId).then(function(following) {
+			$scope.following = following.data;
+			$scope.$apply();
 		})
 	}
 
 	User.getUser(username).then(function(profile) {
 		$scope.user_profile = profile;
 		var names = profile.instance.displayName.split(" ");
+		var id = profile.instance._id;
 		$scope.firstname = names[0];
 		$scope.username = profile.instance.username;
 		$scope.lastname = names.length > 1 ? names[names.length - 1] : "";
-		getSubmitted(profile);
-		getUpvoted(profile.instance._id);
+		getSubmitted(id);
+		getUpvoted(id);
+		getFollowedBy(id);
+		getFollowing(id);
+
 	});
 
 }])
