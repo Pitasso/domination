@@ -230,7 +230,7 @@ body {
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-size: 100%;
-	background-color: #000000;	
+	background-color: #000000;
 }
 body .layer {
 	background-color: rgba(0,0,0,0.75);
@@ -256,7 +256,7 @@ textarea {
 }
 input[type="text"],
 textarea {
-	border-radius: 3px;	
+	border-radius: 3px;
 	line-height: 2;
 	padding: 6px 12px;
 	outline: none;
@@ -1171,7 +1171,7 @@ header .login-btn {
 	.nav-tabs-justified > .active > a:focus {
 		border-bottom-color: #ffffff;
 	}
-}	
+}
 .tab-content > .tab-pane {
 	display: none;
 }

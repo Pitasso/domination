@@ -50,7 +50,7 @@ var app = angular.module("Domination", [
             .then(function(role) {
               user.instance.givenRole = role;
               $rootScope.currentUser = user;
-              if(user.instance && !user.instance.username) {
+              if(!user.instance.email || !user.instance.username) {
                 $rootScope.welcome();
               }
             })

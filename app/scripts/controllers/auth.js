@@ -29,15 +29,7 @@ app.controller('AuthCtrl', ['Auth', '$scope', '$rootScope', '$uibModal', "$state
 			}
 		})
 		welcomeModal.result.then(function(profile) {
-			var user = new Stamplay.User().Model;
-			user.currentUser().then(function() {
-				user.set("username", profile.username);
-				// user.set("gamestyle", profile.gamestyle);
-				user.set("email", profile.email);
-				user.save().then(function() {
-					console.log(user);
-				})
-			})
+			console.log("Finished Setting Up Profile");
 		})
 	}
 

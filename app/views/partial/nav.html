@@ -1,23 +1,24 @@
 <nav class="navbar">
-    <div class="container">
+  <div class="container">
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-            <li><a ng-click="getPosts('actions.votes.total', 1, false);" ng-class="{ 'current-post-sort' : fetchBy === 'actions.votes.total' }" >Trending</a></li>
-            <li><a ng-click="getPosts('dt_create', 1, false);" ng-class="{ 'current-post-sort' : fetchBy === 'dt_create' }">Latest</a></li>
-            <li><a ng-click="getPosts('comment_count', 1, false);" ng-class="{ 'current-post-sort' : fetchBy === 'comment_count' }">Most Discussed</a></li>
-            <li ng-show="currentUser.instance.givenRole.name === 'moderator'"><a ng-click="getPosts('dt_create', 1, false, true);" ng-class="{ 'current-post-sort' : fetchBy === 'unapproved' }">Unapproved</a></li>
-        </ul>
-
-        <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a ng-click="filterBy('')" ng-class="{ 'current-post-sort' : post_type === '' || post_type === undefined }">All</a></li>
-                <li><a ng-click="filterBy('game')" ng-class="{ 'current-post-sort' : post_type === 'game' }">Games</a></li>
-                <li><a ng-click="filterBy('link')" ng-class="{ 'current-post-sort' : post_type === 'link' }">Links</a></li>
-              </ul>
-            </li>
-        </ul>
+      <ul class="nav navbar-nav">
+        <li><a ng-click="getPosts('actions.votes.total', 1, false);" ng-class="{ 'current-post-sort' : fetchBy === 'actions.votes.total' }" >Trending</a></li>
+        <li><a ng-click="getPosts('dt_create', 1, false);" ng-class="{ 'current-post-sort' : fetchBy === 'dt_create' }">Latest</a></li>
+        <li><a ng-click="getPosts('comment_count', 1, false);" ng-class="{ 'current-post-sort' : fetchBy === 'comment_count' }">Most Discussed</a></li>
+        <li ng-show="currentUser.instance.givenRole.name === 'moderator'"><a ng-click="getPosts('dt_create', 1, false, true);" ng-class="{ 'current-post-sort' : fetchBy === 'unapproved' }">Unapproved</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li uib-dropdown>
+          <a href id="simple-dropdown" uib-dropdown-toggle>
+            Categories
+          </a>
+          <ul class="uib-dropdown-menu" aria-labelledby="simple-dropdown">
+            <li><a ng-click="filterBy('')" ng-class="{ 'current-post-sort' : post_type === '' || post_type === undefined }">All</a></li>
+            <li><a ng-click="filterBy('game')" ng-class="{ 'current-post-sort' : post_type === 'game' }">Games</a></li>
+            <li><a ng-click="filterBy('link')" ng-class="{ 'current-post-sort' : post_type === 'link' }">Links</a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
-    </div>
+  </div>
 </nav>

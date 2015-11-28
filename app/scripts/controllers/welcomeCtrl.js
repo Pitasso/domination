@@ -1,30 +1,30 @@
 'use strict';
 
-app.controller('WelcomeCtrl', ['$scope', '$rootScope', '$uibModalInstance', '$state', function($scope, $rootScope, $uibModalInstance, $state) {
-	
-    
-    // $scope.steps = [
-    //   { number: 1, name: 'First Step' },
-    //   { number: 2, name: 'Second Step' },
-    //   ];
-    
-    // $scope.currentStep = angular.copy($scope.steps[0]);    
-    
-    // $scope.nextStep = function() {
-    //   // Perform current step actions and show next step:
-    //   // E.g. save form data
-      
-    //   var nextNumber = $scope.currentStep.number;
-    //   if ($scope.steps.length == nextNumber){
-    //     $uibModalInstance.dismiss('cancel');
-    //   }
-    //   $scope.currentStep = angular.copy($scope.steps[nextNumber]);
-    // };
-    
-    	
+app.controller('WelcomeCtrl', ['$scope', '$rootScope', '$uibModalInstance', '$state', "$stamplay", function($scope, $rootScope, $uibModalInstance, $state, $stamplay) {
+
+	$scope.currentStep = 1;
+
+
 	$scope.finishProfile = function() {
-		$uibModalInstance.close($scope.profile);
+		$scope.processing = true;
+		var profile = {
+			username : $rootScope.currentUser.instance.username,
+			email : $rootScope.currentUser.instance.email
+		}
+		var user = new $stamplay.User().Model;
+		user.currentUser().then(function() {
+			user.set("username", profile.username);
+			user.set("email", profile.email);
+			user.save().then(function() {
+				$scope.currentStep = 2;
+				$scope.$apply();
+			})
+		})
+
 	}
 
+ $scope.close = function() {
+	 $uibModalInstance.close();
+ }
 
 }])

@@ -102,6 +102,7 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 						if(posts.instance.length === 0) {
 							setTimeout(function() {
 								$scope.noMore = true;
+								$scope.$apply();
 							}, 500)
 						}
 					}
@@ -143,16 +144,11 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 
 
 			$scope.upvotePost = function($index, post) {
-				// if(!currentUser) {
+				// if(!$rootScope.currentUser) {
 				// 	var loginModal = $uibModal.open({
 				// 		templateUrl: "app/views/partial/permission.html",
 				// 		windowClass: "login-window",
-				// 		animation: false,
-				// 		resolve: {
-			 //        		items: function() {
-			 //          			return $scope.items;
-				// 	        }
-				//       	}
+				// 		animation: false
 				// 	})
 				// } else {
 					post.upVote().then(function() {
