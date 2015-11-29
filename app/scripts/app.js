@@ -50,6 +50,11 @@ var app = angular.module("Domination", [
             .then(function(role) {
               user.instance.givenRole = role;
               $rootScope.currentUser = user;
+              $rootScope.resize = function(url) {
+                if(!url) return;
+                url = url.split("_normal").join("");
+                return url;
+              }
               if(!user.instance.email || !user.instance.username) {
                 $rootScope.welcome();
               }
