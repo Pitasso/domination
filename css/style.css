@@ -298,7 +298,6 @@ img {
 	height: auto;
 	padding: 4px;
 	line-height: 1.42857143;
-	background-color: #fff;
 	border: 1px solid #ddd;
 	border-radius: 4px;
 	-webkit-transition: all .2s ease-in-out;
@@ -404,17 +403,6 @@ fieldset {
 	margin: 0;
 	border: 0;
 }
-legend {
-	display: block;
-	width: 100%;
-	padding: 0;
-	margin-bottom: 20px;
-	font-size: 21px;
-	line-height: inherit;
-	color: #333;
-	border: 0;
-	border-bottom: 1px solid #e5e5e5;
-}
 label {
 	display: inline-block;
 	max-width: 100%;
@@ -449,13 +437,6 @@ input[type="checkbox"]:focus {
 	outline: thin dotted;
 	outline: 5px auto -webkit-focus-ring-color;
 	outline-offset: -2px;
-}
-output {
-	display: block;
-	padding-top: 7px;
-	font-size: 14px;
-	line-height: 1.42857143;
-	color: #555;
 }
 .form-control {
 	display: block;
@@ -1091,12 +1072,6 @@ header .login-btn {
 .nav > li > a:focus {
 	text-decoration: none;
 }
-.nav .open > a,
-.nav .open > a:hover,
-.nav .open > a:focus {
-	background-color: #eee;
-	border-color: #337ab7;
-}
 .nav .nav-divider {
 	height: 1px;
 	margin: 9px 0;
@@ -1346,6 +1321,9 @@ header .login-btn {
 	padding: 18px 20px;
 	cursor: pointer;
 }
+.navbar-nav > li > a > i {
+	font-size: 10px;
+}
 @media (max-width: 767px) {
 	.navbar-nav .open .dropdown-menu {
 		position: static;
@@ -1460,7 +1438,7 @@ header .login-btn {
 	}
 }
 .navbar-nav > li > .dropdown-menu {
-	margin-top: 0;
+	margin-top: 1px;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 }
@@ -1917,10 +1895,9 @@ button.close {
 	box-shadow: inset 0px 0px 20px 3px #000000;
 	overflow: hidden;
 }
-.post-thumbnail img {
-}
 .post-desc {
 	display: inline-block;
+	margin-right: 20px;
 	-webkit-flex: 1;
 	-moz-flex: 1;
 	-ms-flex: 1;
@@ -1931,6 +1908,7 @@ button.close {
 	padding: 5px 10px 3px;
 	font-size: 11px;
 	margin: 0 8px 7px 0;
+	border-radius: 3px;
 }
 .post-title {
 	line-height: 26px;
@@ -1943,22 +1921,16 @@ button.close {
 	font-size: 14px;
 	color: #704715;
 }
-.post-source {
-	font-size: 12px;
-}
 a.post-title:hover {
 	text-decoration: none;
 	color: #C17A24;
 }
-.post-meta li {
-	position: relative;
-	display: block;
-	float: left;
-	list-style: none;
-	margin-right: 10px;
+.post-meta {
+	margin: 7px 0 0 2px;
 }
 .post-details {
 	margin-right: 30px;
+	flex-basis: 115px;
 }
 .post-details img {
 	border: 2px solid #704715;
@@ -2439,11 +2411,24 @@ aside section .team {
 	cursor: pointer;
 	border-bottom: 2px solid #C17A24;
 }
-.follower-list .col-md-4 {
-	padding: 10px;
-}
+
 #profile-main .post-list {
 	width: 100%;
+}
+
+.follower-list {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
+}
+.follower-item {
+	flex-basis: 33%;
+	margin: 0 10px 20px;
 }
 .follower-avatar {
 
@@ -2458,12 +2443,13 @@ aside section .team {
 .follower-title {
 	font-size: 18px;
 	color: #C17A24;
-	line-height: 21px;
 }
 .follower-subtitle {
 	font-size: 15px;
 	color: #704715;
-	line-height: 23px;
+}
+.follower-title:hover {
+	text-decoration: none;
 }
 .follower-subtitle img {
 	display: inline-block;

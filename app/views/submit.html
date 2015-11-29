@@ -81,6 +81,7 @@
 					<label><i class="icon ion-android-create"></i>Desc</label>
 					<textarea type="text" ng-model="tabs.post.desc" name="desc" ng-required="true" placeholder="Describe the game briefly..."></textarea>
 				</div>
+				
 				<span ng-messages="game.title.$error" ng-if="game.title.$touched">
 						<span class="label label-default" ng-message="required">Title is required.</span>
 				</span>
