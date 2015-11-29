@@ -3,18 +3,14 @@
 
 		<section id="post-header">
 			<div ng-if="post.instance.type === 'link'">
-				<h1 class="post-title" >
-					{{ post.instance.title}}
-				</h1>
+				<h1 class="post-title" >{{ post.instance.title}}</h1>
 			</div>
 
 			<div ng-if="post.instance.type === 'game'">
 				<h1 class="post-title">
 					<img src="images/eg.png" />{{post.instance.team_1}}<span>vs</span>{{post.instance.team_2}}<img src="images/navi.png" />
 				</h1>
-				<p>
-					{{ post.instance.title }}
-				</p>
+				<p>{{ post.instance.title }}</p>
 			</div>
 		</section>
 
@@ -109,7 +105,7 @@
 					</div>
 					<div ng-show="post.instance">
 						<div ng-show="currentUser.instance.givenRole.name === 'registered'  || currentUser.instance.givenRole.name === 'guest'">
-							<div class="no-data" >Commenting is limited to community members. <br/> Please <a ng-click="login()">Login</a> or <a ui-sref="Membership">Request</a> your membership.</div>
+							<div class="no-data" >Commenting is limited to community members. <br/> Please <a ng-click="login()">Login</a> or <a ui-sref="Membership">Request membership</a>.</div>
 						</div>
 					</div>
 

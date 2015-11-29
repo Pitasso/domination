@@ -23,6 +23,21 @@ textarea {
 	background: rgba(31,25,17,0.80);
 	border: 1px solid #4A2D14;
 }
+
+header .user-group .profile-img {
+	border: 2px solid #704715;
+}
+header .user-group .profile-img:hover {
+	border-color: #C17A24;
+}
+header .user-group .submit-btn {
+	color: #704517;
+	border: 2px solid #704715;
+}
+header .user-group .submit-btn:hover {
+	color: #C17A24;
+	border-color: #C17A24;
+}
 .nav > li > a:hover,
 .nav > li > a:focus {
 	color: #C17A24;
@@ -119,8 +134,8 @@ textarea:-ms-input-placeholder
 }
 .btn-primary:active,
 .btn-primary.active {
-	color: #fff;
-	background-color: #286090;
+	color: #000;
+	background-color: #C17A24;
 	border: 1px solid #F99D41;
 }
 .btn-primary:active:hover,
@@ -129,8 +144,8 @@ textarea:-ms-input-placeholder
 .btn-primary.active:focus,
 .btn-primary:active.focus,
 .btn-primary.active.focus {
-	color: #fff;
-	background-color: #204d74;
+	color: #000;
+	background-color: #C17A24;
 	border: 1px solid #F99D41;
 }
 .btn-primary:active,
@@ -144,7 +159,6 @@ textarea:-ms-input-placeholder
 .btn-vote:hover .counter {
 	border-color: #F99D41;
 }
-
 
 .post-category {
 	border: 1px solid #825319;

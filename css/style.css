@@ -952,9 +952,6 @@ fieldset[disabled] .checkbox label {
 	margin-left: -1px;
 }
 
-
-
-
 /* ----- Header ----- */
 
 header {
@@ -967,7 +964,6 @@ header {
 header .logo {
 	float: left;
 	padding: 20px 15px;
-	color: #C17A24;
 }
 header .logo:hover {
 	text-decoration: none;
@@ -979,11 +975,7 @@ header .search {
 	margin: 18px 18px 18px 0;
 }
 header .search input {
-	background: rgba(31,25,17,0.80);
-	border: 1px solid #4A2D14;
-	border-radius: 3px;
 	font-size: 12px;
-	color: #704715;
 	line-height: 18px;
 }
 header .form-group {
@@ -1012,24 +1004,18 @@ header .user-group {
 	align-items: center;
 }
 header .user-group .profile-img {
-	border: 2px solid #704715;
 	width: 34px;
 	margin-right: 12px;
 	cursor: pointer;
 	-webkit-transition-duration: .3s;
 	transition-duration: .3s;
 }
-header .user-group .profile-img:hover {
-	border-color: #C17A24;
-}
 header .user-group ul.user-menu {
 	min-width: 120px;
 	margin-top: 5px;
 }
 header .user-group .submit-btn {
-	color: #704517;
 	font-size: 18px;
-	border: 2px solid #704715;
 	border-radius: 50%;
 	width: 33px;
 	height: 32px;
@@ -1038,10 +1024,6 @@ header .user-group .submit-btn {
 	flex: 1;
 	-webkit-transition-duration: .3s;
 	transition-duration: .3s;
-}
-header .user-group .submit-btn:hover {
-	color: #C17A24;
-	border-color: #C17A24;
 }
 header .user-group .submit-btn i {
 	line-height: 30px;
@@ -1072,18 +1054,6 @@ header .login-btn {
 .nav > li > a:focus {
 	text-decoration: none;
 }
-.nav .nav-divider {
-	height: 1px;
-	margin: 9px 0;
-	overflow: hidden;
-	background-color: #e5e5e5;
-}
-.nav > li > a > img {
-	max-width: none;
-}
-.nav-tabs {
-	border-bottom: 1px solid #ddd;
-}
 .nav-tabs > li {
 	float: left;
 	margin-bottom: -1px;
@@ -1091,11 +1061,6 @@ header .login-btn {
 .nav-tabs > li > a {
 	margin-right: 2px;
 	line-height: 1.42857143;
-	border: 1px solid transparent;
-	border-radius: 4px 4px 0 0;
-}
-.nav-tabs > li > a:hover {
-	border-color: #eee #eee #ddd;
 }
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
@@ -1839,10 +1804,6 @@ button.close {
 	-ms-align-items: center;
 	align-items: center;
 }
-.follower-item {
-	padding: 15px;
-	margin-bottom: 0;
-}
 .post-item:hover,
 .follower-item:hover {
 	border: 1px solid #663910;
@@ -2455,6 +2416,7 @@ aside section .team {
 	display: inline-block;
 	height: 16px;
 }
+
 /* ----- Submit post window ----- */
 
 .modal-dialog {
