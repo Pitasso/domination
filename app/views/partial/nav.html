@@ -10,7 +10,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li uib-dropdown>
           <a href id="simple-dropdown" uib-dropdown-toggle>
-            Category (<small> {{ post_type || 'ALL' | uppercase }} </small>)
+            Category <small>- {{ post_type || 'ALL' | uppercase }} </small>
           </a>
           <ul class="uib-dropdown-menu" aria-labelledby="simple-dropdown">
             <li><a ng-click="filterBy('')" ng-class="{ 'current-post-sort' : post_type === undefined || post_type === undefined }">All</a></li>

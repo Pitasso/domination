@@ -22,6 +22,7 @@ app.controller('SubmitPostCtrl', ['Post', 'Thumbnail', '$scope', '$rootScope', '
 		// Thumbnail.getFromUrl(values.url).then(function(thumbnail) {
 		// 	values.thumbnail = thumbnail;
 			Post.newPost(values).then(function(post) {
+				Materialize.toast('Your post has been submitted.', 3000)
 				$uibModalInstance.close(post);
 			});
 		// }, function(err) {

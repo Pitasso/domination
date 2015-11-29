@@ -101,7 +101,7 @@
 								<span class="reply-time" am-time-ago="reply.dt_create"></span>
 							</div>
 							<div class="re-actions">
-								
+
 								<!-- <span ng-click="removeReply(comment, $index)" class="btn"><i class="icon ion-ios-close-outline"></i></span> -->
 							</div>
 						</div>
@@ -131,7 +131,7 @@
 				<section id="submited-by" ng-show="post.instance">
 					<label>SUBMITED ON {{ post.instance.dt_create | date:'MMM d' }}</label>
 					<div>
-						<img class="user-img" ng-src="{{post.instance.owner.profileImg}}" ui-sref="Profile ({id : post.userId})"/>
+						<img class="user-img" ng-src="{{post.instance.owner.profileImg}}" ui-sref="Profile({username : post.instance.owner.username})"/>
 					</div>
 				</section>
 
@@ -150,7 +150,7 @@
 				<section id="upvoted-by" ng-show="post.instance.actions.votes.total !== 0 && post.instance" style="max-height:300px;overflow:scroll;">
 					<label>UPVOTED</label>
 					<div>
-						<img class="user-img" ng-src="{{user.profileImg}}" ng-repeat="user in upvoters track by $index"/>
+						<img class="user-img" ng-src="{{user.profileImg}}" ng-repeat="user in upvoters track by $index" ui-sref="Profile({username : user.username})"/>
 					</div>
 				</section>
 

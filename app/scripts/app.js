@@ -64,5 +64,4 @@ var app = angular.module("Domination", [
     //     console.log(toState);
     //   }
     // })
-
 }]);
