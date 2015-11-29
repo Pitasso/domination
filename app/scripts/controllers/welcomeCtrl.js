@@ -15,6 +15,7 @@ app.controller('WelcomeCtrl', ['$scope', '$http', '$rootScope', '$uibModalInstan
 		user.currentUser().then(function() {
 			user.set("username", profile.username);
 			user.set("gamestyle", profile.gamestyle);
+			user.set("profileImg", user.instance.profileImg.split("_normal").join(""))
 			user.set("email", profile.email);
 			user.save().then(function() {
 				$scope.currentStep = 2;
