@@ -1858,6 +1858,7 @@ button.close {
 	border-left: 1px solid #4A2D13;
 	box-shadow: inset 0px 0px 20px 3px #000000;
 	overflow: hidden;
+	z-index: 100;
 }
 .post-desc {
 	display: inline-block;
@@ -1901,6 +1902,8 @@ a.post-title:hover {
 	margin-right: 15px;
 	width: 48px;
 	cursor: pointer;
+	z-index: 100;
+
 }
 .post-desc .post-meta {
 	max-height:40px;
