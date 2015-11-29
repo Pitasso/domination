@@ -90,7 +90,17 @@
 									<img ng-src="{{follower.profileImg}}" />
 								</div>
 								<div class="follower-desc">
-									<a class="follower-title">{{follower.displayName}} {{follower.username}}</a>
+									<a href="#" class="follower-title">
+										<small>
+											{{follower.displayName.split(" ")[0]}}
+										</small>
+										<b>
+											{{follower.username}}
+										</b>
+										<small ng-show="follower.displayName.split(' ').length > 1">
+											{{follower.displayName.split(" ")[follower.displayName.split(" ").length - 1]}}
+										</small>
+									</a>
 									<div class="follower-subtitle">{{follower.gamestyle}}</div>
 								</div>
 							</div>
@@ -105,7 +115,17 @@
 									<img ng-src="{{follower.profileImg}}" />
 								</div>
 								<div class="follower-desc">
-									<a href="#" class="follower-title">{{follower.displayName}} {{follower.username}}</a>
+									<a href="#" class="follower-title">
+										<small>
+											{{follower.displayName.split(" ")[0]}}
+										</small>
+										<b>
+											{{follower.username}}
+										</b>
+										<small ng-show="follower.displayName.split(' ').length > 1">
+											{{follower.displayName.split(" ")[follower.displayName.split(" ").length - 1]}}
+										</small>
+									</a>
 									<div class="follower-subtitle">{{follower.gamestyle}}</div>
 								</div>
 							</div>
