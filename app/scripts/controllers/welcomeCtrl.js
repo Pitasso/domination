@@ -4,16 +4,17 @@ app.controller('WelcomeCtrl', ['$scope', '$rootScope', '$uibModalInstance', '$st
 
 	$scope.currentStep = 1;
 
-
 	$scope.finishProfile = function() {
 		$scope.processing = true;
 		var profile = {
 			username : $rootScope.currentUser.instance.username,
+			gamestyle : $rootScope.currentUser.instance.gamestyle,
 			email : $rootScope.currentUser.instance.email
 		}
 		var user = new $stamplay.User().Model;
 		user.currentUser().then(function() {
 			user.set("username", profile.username);
+			user.set("gamestyle", profile.gamestyle);
 			user.set("email", profile.email);
 			user.save().then(function() {
 				$scope.currentStep = 2;

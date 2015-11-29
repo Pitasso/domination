@@ -4,11 +4,9 @@
     <div class="post-list container">
 
         <div ng-hide="post_query" >
-            <!-- Temp -->
             <div ng-show="noResults" class="center-align grey-text">No Questions Have Been Posted Yet<span ng-if="!currentUser">, Sign In To Post a Question</span></div>
-            <div class="row" ng-repeat="post in postCollection | filter: { instance : { type : post_type } } : false" >
-
-                <div class="post-item col-md-10 col-md-offset-1">
+            <div ng-repeat="post in postCollection | filter: { instance : { type : post_type } } : false" >
+                <div class="post-item">
                     <a class="post-upvote" ng-click="upvotePost($index, post);">
                         <span  ng-hide="fetchBy === 'unapproved'" class="vote-arrow icon ion-chevron-up" aria-hidden="true"></span>
                         <span  ng-hide="fetchBy === 'unapproved'" class="vote-counter">{{post.instance.actions.votes.total}}</span>
@@ -18,13 +16,9 @@
                         <img ng-src="{{post.instance.thumbnail}}" class="img-responsive">
                     </div>
                     <div class="post-desc" ui-sref="Post({ slug : post.instance.slug })">
-                        <a class="post-category btn btn-default">{{post.instance.type}}</a>
-                        <a class="post-title" ng-if="post.instance.type === 'game'">
-                          {{post.instance.team_1}} <span>vs</span> {{post.instance.team_2}}
-                        </a>
-                        <a class="post-title" ui-sref="Post({ slug : post.instance.slug })" ng-if="post.instance.type === 'link'"  ui-sref="Post({ slug : post.instance.slug })">
-                          {{post.instance.title}}
-                        </a>
+                        <span class="post-category">{{post.instance.type}}</span>
+                        <a class="post-title" ng-if="post.instance.type === 'game'">{{post.instance.team_1}} <span>vs</span> {{post.instance.team_2}}</a>
+                        <a class="post-title" ng-if="post.instance.type === 'link'">{{post.instance.title}}</a>
                         <div class="post-meta" ng-if="post.instance.type === 'game'">{{post.instance.title}}</div>
                     </div>
                     <div class="post-details" >
@@ -38,33 +32,13 @@
 
         <div ng-hide="noSearchResults">
             <div ng-show="noSearchResults" class="center-align grey-text">No results found matching, <b>{{post_query}}</b>. Please try another search.</div>
+            <div ng-repeat="post in searchResults">
+                
 
-
-            <div class="row" ng-repeat="post in searchResults">
-                <div class="post-item col-md-10 col-md-offset-1">
-                    <a class="post-upvote" href="#">
-                        <span class="vote-arrow glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
-                        <span class="vote-counter">{{post.instance.actions.votes.total}}</span>
-                    </a>
-                    <div class="post-thumbnail">
-                        <img ng-src="{{post.instance.thumbnail}}" alt="" class="img-responsive">
-                    </div>
-                    <div class="post-desc">
-                        <a class="post-category btn btn-brown btn-xs" href="">{{post.instance.type}}</a>
-                        <a href="#" class="post-title">{{post.instance.title}}</a>
-                        <div class="post-meta">{{post.instance.desc}}</div>
-                    </div>
-                    <div class="post-details">
-
-                        <img ng-src="{{post.instance.owner.profileImg}}" alt="" class="author-avatar img-circle">
-                        <div class="comments"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 15</div>
-                    </div>
-                </div>
             </div>
-
         </div>
 
-        <div class="load-more row">
+        <div class="load-more">
             <a ng-hide="noMore" infinite-scroll="loadNextPosts()" infinite-scroll-immediate-check="false" class="btn"><div class="spinner"></div> Loading posts...</a>
             <a ng-show="noMore" href="#">No more posts..</a>
         </div>

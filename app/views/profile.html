@@ -7,8 +7,8 @@
 			</div>
 
 			<div class="profile-info">
-				<h1 class="profile-title" style="font-weight:200 !important">{{ firstname }} <b>{{username}}</b> {{ lastname }}</h1>
-				<h2 class="profile-subtitle">Ganker - <span>Domination Team</span><img src="images/eg.png" /></h2>
+				<h1 class="profile-title">{{ firstname }} <b>{{username}}</b> {{ lastname }}</h1>
+				<h2 class="profile-subtitle">{{ gamestyle }} <span ng-show="user_profile.instance.team === true && user_profile.instance.team !== undefined">- {{ Team }} <img src="images/eg.png" /></span></h2>
 				<div class="profile-social">
 					<a href=""><i class="icon ion-social-twitter"></i></a>
 					<a href=""><i class="icon ion-social-twitch-outline"></i></a>
@@ -18,118 +18,95 @@
 			</div>
 
 			<div class="profile-actions">
-				<a class="btn btn-brown" ng-show="followingUser === false && followingUser !== undefined" ng-click="follow()">Follow</a>
-				<a class="btn btn-brown" ng-show="followingUser && followingUser !== undefined" ng-click="unfollow()">Unfollow</a>
-				<a class="btn btn-brown">Share</a>
+				<a class="btn btn-primary" ng-show="followingUser === false && followingUser !== undefined" ng-click="follow()">Follow</a>
+				<a class="btn btn-default" ng-show="followingUser && followingUser !== undefined" ng-click="unfollow()">Unfollow</a>
+				<!-- <a class="btn btn-default">Share</a> -->
 			</div>
-
 		</section>
 
 		<section id="profile-main">
 			<main>
 				<uib-tabset justified="true">
 					<uib-tab heading="Upvoted">
-						<div class="post-list container">
-							<div>
-								<div ng-show="noResults" class="center-align grey-text">No Questions Have Been Posted Yet<span ng-if="!currentUser">, Sign In To Post a Question</span></div>
-								<div class="row" ng-repeat="post in upvoted" ui-sref="Post({ slug : post.slug })">
-									<div class="post-item col-md-10 col-md-offset-1">
-										<a class="post-upvote">
-											<span class="vote-arrow glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
-											<span class="vote-counter">{{post.actions.votes.total}}</span>
-										</a>
-										<div class="post-thumbnail">
-											<img src="images/video.png" alt="" class="img-responsive">
-										</div>
-										<div class="post-desc">
-											<a class="post-category btn btn-brown btn-xs" href="">{{post.type}}</a>
-											<a href="#" class="post-title">{{post.title}}</a>
-											<div class="post-meta">{{post.desc}}</div>
-										</div>
-										<div class="post-details">
-											<img ng-src="{{post.owner.profileImg}}" class="author-avatar img-circle">
-											<div class="comments"><span class="icon ion-ios-chatbubble-outline" aria-hidden="true"></span>&nbsp;{{ post.actions.comments.length}}</div>
-										</div>
-									</div>
+						<div class="post-list">
+							<div class="post-item" ui-sref="Post({ slug : post.instance.slug })" ng-repeat="post in upvoted">
+								<a class="post-upvote" ng-click="upvotePost($index, post);">
+									<span  class="vote-arrow icon ion-chevron-up" aria-hidden="true"></span>
+									<span class="vote-counter">{{ post.actions.votes.total }}</span>
+								</a>
+								<div class="post-thumbnail">
+									<img ng-src="{{post.thumbnail}}" class="img-responsive">
+								</div>
+								<div class="post-desc">
+									<span class="post-category">{{post.type}}</span>
+									<a class="post-title" ng-if="post.type === 'game'">{{post.team_1}} <span>vs</span> {{post.team_2}}</a>
+									<a class="post-title" ng-if="post.type === 'link'">{{post.title}}</a>
+									<div class="post-meta" ng-if="post.type === 'game'">{{post.title}}</div>
+								</div>
+								<div class="post-details" >
+									<img ng-src="{{ post.owner.profileImg }}" uib-popover-template="'app/views/partial/user.html'" popover-placement="bottom" popover-trigger="focus" class="author-avatar img-circle" ui-sref="Profile({ username : post.instance.owner.username})">
+									<div class="comments"><span class="icon ion-ios-chatbubble-outline" aria-hidden="true"></span>  {{post.comment_count}}</div>
 								</div>
 							</div>
 						</div>
 					</uib-tab>
 
 					<uib-tab heading="Submitted">
-						<div class="post-list container">
-							<div class="row" ng-repeat="post in submitted" ui-sref="Post({ slug : post.instance.slug })">
-								<div class="post-item col-md-10 col-md-offset-1">
-									<a class="post-upvote">
-										<span class="vote-arrow glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
-										<span class="vote-counter">{{post.instance.actions.votes.total}}</span>
-									</a>
-									<div class="post-thumbnail">
-										<img src="images/video.png" alt="" class="img-responsive">
-									</div>
-									<div class="post-desc">
-										<a class="post-category btn btn-brown btn-xs" href="">{{post.instance.type}}</a>
-										<a href="#" class="post-title">{{post.instance.title}}</a>
-										<div class="post-meta">{{post.instance.desc}}</div>
-									</div>
-									<div class="post-details">
-										<img ng-src="{{post.instance.owner.profileImg}}" class="author-avatar img-circle">
-										<div class="comments"><span class="icon ion-ios-chatbubble-outline" aria-hidden="true"></span>&nbsp;{{ post.instance.actions.comments.length}}</div>
-									</div>
+						<div class="post-list">
+							<div class="post-item" ui-sref="Post({ slug : post.instance.slug })" ng-repeat="post in submitted">
+								<a class="post-upvote" ng-click="upvotePost($index, post);">
+									<span  class="vote-arrow icon ion-chevron-up" aria-hidden="true"></span>
+									<span class="vote-counter">{{ post.instance.actions.votes.total }}</span>
+								</a>
+								<div class="post-thumbnail">
+									<img ng-src="{{post.thumbnail}}" class="img-responsive">
 								</div>
+								<div class="post-desc">
+									<span class="post-category">{{post.instance.type}}</span>
+									<a class="post-title" ng-if="post.instance.type === 'game'">{{post.instance.team_1}} <span>vs</span> {{post.instance.team_2}}</a>
+									<a class="post-title" ng-if="post.instance.type === 'link'">{{post.instance.title}}</a>
+									<div class="post-meta" ng-if="post.instance.type === 'game'">{{post.instance.title}}</div>
+								</div>
+								<div class="post-details" >
+									<img ng-src="{{ post.instance.owner.profileImg }}" uib-popover-template="'app/views/partial/user.html'" popover-placement="bottom" popover-trigger="focus" class="author-avatar img-circle" ui-sref="Profile({ username : post.instance.owner.username})">
+									<div class="comments"><span class="icon ion-ios-chatbubble-outline" aria-hidden="true"></span>  {{post.instance.comment_count}}</div>
+								</div>								
 							</div>
 						</div>
 					</uib-tab>
 
-					<uib-tab heading="Played">
+					<!-- <uib-tab heading="Played">
 
-					</uib-tab>
+					</uib-tab> -->
 
 					<uib-tab heading="Followers">
-						<div class="follower-list row">
-							<div >
-								<div ng-repeat="follower in followedBy track by $index" ui-sref="Profile({ username : follower.username })">
-									<div class="col-md-4">
-										<div class="follower-item">
-											<div class="follower-avatar">
-												<img ng-src="{{follower.profileImg}}" />
-											</div>
-											<div class="follower-desc">
-												<a href="#" class="follower-title">
-													<div ng-if="follower.displayName">{{follower.displayName}}</div>
-												</a>
-												<div class="follower-subtitle">{{follower.username}} <img src="images/eg.png" /> </div>
-											</div>
-										</div>
-									</div>
+						<div class="follower-list">
+							<div class="follower-item" ng-repeat="follower in followedBy track by $index" ui-sref="Profile({ username : follower.username })">
+								<div class="follower-avatar">
+									<img ng-src="{{follower.profileImg}}" />
+								</div>
+								<div class="follower-desc">
+									<a class="follower-title">{{follower.displayName}} {{follower.username}}</a>
+									<div class="follower-subtitle">{{follower.gamestyle}}</div>
 								</div>
 							</div>
 						</div>
 					</uib-tab>
 
 					<uib-tab heading="Following">
-						<div class="follower-list row">
-							<div >
-								<div ng-repeat="follower in following track by $index" ui-sref="Profile({ username : follower.username })">
-									<div class="col-md-4">
-										<div class="follower-item">
-											<div class="follower-avatar">
-												<img ng-src="{{follower.profileImg}}" />
-											</div>
-											<div class="follower-desc">
-												<a href="#" class="follower-title">
-													<div ng-if="follower.displayName">{{follower.displayName}}</div>
-												</a>
-												<div class="follower-subtitle">{{follower.username}} <img src="images/eg.png" /> </div>
-											</div>
-										</div>
-									</div>
+						<div class="follower-list">
+							<div class="follower-item" ng-repeat="follower in following track by $index" ui-sref="Profile({ username : follower.username })">
+								<div class="follower-avatar">
+									<img ng-src="{{follower.profileImg}}" />
+								</div>
+								<div class="follower-desc">
+									<a href="#" class="follower-title">{{follower.displayName}} {{follower.username}}</a>
+									<div class="follower-subtitle">{{follower.gamestyle}}</div>
 								</div>
 							</div>
 						</div>
 					</uib-tab>
 				</uib-tabset>
-
 			</main>
 		</section>
 

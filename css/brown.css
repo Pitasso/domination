@@ -146,7 +146,9 @@ textarea:-ms-input-placeholder
 }
 
 
-
+.post-category {
+	border: 1px solid #825319;
+}
 
 .load-more a:hover {
 	color: #C17A24;
