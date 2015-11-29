@@ -31,7 +31,7 @@
 					<uib-tab heading="Upvoted">
 						<div class="post-list container">
 							<div>
-								<div ng-show="noResults" class="center-align grey-text">No Questions Have Been Posted Yet<span ng-if="!currentUser">, Sign In To Post a Question</span></div>
+								<div class="spinner" ng-hide="upvoted.length >= 0"></div>
 								<div class="row" ng-repeat="post in upvoted" ui-sref="Post({ slug : post.slug })">
 									<div class="post-item col-md-10 col-md-offset-1">
 										<a class="post-upvote">
@@ -58,6 +58,7 @@
 
 					<uib-tab heading="Submitted">
 						<div class="post-list container">
+							<div class="spinner" ng-hide="submitted.length >= 0"></div>
 							<div class="row" ng-repeat="post in submitted" ui-sref="Post({ slug : post.instance.slug })">
 								<div class="post-item col-md-10 col-md-offset-1">
 									<a class="post-upvote">
@@ -82,12 +83,14 @@
 					</uib-tab>
 
 					<uib-tab heading="Played">
+						<!-- <div class="spinner" ng-hide="played.length >= 0"></div> -->
 
 					</uib-tab>
 
 					<uib-tab heading="Followers">
 						<div class="follower-list row">
-							<div >
+							<div>
+								<div class="spinner" ng-hide="followedBy.length >= 0"></div>
 								<div ng-repeat="follower in followedBy track by $index" ui-sref="Profile({ username : follower.username })">
 									<div class="col-md-4">
 										<div class="follower-item">
@@ -96,9 +99,15 @@
 											</div>
 											<div class="follower-desc">
 												<a href="#" class="follower-title">
-													<div ng-if="follower.displayName">{{follower.displayName}}</div>
+													<small ng-if="follower.displayName">
+														{{follower.displayName.split(" ")[0]}}
+													</small>
+													<b ng-if="follower.username">{{follower.username}}</b>
+													<small ng-if="follower.displayName.split(' ').length > 1">
+														{{follower.displayName.split(" ")[follower.displayName.split(" ").length - 1]}}
+													</small>
 												</a>
-												<div class="follower-subtitle">{{follower.username}} <img src="images/eg.png" /> </div>
+												<div class="follower-subtitle"><img src="images/eg.png" /> </div>
 											</div>
 										</div>
 									</div>
@@ -110,6 +119,7 @@
 					<uib-tab heading="Following">
 						<div class="follower-list row">
 							<div >
+								<div class="spinner" ng-hide="following.length >= 0"></div>
 								<div ng-repeat="follower in following track by $index" ui-sref="Profile({ username : follower.username })">
 									<div class="col-md-4">
 										<div class="follower-item">
@@ -118,9 +128,15 @@
 											</div>
 											<div class="follower-desc">
 												<a href="#" class="follower-title">
-													<div ng-if="follower.displayName">{{follower.displayName}}</div>
+													<small ng-if="follower.displayName">
+														{{follower.displayName.split(" ")[0]}}
+													</small>
+													<b ng-if="follower.username">{{follower.username}}</b>
+													<small ng-if="follower.displayName.split(' ').length > 1">
+														{{follower.displayName.split(" ")[follower.displayName.split(" ").length - 1]}}
+													</small>
 												</a>
-												<div class="follower-subtitle">{{follower.username}} <img src="images/eg.png" /> </div>
+												<div class="follower-subtitle"><img src="images/eg.png" /> </div>
 											</div>
 										</div>
 									</div>
