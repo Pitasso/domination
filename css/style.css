@@ -1941,6 +1941,10 @@ a.post-title:hover {
 	width: 48px;
 	cursor: pointer;
 }
+.post-desc .post-meta {
+	max-height:40px;
+	overflow:hidden;
+}
 .post-details img:hover {
 	border-color: #C17A24;
 }

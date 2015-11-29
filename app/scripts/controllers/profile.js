@@ -6,15 +6,15 @@ app.controller('ProfileCtrl', ['User', '$scope', "$rootScope", '$state', "$state
 	$scope.follow = function() {
 		User.followUser($scope.user_profile.instance._id).then(function(followed) {
 			$scope.followingUser = true;
-			Materialize.toast("You are now following " + $scope.user_profile.instance.username + ".", 3000)
 			$scope.$apply();
+			Materialize.toast("You are now following " + $scope.user_profile.instance.username + ".", 3000)
 		})
 	}
 	$scope.unfollow = function() {
 		User.unfollowUser($scope.user_profile.instance._id).then(function(followed) {
 			$scope.followingUser = false;
-			Materialize.toast("You are no longer following " + $scope.user_profile.instance.username + ".", 3000)
 			$scope.$apply();
+			Materialize.toast("You are no longer following " + $scope.user_profile.instance.username + ".", 3000)
 		})
 	}
 
@@ -58,10 +58,13 @@ app.controller('ProfileCtrl', ['User', '$scope', "$rootScope", '$state', "$state
 	var isFollowing = function(followedBy) {
 		var current = $rootScope.currentUser.instance._id;
 		for(var i = 0; i < $scope.followedBy.length; i += 1) {
+			console.log(current, $scope.followedBy[i])
 			if($scope.followedBy[i]._id === current) {
 				$scope.followingUser = true;
+				break;
 			} else if ($scope.user_profile.instance._id === current) {
 				$scope.followUser = undefined;
+				break;
 			} else {
 				$scope.followingUser = false;
 			}
