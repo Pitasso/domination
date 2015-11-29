@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('WelcomeCtrl', ['$scope', '$rootScope', '$uibModalInstance', '$state', "$stamplay", function($scope, $rootScope, $uibModalInstance, $state, $stamplay) {
+app.controller('WelcomeCtrl', ['$scope', '$http', '$rootScope', '$uibModalInstance', '$state', "$stamplay", function($scope, $http, $rootScope, $uibModalInstance, $state, $stamplay) {
 
 	$scope.currentStep = 1;
 
@@ -22,6 +22,21 @@ app.controller('WelcomeCtrl', ['$scope', '$rootScope', '$uibModalInstance', '$st
 			})
 		})
 
+	}
+
+	$scope.requestMembership = function() {
+		$http({
+			method: "POST",
+			url : "http://dota.domination.cc/api/codeblock/v1/run/prefinery",
+			data : { "email": $rootScope.currentUser.instance.email }
+		}).then(function(data) {
+			$rootScope.currentUser.set('prefinery_id', data.data.id);
+			$rootScope.currentUser.save().then(function() {
+				$uibModalInstance.close(true);
+			})
+		}, function(err) {
+			console.error(err);
+		})
 	}
 
  $scope.close = function() {

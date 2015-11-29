@@ -6,14 +6,14 @@ app.controller('ProfileCtrl', ['User', '$scope', "$rootScope", '$state', "$state
 	$scope.follow = function() {
 		User.followUser($scope.user_profile.instance._id).then(function(followed) {
 			$scope.followingUser = true;
-			Materialize.toast("You are now following" + $scope.user_profile.instance.username + ".", 3000)
+			Materialize.toast("You are now following " + $scope.user_profile.instance.username + ".", 3000)
 			$scope.$apply();
 		})
 	}
 	$scope.unfollow = function() {
 		User.unfollowUser($scope.user_profile.instance._id).then(function(followed) {
 			$scope.followingUser = false;
-			Materialize.toast("You are no longer following" + $scope.user_profile.instance.username + ".", 3000)
+			Materialize.toast("You are no longer following " + $scope.user_profile.instance.username + ".", 3000)
 			$scope.$apply();
 		})
 	}
