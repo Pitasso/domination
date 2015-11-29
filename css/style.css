@@ -1798,6 +1798,9 @@ button.close {
 
 /* ----- Post List ----- */
 
+.post-list {
+	padding: 0 15px
+}
 .post-list .title {
 	font-family: LucidaGrande;
 	font-size: 16px;
@@ -2407,11 +2410,6 @@ aside section .team {
 	cursor: pointer;
 	border-bottom: 2px solid #C17A24;
 }
-
-#profile-main .post-list {
-	width: 100%;
-}
-
 .follower-list {
 	display: -webkit-box;
 	display: -moz-box;
@@ -2421,10 +2419,12 @@ aside section .team {
 
 	-webkit-flex-flow: row wrap;
 	flex-flow: row wrap;
+	justify-content: flex-start;
 }
 .follower-item {
-	flex-basis: 33%;
-	margin: 0 10px 20px;
+	flex-basis: 31%;
+	margin: 0 1% 20px;
+	padding: 15px;
 }
 .follower-avatar {
 
