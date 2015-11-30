@@ -3,7 +3,6 @@ body {
 }
 .bg-solid {
 	background: #211C16;
-	height: 100%;
 }
 a {
 	color: #938579;
@@ -25,6 +24,7 @@ p span {
 	color: #B8A378;
 }
 input[type="text"],
+input[type="password"],
 textarea {
 	color: #B8A378;
 	background: rgba(31,25,17,0.80);
@@ -353,6 +353,13 @@ textarea:-ms-input-placeholder
 	color: #655B4E;
 }
 .input-field.date-select button {
+	border: 1px solid #3E3A36;
+}
+
+/* ----- Settings styles ----- */
+#settings-page select {
+	color: #B8A378;
+	background: rgba(31,25,17,0.80);
 	border: 1px solid #3E3A36;
 }
 

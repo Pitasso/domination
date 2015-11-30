@@ -242,6 +242,9 @@ body .layer {
 	height: 100%;
 	z-index: -999;
 }
+.bg-solid {
+	min-height: 800px;
+}
 input,
 button,
 select,
@@ -251,6 +254,7 @@ textarea {
 	line-height: inherit;
 }
 input[type="text"],
+input[type="password"],
 textarea {
 	border-radius: 3px;
 	line-height: 2;
@@ -2221,7 +2225,7 @@ h4.follower-title b {
 }
 .submit-window .input-field label {
 	font-size: 14px;
-	line-height: 44px;
+	line-height: 40px;
 	margin-bottom: 0;
 	text-transform: uppercase;
 	width: 100px;
@@ -2279,8 +2283,38 @@ span[ng-message] {
 }
 
 /* ----- Settings Page ----- */
+
 #settings-page .container {
-	width: 750px;
+	width: 600px;
+}
+#settings-page .container > h2 {
+	text-align: center;
+	margin: 30px 0;
+}
+#settings-page .input-field {
+	margin: 15px 0;
+	display: flex;
+}
+#settings-page .input-field label {
+	font-size: 14px;
+	line-height: 40px;
+	margin-bottom: 0;
+	text-transform: uppercase;
+	width: 150px;
+}
+#settings-page .input-field label i {
+	margin-right: 10px;
+}
+#settings-page .input-field.email-preferences label {
+	width: 220px;
+}
+#settings-page select {
+	height: 40px;
+}
+#settings-page .input-field.buttons {
+	display: block;
+	margin: 50px auto;
+	text-align: center;
 }
 
 /* ----- Memebrship Page ----- */
@@ -2294,7 +2328,7 @@ span[ng-message] {
 /* ----- System Elements Styles ----- */
 
 .spinner {
-	margin: 50px;
+	margin: 10px 50px 30px;
 	height: 28px;
 	width: 28px;
 	animation: rotate 1s infinite linear;
