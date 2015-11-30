@@ -6,7 +6,7 @@
 
             <div class="user-group" ng-cloak ng-show="currentUser" ng-contoller="DropdwonCtrl">
                 <span uib-dropdown on-toggle="toggled(open)">
-                    <img src="{{ resize(currentUser.instance.profileImg) }}" id="simple-dropdown" uib-dropdown-toggle class="profile-img img-circle" />
+                    <img ng-src="{{ currentUser.instance.profileImg.split('_normal').join('') }}" id="simple-dropdown" uib-dropdown-toggle class="profile-img img-circle" />
                     <ul class="uib-dropdown-menu user-menu" aria-labelledby="simple-dropdown">
                         <li><a href="#" ui-sref="Profile ({ username : currentUser.instance.username })">Profile</a></li>
                         <li><a href="/#/membership" onclick="window.location.reload(true);">Membership</a></li>

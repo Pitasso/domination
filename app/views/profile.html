@@ -2,8 +2,8 @@
 	<div class="profile-view container">
 
 		<section id="profile-header">
-			<div class="profile-avatar">
-				<img ng-src="{{resize(user_profile.instance.profileImg)}}" class="img-circle" />
+			<div class="profile-avatar" ng-show="user_profile.instance.profileImg">
+				<img ng-src="{{ user_profile.instance.profileImg.split('_normal').join('') }}" class="img-circle"/>
 			</div>
 
 			<div class="profile-info">
@@ -45,7 +45,7 @@
 									<div class="post-meta" ng-if="post.type === 'game'">{{post.title}}</div>
 								</div>
 								<div class="post-details" >
-									<img ng-src="{{ post.owner.profileImg }}" class="author-avatar img-circle" ui-sref="Profile({ username : post.owner.username})">
+									<img ng-src="{{ post.owner.profileImg.split('_normal').join('') }}" class="author-avatar img-circle" ui-sref="Profile({ username : post.owner.username})">
 									<div class="comments" ui-sref="Post({ slug : post.slug })"><span class="icon ion-ios-chatbubble-outline" aria-hidden="true"></span>  {{post.comment_count}}</div>
 								</div>
 							</div>
@@ -70,7 +70,7 @@
 									<div class="post-meta" ng-if="post.instance.type === 'game'">{{post.instance.title}}</div>
 								</div>
 								<div class="post-details" >
-									<img ng-src="{{ post.instance.owner.profileImg }}" class="author-avatar img-circle" ui-sref="Profile({ username : post.instance.owner.username})">
+									<img ng-src="{{ post.instance.owner.profileImg.split('_normal').join('') }}" class="author-avatar img-circle" ui-sref="Profile({ username : post.instance.owner.username})">
 									<div class="comments" ui-sref="Post({ slug : post.instance.slug })"><span class="icon ion-ios-chatbubble-outline" aria-hidden="true"></span>  {{post.instance.comment_count}}</div>
 								</div>
 							</div>
@@ -87,7 +87,7 @@
 
 							<div class="follower-item" ng-repeat="follower in followedBy track by $index" ui-sref="Profile({ username : follower.username })">
 								<div class="follower-avatar">
-									<img ng-src="{{follower.profileImg}}" class="img-circle" />
+									<img ng-src="{{follower.profileImg.split('_normal').join('')}}" class="img-circle" />
 								</div>
 								<div class="follower-desc">
 									<h4 class="follower-title">
@@ -106,7 +106,7 @@
 							<div class="spinner" ng-hide="following.length >= 0"></div>
 							<div class="follower-item" ng-repeat="follower in following track by $index" ui-sref="Profile({ username : follower.username })">
 								<div class="follower-avatar">
-									<img ng-src="{{follower.profileImg}}" class="img-circle" />
+									<img ng-src="{{follower.profileImg.split('_normal').join('')}}" class="img-circle"/>
 								</div>
 								<div class="follower-desc">
 									<h4 class="follower-title">
