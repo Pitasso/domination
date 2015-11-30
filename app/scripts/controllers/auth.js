@@ -6,7 +6,7 @@ app.controller('AuthCtrl', ['Auth', '$scope', '$rootScope', '$uibModal', "$state
 		var loginModal = $uibModal.open({
 			templateUrl: "app/views/login.html",
 			controller: "AuthCtrl",
-			windowClass: "login-window",
+			windowClass: "fullscreen",
 			animation: false,
 			resolve: {
         		items: function() {
@@ -20,7 +20,7 @@ app.controller('AuthCtrl', ['Auth', '$scope', '$rootScope', '$uibModal', "$state
 		var welcomeModal = $uibModal.open({
 			templateUrl: "app/views/partial/welcome.html",
 			controller: "WelcomeCtrl",
-			windowClass: "login-window",
+			windowClass: "fullscreen",
 			animation: false,
 			resolve: {
 				items: function() {

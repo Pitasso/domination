@@ -162,7 +162,7 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 				if($rootScope.currentUser.instance.givenRole.name === 'registered') {
 					var loginModal = $uibModal.open({
 						templateUrl: "app/views/partial/permission.html",
-						windowClass: "login-window",
+						windowClass: "fullscreen",
 						animation: false,
 						resolve: {
 			        		items: function() {

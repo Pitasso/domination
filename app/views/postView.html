@@ -10,13 +10,13 @@
 				<h1 class="post-title">
 					<img src="images/eg.png" />{{post.instance.team_1}}<span>vs</span>{{post.instance.team_2}}<img src="images/navi.png" />
 				</h1>
-				<p>{{ post.instance.title }}</p>
+				<h4>{{ post.instance.title }}</h4>
 			</div>
 		</section>
 
 		<section id="post-info">
 			<div class="post-meta">
-				<a class="category btn btn-default" ng-show='post.instance.type'>{{post.instance.type}}</a>
+				<span class="category" ng-show='post.instance.type'>{{post.instance.type}}</span>
 				<div class="dates" ng-if="post.instance.type === 'game'"><i class="icon ion-calendar"></i> {{post.instance.date | date: 'EEE, d MMM'}} {{ post.instance.time }}</div>
 			</div>
 			<div class="post-actions">
@@ -63,7 +63,7 @@
 					</span>
 
 					<div class="post-comment" ng-repeat="comment in comments track by $index | orderBy : '-dt_create'" >
-						<img ng-src="{{ comment.instance.owner.profileImg }}" class="user-img"/>
+						<img ng-src="{{ comment.instance.owner.profileImg }}" class="user-img img-circle"/>
 
 						<div class="comment-header">
 							<span class="user-name">{{ comment.instance.owner.displayName }}</span>
@@ -87,14 +87,13 @@
 						</div>
 
 						<div class="comment-reply" ng-repeat="reply in comment.instance.actions.comments track by $index">
-							<img ng-src="{{ reply.picture }}" class="user-img"/>
+							<img ng-src="{{ reply.picture }}" class="user-img img-circle"/>
 							<div class="reply-header">
 								<span class="user-name">{{ reply.displayName }}</span>
 							</div>
 
 							<div class="reply-body">
-								<p>{{ reply.text }}</p>
-								<span class="reply-time" am-time-ago="reply.dt_create"></span>
+								<p>{{ reply.text }}<span class="reply-time" am-time-ago="reply.dt_create"></span></p>
 							</div>
 							<div class="re-actions">
 
@@ -105,13 +104,13 @@
 					</div>
 					<div ng-show="post.instance">
 						<div ng-show="currentUser.instance.givenRole.name === 'registered'  || currentUser.instance.givenRole.name === 'guest'">
-							<div class="no-data" >Commenting is limited to community members. <br/> Please <a ng-click="login()">Login</a> or <a ui-sref="Membership">Request membership</a>.</div>
+							<div class="no-data" >Commenting is limited to community members. <br/> Please <a href="" ng-click="login()">Login</a> or <a ui-sref="Membership">Request membership</a>.</div>
 						</div>
 					</div>
 
 					<div ng-show="post.instance">
 						<div class="comment-input" ng-show="currentUser.instance.givenRole.name === 'moderator'  || currentUser.instance.givenRole.name === 'member'">
-							<img ng-src="{{currentUser.instance.profileImg}}" class="user-img"/>
+							<img ng-src="{{currentUser.instance.profileImg}}" class="user-img img-circle"/>
 							<div class="input-group">
 								<textarea type="text" placeholder="Leave your comment..." ng-model="comment"></textarea>
 								<button type="button" class="btn btn-default" ng-click="addComment(comment, post.instance._id)">Submit</button>
@@ -127,26 +126,26 @@
 				<section id="submited-by" ng-show="post.instance">
 					<label>SUBMITED ON {{ post.instance.dt_create | date:'MMM d' }}</label>
 					<div>
-						<img class="user-img" ng-src="{{post.instance.owner.profileImg}}" ui-sref="Profile({username : post.instance.owner.username})"/>
+						<img class="user-img img-circle" ng-src="{{post.instance.owner.profileImg}}" ui-sref="Profile({username : post.instance.owner.username})"/>
 					</div>
 				</section>
 
 				<section id="played-by" ng-show="post.instance.type === game && played">
 					<label>PLAYED</label>
 					<div class="team">
-						<img class="user-img" ng-src="images/dire-side.png" />
-						<img class="user-img" ng-src="{{currentUser.profileImg}}" />
+						<img class="user-img img-circle" ng-src="images/dire-side.png" />
+						<img class="user-img img-circle" ng-src="{{currentUser.profileImg}}" />
 					</div>
 					<div class="team">
-						<img class="user-img" ng-src="images/dire-side.png" />
-						<img class="user-img" ng-src="{{currentUser.profileImg}}" />
+						<img class="user-img img-circle" ng-src="images/dire-side.png" />
+						<img class="user-img img-circle" ng-src="{{currentUser.profileImg}}" />
 					</div>
 				</section>
 
 				<section id="upvoted-by" ng-show="post.instance.actions.votes.total !== 0 && post.instance" style="max-height:300px;overflow:scroll;">
 					<label>UPVOTED</label>
 					<div>
-						<img class="user-img" ng-src="{{user.profileImg}}" ng-repeat="user in upvoters track by $index" ui-sref="Profile({username : user.username})"/>
+						<img class="user-img img-circle" ng-src="{{user.profileImg}}" ng-repeat="user in upvoters track by $index" ui-sref="Profile({username : user.username})"/>
 					</div>
 				</section>
 

@@ -1,26 +1,28 @@
-<a class="login-window-close" ng-show="currentStep === 2" ng-click="$dismiss()"><i class="icon ion-ios-close-outline"></i></a>
+<a class="close lg" ng-show="currentStep === 2" ng-click="$dismiss()"><i class="icon ion-ios-close-outline"></i></a>
 
-<div class="login-window-content" ng-show="currentStep === 1">
-	<h3>{{ currentUser.instance.displayName }}, welcome to Dota Domination!</h3>
-	<p>Please finish your account setup and pick your username.</p>
-	<form ng-submit="finishProfile()">
-		<input type="text" placeholder="Pick a username..." ng-model="currentUser.instance.username" required>
-		<input type="text" placeholder="Define your game style..." ng-model="currentUser.instance.gamestyle">
-		<input type="text" placeholder="Enter your email address..." ng-model="currentUser.instance.email" required>
-		<input type="submit" class="btn btn-large btn-brown" ng-hide="processing" value="Finish" />
-		<div class="btn" ng-show="processing">
-			<div class="spinner"></div>
-		</div>
-	</form>
-</div>
+<div class="window-content">
+	<div ng-show="currentStep === 1">
+		<h3>{{ currentUser.instance.displayName }}, welcome to Dota Domination!</h3>
+		<p>Please finish your account setup and pick your username.</p>
+		<form ng-submit="finishProfile()">
+			<input type="text" placeholder="Pick a username..." ng-model="currentUser.instance.username" required>
+			<input type="text" placeholder="Define your game style..." ng-model="currentUser.instance.gamestyle">
+			<input type="text" placeholder="Enter your email address..." ng-model="currentUser.instance.email" required>
+			<input type="submit" class="btn btn-large btn-default" ng-hide="processing" value="Finish" />
+			<div class="btn" ng-show="processing">
+				<div class="spinner"></div>
+			</div>
+		</form>
+	</div>
 
-<div ng-show="currentStep === 2">
-	<h3>Hooray! Your account created!</h3>
-	<img src="images/badge-temp.png"/>
-	<h4>New Level Unlocked</h4>
-	<p>Now you can navigate and <span>upvote posts</span> to help your friends and other community members discover new valuable content based on your advice.</p>
-	<hr>
-	<p>To unlock new skills like <span>submitting</span> and <span>commentig on posts</span> you need to get Memebrship status.</p>
-	<a href="" class="btn btn-brown" ng-click="requestMembership()">Request Memebrship</a>
-	<p class="notice">No worries, memebrship is totally Free. We just trying to maintain a healthy volume of posts and thoughtful conversations.</p>
+	<div ng-show="currentStep === 2">
+		<h3>Hooray! Your account created!</h3>
+		<img src="images/badge-temp.png"/>
+		<h4>New Level Unlocked</h4>
+		<p>Now you can navigate and <span>upvote posts</span> to help your friends and other community members discover new valuable content based on your advice.</p>
+		<hr>
+		<p>To unlock new skills like <span>submitting</span> and <span>commentig on posts</span> you need to get Memebrship status.</p>
+		<a href="" class="btn btn-primary" ng-click="requestMembership()">Request Memebrship</a>
+		<p class="notice">No worries, memebrship is totally Free. We just trying to maintain a healthy volume of posts and thoughtful conversations.</p>
+	</div>
 </div>

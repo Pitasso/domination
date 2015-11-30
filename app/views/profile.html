@@ -3,7 +3,7 @@
 
 		<section id="profile-header">
 			<div class="profile-avatar">
-				<img ng-src="{{resize(user_profile.instance.profileImg)}}" />
+				<img ng-src="{{resize(user_profile.instance.profileImg)}}" class="img-circle" />
 			</div>
 
 			<div class="profile-info">
@@ -87,20 +87,14 @@
 
 							<div class="follower-item" ng-repeat="follower in followedBy track by $index" ui-sref="Profile({ username : follower.username })">
 								<div class="follower-avatar">
-									<img ng-src="{{follower.profileImg}}" />
+									<img ng-src="{{follower.profileImg}}" class="img-circle" />
 								</div>
 								<div class="follower-desc">
-									<a href="#" class="follower-title">
-										<small>
-											{{follower.displayName.split(" ")[0]}}
-										</small>
-										<b>
-											{{follower.username}}
-										</b>
-										<small ng-show="follower.displayName.split(' ').length > 1">
-											{{follower.displayName.split(" ")[follower.displayName.split(" ").length - 1]}}
-										</small>
-									</a>
+									<h4 class="follower-title">
+										{{follower.displayName.split(" ")[0]}} 
+										<b>{{follower.username}}</b> 
+										<span ng-show="follower.displayName.split(' ').length > 1">{{follower.displayName.split(" ")[follower.displayName.split(" ").length - 1]}}</span>
+									</h4>
 									<div class="follower-subtitle">{{follower.gamestyle}}</div>
 								</div>
 							</div>
@@ -112,20 +106,14 @@
 							<div class="spinner" ng-hide="following.length >= 0"></div>
 							<div class="follower-item" ng-repeat="follower in following track by $index" ui-sref="Profile({ username : follower.username })">
 								<div class="follower-avatar">
-									<img ng-src="{{follower.profileImg}}" />
+									<img ng-src="{{follower.profileImg}}" class="img-circle" />
 								</div>
 								<div class="follower-desc">
-									<a href="#" class="follower-title">
-										<small>
-											{{follower.displayName.split(" ")[0]}}
-										</small>
-										<b>
-											{{follower.username}}
-										</b>
-										<small ng-show="follower.displayName.split(' ').length > 1">
-											{{follower.displayName.split(" ")[follower.displayName.split(" ").length - 1]}}
-										</small>
-									</a>
+									<h4 class="follower-title">
+										{{follower.displayName.split(" ")[0]}} 
+										<b>{{follower.username}}</b> 
+										<span ng-show="follower.displayName.split(' ').length > 1">{{follower.displayName.split(" ")[follower.displayName.split(" ").length - 1]}}</span>
+									</h4>
 									<div class="follower-subtitle">{{follower.gamestyle}}</div>
 								</div>
 							</div>

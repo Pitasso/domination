@@ -1,28 +1,9 @@
-<style>
-	p {
-		color: #74675A;
-	}
-	.login-window h3 {
-		color: #B8A378;
-	}
-	.btn-brown {
-		border: 1px solid #74675A;
-		border-radius: 3px;
-		color: #74675A;
-		background: transparent;
-	}
-	p.notice {
-		color: #74675A;
-		opacity: 0.8;
-	}
-</style>
-
-<a class="login-window-close" ng-click="$dismiss()"><i class="icon ion-ios-close-outline"></i></a>
-<div class="login-window-content">
-	<img src="images/round_blue_dark.png" width="175"/>
+<a class="close lg" ng-click="$dismiss()"><i class="icon ion-ios-close-outline"></i></a>
+<div class="window-content">
+	<img src="images/round.png" width="175"/>
 	<h3>Login to Join The Community</h3>
 
 	<p>Dota Domination is a community to share and chat about the latest news, videos and changes in Dota and eSport universe. Join us :)</p>
-	<a class="btn btn-brown login" ng-click="login()">Login with Twitter</a>
+	<a class="btn btn-primary" ng-click="login()">Login with Twitter</a>
 	<p class="notice">We'll never post to Twitter without your permission.</p>	
 </div>
