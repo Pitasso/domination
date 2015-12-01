@@ -1,14 +1,13 @@
 /* global app:true */
 
 'use strict';
-angular.module('infinite-scroll').value('THROTTLE_MILLISECONDS', 3000)
 var app = angular.module("Domination", [
     "ui.router",
     "ui.bootstrap",
     "ngStamplay",
     "algoliasearch",
     "angularMoment",
-    "infinite-scroll",
+    "lazy-scroll",
     "ngMessages"
     ])
 .config(["$stateProvider", "$urlRouterProvider", "$locationProvider", "$httpProvider", function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {

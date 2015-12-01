@@ -52,14 +52,14 @@ app.controller('PostViewCtrl', ['Post', '$scope', '$rootScope', '$state', '$stat
       }
 
       var getUpvoters = function(upvoters) {
+        $scope.upvoters = [];
         var user = new Stamplay.User().Model;
         upvoters.forEach(function(item, idx, arr) {
-          user.fetch(item).then(function() {
-            upvoters[idx] = user.instance;
-            if(idx === arr.length - 1) {
-              $scope.upvoters = upvoters;
-              $scope.$apply();
-            }
+          $http.get("https://domination.stamplayapp.com/api/user/v1/users/" + item)
+          .then(function(data) {
+            $scope.upvoters[idx] = data.data
+          }, function(err) {
+            console.error(err)
           })
         })
       }

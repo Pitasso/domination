@@ -1,11 +1,21 @@
 <div ng-include="'app/views/partial/nav.html'"></div>
 
 <div class="main">
-    <div class="post-list container">
+    <div class="post-list container" when-scrolled="loadNextPosts()">
 
-        <div ng-hide="post_query" >
+        <div ng-hide="post_query" ng-repeat="collection in days track by $index" >
+
+            <h3 ng-repeat-start"collection in days" ng-hide="fetchBy === 'unapproved'">
+              <!-- Whatever you want at the start of a day block put here -->
+              {{collection.date | date : 'fullDate'}}
+            </h3>
+
+            <div ng-if="collection.posts.length === 0 && fetchBy !== 'unapproved'">
+              There are no posts from this day.
+            </div>
+
             <div ng-show="noResults" class="center-align grey-text">No Questions Have Been Posted Yet<span ng-if="!currentUser">, Sign In To Post a Question</span></div>
-            <div ng-repeat="post in postCollection | filter: { instance : { type : post_type } } : false" >
+            <div ng-repeat="post in collection.posts | filter: { instance : { type : post_type } } : false" >
                 <div class="post-item">
                     <a class="post-upvote">
                         <span  ng-hide="fetchBy === 'unapproved'" ng-click="upvotePost($index, post);" class="vote-arrow icon ion-chevron-up" aria-hidden="true"></span>
@@ -28,19 +38,26 @@
                     </div>
                 </div>
             </div>
+            <div ng-repeat-end"collection in days" ng-hide="fetchBy === 'unapproved'" >
+              <div class="load-more" ng-show="days[$index].posts.length > 9 && collection.page !== false">
+                  <a ng-click="loadNextPage(fetchBy, days[$index].date, $index)" ng-hide="days[$index].loading">more..</a>
+                  <div class="spinner" ng-show="days[$index].loading"></div>
+              </div>
+              <br>
+            </div>
+            <hr>
         </div>
 
         <div ng-hide="noSearchResults">
             <div ng-show="noSearchResults" class="center-align grey-text">No results found matching, <b>{{post_query}}</b>. Please try another search.</div>
             <div ng-repeat="post in searchResults">
 
-
             </div>
         </div>
 
-        <div class="load-more">
-            <a ng-hide="noMore" infinite-scroll="loadNextPosts()" infinite-scroll-immediate-check="false" class="btn"><div class="spinner"></div>Loading posts...</a>
-            <a ng-show="noMore">No more posts</a>
+        <div class="load-more" ng-if="days.length <= 60">
+            <a ng-show="processing" class="btn"><div class="spinner"></div>Loading posts...</a>
+            <a ng-hide="processing">Scroll to load more posts..</a>
         </div>
     </div>
 </div>
