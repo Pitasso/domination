@@ -245,6 +245,18 @@ body .layer {
 .bg-solid {
 	min-height: 800px;
 }
+.main {
+	height: 100%;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flexbox;
+	display: flex;
+
+	flex-direction: column;
+}
+.main .container {
+	flex-grow: 1;
+}
 input,
 button,
 select,
@@ -1449,6 +1461,7 @@ header .login-btn {
 	-o-align-items: center;
 	align-items: center;
 	-ms-flex-align: center;
+
 	display: -webkit-box;
 	display: -moz-box;
 	display: box;
@@ -1456,9 +1469,11 @@ header .login-btn {
 	display: -moz-flex;
 	display: -ms-flexbox;
 	display: flex;
+
 	-webkit-box-pack: center;
 	-moz-box-pack: center;
 	box-pack: center;
+
 	-webkit-justify-content: center;
 	-moz-justify-content: center;
 	-ms-justify-content: center;
@@ -2339,7 +2354,7 @@ span[ng-message] {
 /* ----- System Elements Styles ----- */
 
 .spinner {
-	margin: 10px 50px 30px;
+	margin: 10px auto 30px;
 	height: 28px;
 	width: 28px;
 	animation: rotate 1s infinite linear;
