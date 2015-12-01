@@ -7,9 +7,9 @@
             <div ng-show="noResults" class="center-align grey-text">No Questions Have Been Posted Yet<span ng-if="!currentUser">, Sign In To Post a Question</span></div>
             <div ng-repeat="post in postCollection | filter: { instance : { type : post_type } } : false" >
                 <div class="post-item">
-                    <a class="post-upvote" ng-click="upvotePost($index, post);">
-                        <span  ng-hide="fetchBy === 'unapproved'" class="vote-arrow icon ion-chevron-up" aria-hidden="true"></span>
-                        <span  ng-hide="fetchBy === 'unapproved'" class="vote-counter">{{post.instance.actions.votes.total}}</span>
+                    <a class="post-upvote">
+                        <span  ng-hide="fetchBy === 'unapproved'" ng-click="upvotePost($index, post);" class="vote-arrow icon ion-chevron-up" aria-hidden="true"></span>
+                        <span  ng-hide="fetchBy === 'unapproved'" ng-click="upvotePost($index, post);" class="vote-counter">{{post.instance.actions.votes.total}}</span>
                         <span  ng-show="fetchBy === 'unapproved'" ng-click="approvePost(post)"><span><span class="icon ion-checkmark" aria-hidden="true"></span></span>
                     </a>
                     <div class="post-thumbnail" ui-sref="Post({ slug : post.instance.slug })">

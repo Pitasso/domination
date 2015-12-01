@@ -110,9 +110,16 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 			}
 
 			$scope.approvePost = function(post, idx) {
+				var today = new Date();
+				var day = today.getDate();
+				var month = today.getMonth() + 1;
+				var year = today.getFullYear();
+				var published = month + "-" + day + "-" + year;
+
 				$scope.postCollection.splice(idx, 1);
 				post.instance.owner = post.instance.owner._id;
 				post.set("approved", true);
+				post.set("dt_publish", published);
 				post.save().then(function() {
 					$scope.$apply();
 				})
