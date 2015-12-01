@@ -1,0 +1,10 @@
+{
+  "appId": "domination",
+  "apiKey": "92c7799690c1f43409de52afb01bc08c72029c2dc7bee1047750480718fd14fa",
+  "public": "./",
+  "ignore": [
+    "stamplay.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

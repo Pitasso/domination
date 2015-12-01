@@ -25,16 +25,28 @@ app.factory('Post', ['$q', '$stamplay', '$rootScope', 'algolia', function($q, $s
 			})
 			return q.promise;
 		},
-		getPosts: function(type, page, moderator) {
+		getPosts: function(type, date, page) {
 			var postCollection = $stamplay.Cobject('post').Collection;
 			var q = $q.defer();
-			var approved = true;
-			if(moderator) approved = false;
+			if(page === undefined) page = 1;
 			postCollection
 			.sortDescending(type)
-			.equalTo('approved', approved)
+			.equalTo('dt_published', date)
 			.populateOwner()
 			.pagination(page, 10)
+			.fetch().then(function() {
+				q.resolve(postCollection);
+			})
+			return q.promise;
+		},
+		getUnapproved: function() {
+			var postCollection = $stamplay.Cobject('post').Collection;
+			var q = $q.defer();
+			postCollection
+			.sortDescending('dt_create')
+			.equalTo('approved', false)
+			.populateOwner()
+			.pagination(1, 100)
 			.fetch().then(function() {
 				q.resolve(postCollection);
 			})

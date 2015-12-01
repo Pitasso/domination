@@ -69,45 +69,73 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 			// 	});
 			// };
 
+
 			$scope.filterBy = function(type) {
 				$scope.post_type = type;
 			}
 
-			$scope.postCollection = [];
-			var page = 1;
-			var pagination = false;
-			$scope.getPosts = function(type, page_number, pagination, moderator) {
-				if(type !== $scope.type) $scope.postCollection.length = 0;
-				if(!pagination && page_number === 1) {
-					page = 1;
-					$scope.noMore = false;
+
+			$scope.days = [];
+			$scope.processing = false;
+			var days = [];
+			var today = new Date();
+			var currentDay = 0;
+			$scope.getPosts = function(sort, start) {
+				$scope.fetchBy = sort;
+				if(start !== undefined) {
+					currentDay = start;
+					$scope.days = [];
 				}
-				$scope.type = type;
-				if(moderator)  {
-					$scope.fetchBy = "unapproved";
-				} else {
-					$scope.fetchBy = type;
-				}
-				Post.getPosts(type, page_number, moderator).then(function(posts, type) {
-					if(posts.instance.length) {
-						$scope.noResults = false;
-						if(pagination) {
-							posts.instance.forEach(function(item, idx, arr) {
-								$scope.postCollection.push(item);
-							})
-						} else {
-							$scope.postCollection = posts.instance;
-						}
-					} else {
-						if(posts.instance.length === 0) {
-							setTimeout(function() {
-								$scope.noMore = true;
-								$scope.$apply();
-							}, 500)
-						}
-					}
+				if($scope.processing) return;
+				$scope.processing = true;
+				var day = new Date(today.getTime() - (currentDay * 24 * 60 * 60 * 1000));
+				day = (day.getMonth() + 1) + "-" + day.getDate() + "-" + day.getFullYear();
+				Post.getPosts(sort, day).then(function(posts) {
+					days[currentDay] = {};
+					days[currentDay].posts = posts.instance;
+					days[currentDay].date = new Date(day);
+					days[currentDay].page = posts.instance.length ? 1 : false;
+					$scope.days[currentDay] = days[currentDay];
+					currentDay += 1;
+					$scope.processing = false;
 				})
 			}
+			$scope.getPosts('actions.votes.total', currentDay);
+			$scope.processing = true;
+
+			$scope.loadNextPage = function(sort, day, index) {
+				$scope.days[index].loading = true;
+				var date = (day.getMonth() + 1) + "-" + day.getDate() + "-" + day.getFullYear();
+				$scope.days[index].page += 1;
+				Post.getPosts(sort, date, $scope.days[index].page).then(function(posts) {
+					if(posts.instance.length < 9) $scope.days[index].page = false;
+					posts.forEach(function(item, idx, arr) {
+						$scope.days[index].posts.push(item);
+					})
+					$scope.days[index].loading = false;
+				})
+			}
+
+			$scope.getUnapproved = function() {
+				Post.getUnapproved().then(function(posts) {
+					$scope.days.length = 1;
+					$scope.days[0] = {};
+					$scope.fetchBy = 'unapproved'
+					$scope.days[0].posts = posts.instance;
+				})
+			}
+
+
+			// $scope.getPosts('actions.votes.total', page);
+			// $scope.fetchBy = 'actions.votes.total';
+
+			$scope.loadNextPosts = function() {
+					$scope.getPosts('actions.votes.total');
+					$scope.processing = true;
+				// }
+			}
+			// Initial Posts Fetch - Latest
+
 
 			$scope.approvePost = function(post, idx) {
 				var today = new Date();
@@ -116,26 +144,15 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 				var year = today.getFullYear();
 				var published = month + "-" + day + "-" + year;
 
-				$scope.postCollection.splice(idx, 1);
+				$scope.days[0].posts.splice(idx, 1);
 				post.instance.owner = post.instance.owner._id;
 				post.set("approved", true);
-				post.set("dt_publish", published);
+				post.set("dt_published", published);
 				post.save().then(function() {
 					$scope.$apply();
 				})
 			}
 
-			$scope.getPosts('actions.votes.total', page);
-			$scope.fetchBy = 'actions.votes.total';
-
-			$scope.loadNextPosts = function() {
-				if(!$scope.noMore) {
-					page += 1
-					pagination = true
-					$scope.getPosts($scope.type, page, pagination);
-				}
-			}
-			// Initial Posts Fetch - Latest
 
 			if($stateParams.search) {
 				Search.searchPosts($stateParams.search).then(function(posts) {
@@ -201,3 +218,33 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 			}
 
 }]);
+
+
+app.directive('whenScrolled', function() {
+    return function(scope, elm, attr) {
+        var raw = elm[0];
+				var fetching = false;
+				var bottom = 0;
+        var funCheckBounds = function(evt) {
+            var rectObject = raw.getBoundingClientRect();
+						if(window.innerHeight - rectObject.bottom > -1 && fetching == false) {
+							scope.$apply(attr.whenScrolled);
+							fetching = true;
+							setTimeout(function() {
+								fetching = false;
+							}, 300)
+            }
+        };
+
+        angular.element(window).bind('scroll load', funCheckBounds);
+// rectObject
+				// bottom: 1068
+				// height: 973
+				// left: 15
+				// right: 581
+				// top: 95
+				// width: 566
+
+// window.
+    };
+});
