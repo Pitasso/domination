@@ -1,7 +1,7 @@
 <div ng-include="'app/views/partial/nav.html'"></div>
 
 <div class="main">
-    <div class="post-list container" when-scrolled="loadNextPosts()">
+    <div class="post-list container" when-scrolled="loadNextPosts()" scroll-disabled="{{fetchBy === 'unapproved'}}">
 
         <div ng-hide="post_query" ng-repeat="collection in days track by $index" >
 
@@ -55,7 +55,7 @@
             </div>
         </div>
 
-        <div class="load-more" ng-if="days.length <= 60">
+        <div class="load-more" ng-if="days.length <= 60" ng-hide="fetchBy === 'unapproved'">
             <a ng-show="processing" class="btn"><div class="spinner"></div>Loading posts...</a>
             <a ng-hide="processing">Scroll to load more posts..</a>
         </div>
