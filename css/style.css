@@ -876,7 +876,7 @@ header {
 }
 header .logo {
 	float: left;
-	padding: 20px 15px;
+	padding: 15px 15px;
 	font-size: 21px;
 }
 header .logo:hover {
@@ -2245,7 +2245,8 @@ h4.follower-title b {
 	border-radius: 3px 0 0 3px;
 }
 .input-field.date-select button {
-	font-size: 21px;
+	font-size: 19px;
+	padding: 6px 12px 5px;
 }
 .input-field.date-select button:focus,
 .input-field.date-select button:active, {
@@ -2319,10 +2320,20 @@ span[ng-message] {
 
 /* ----- Memebrship Page ----- */
 #membership-page .container {
+	width: 750px;
 	text-align: center;
 }
 #membership-page p.well {
-	margin-top: 40px;
+	margin: 35px 0;
+	text-align: left;
+}
+#membership-page p.well img {
+	width: 70px;
+	float: left; 
+	margin-right: 19px;
+}
+#membership-page .btn {
+	margin: 30px 5px 40px;
 }
 
 /* ----- System Elements Styles ----- */

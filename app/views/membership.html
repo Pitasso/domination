@@ -1,25 +1,23 @@
 <div id="membership-page" class="main bg-solid">
 	<div class="container">
-		<div class="spinner" ng-hide="processed"></div>
-		<div  ng-show="processed">
+		<p class="well" style="text-align: left;"><img src="images/dragon-keeper.png" alt="" /> To maintain a healthy volume of posts and thoughtful conversations we limited access to commenting and posting on Dota Domination, and it available only for community Members.</p>
+		<div ng-show="!$currentUser.instance.prefinery_id ">
+			<p>Members can <span>upvote</span>, <span>comment</span> and <span>submit</span> new posts. For all the actions on the Gamers Net platfom you'll receive experience and medals that would allow you to levelup. The most active memebers would be granted with special prizes for the activities.</p>
+			<a class="btn btn-primary" ng-click="requestMembership()">Request Memebrship</a>
+			<p class="notice">No worries, memebrship is totally Free.</p>
+		</div>
+		<div class="spinner" ng-hide="processed || !$rootScope.currentUser.instance.prefinery_id"></div>
+		<div ng-show="processed">
 			<h4>Congrats!</h4>
-			<p>You're in the line already. We have added your email address to the waiting list. <span ng-if="currentPosition"> — you are currently #{{ currentPosition}}.</span>
+			<p>You're in the line already. We have added your email address to the waiting list. <span ng-if="currentPosition"> — you are currently #{{ currentPosition }}.</span>
 			</p>
 			<h3>Want to cut the line and get your membership faster?</h3>
 			<p>Get 5 of your friends to signup with this unique link:</p>
-			<p><a href="{{share_link}}">{{share_link}}</a></p>
+			<p><a href="{{share_link}}">http://localhost:8080/#/membership{{ share_link }}</a></p>
 			<div>
-				<ul>
-					<li id="facebook">
-						<a class="btn btn-lg btn-social btn-facebook" href="https://www.facebook.com/sharer.php?u={{share_link}}&amp;t=Sign up to get early access to Domination!" target="_blank" title="Share on Facebook"><i class="fa fa-lg fa-facebook"></i> Share</a>
-					</li>
-					<li id="twitter">
-						<a class="btn btn-lg btn-social btn-twitter" href="https://twitter.com/share?url={{share_link}}&amp;text=Sign up to get early access to Domination!" target="_blank" title="Share on Twitter"><i class="fa fa-lg fa-twitter"></i> Tweet</a>
-					</li>
-					<li id="email">
-						<a class="btn btn-lg btn-social btn-email" href="mailto:?subject=Check out Domination!&amp;body=I just signed up for Domination and thought you might be interested, too!&nbsp;{{share_link}}" title="Share via Email"><i class="fa fa-lg fa-envelope"></i> Email</a>
-					</li>
-				</ul>
+				<a class="btn btn-primary" href="https://www.facebook.com/sharer.php?u={{share_link}}&amp;t=Sign up to get early access to Domination!" target="_blank" title="Share on facebook"><i class="icon ion-social-facebook"></i> Share</a>
+				<a class="btn btn-primary" href="https://twitter.com/share?url={{share_link}}&amp;text=Sign up to get early access to Domination!" target="_blank" title="Share on Twitter"><i class="icon ion-social-twitter"></i> Tweet</a>
+				<a class="btn btn-primary" href="mailto:?subject=Check out Domination!&amp;body=I just signed up for Domination and thought you might be interested, too!&nbsp;{{share_link}}" title="Share via Email"><i class="icon ion-email"></i> Email</a>
 			</div>
 			<p>So far you have <span>{{ clicks }} clicks</span> and <span>{{ signups }} signups</span></p>
 			<p>Get early access by referring your friends. The more friends that join, the sooner you'll get access.</p>

@@ -1,6 +1,7 @@
 'use strict';
 
 app.controller('MembershipCtrl', ['$scope','$http', '$rootScope', '$state', '$stateParams', '$stamplay', function($scope, $http, $rootScope, $state, $stateParams, $stamplay) {
+  
   var delay = setTimeout(function() {
     if(!$rootScope.currentUser.instance.prefinery_id) {
       alert("You haven't requested membership yet.")
@@ -17,6 +18,22 @@ app.controller('MembershipCtrl', ['$scope','$http', '$rootScope', '$state', '$st
       console.log(err)
     })
   }, 1000)
+
+  $scope.requestMembership = function() {
+    $http({
+      method: "POST",
+      url : "http://dota.domination.cc/api/codeblock/v1/run/prefinery",
+      data : { "email": $rootScope.currentUser.instance.email }
+    }).then(function(data) {
+      $rootScope.currentUser.set('prefinery_id', data.data.id);
+      $rootScope.currentUser.save().then(function() {
+        $uibModalInstance.close(true);
+      })
+    }, function(err) {
+      console.error(err);
+    })
+  }
+
 }])
 
 //
