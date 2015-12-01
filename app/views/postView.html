@@ -22,7 +22,16 @@
 			<div class="post-actions">
 				<a class="btn btn-primary btn-vote" ng-click="upvotePost(post);"><span class="counter">{{post.instance.actions.votes.total}}</span><span>Upvote</span></a>
 				<a class="btn btn-default" href="{{post.instance.url}}/?ref=domination" target="_blank">Check</a>
-				<a class="btn btn-default" href="">Share</a>
+				
+				<span uib-dropdown on-toggle="toggled(open)" class="comment-filter" ng-hide="comments.length === 0">
+						<a href="" class="btn btn-default" id="simple-dropdown" uib-dropdown-toggle>Share</a>
+						<ul class="uib-dropdown-menu user-menu" aria-labelledby="simple-dropdown">
+							<li><a href="#" ng-click="">most upvoted</a></li>
+							<li><a href="#" ng-click="">newest</a></li>
+							<li><a href="#" ng-click="">oldest</a></li>
+						</ul>
+				</span>
+
 			</div>
 		</section>
 
