@@ -5,13 +5,13 @@
 
         <div ng-hide="post_query" ng-repeat="collection in days track by $index" >
 
-            <h3 ng-repeat-start"collection in days" ng-hide="fetchBy === 'unapproved'">
-              <!-- Whatever you want at the start of a day block put here -->
-              {{collection.date | date : 'fullDate'}}
+            <h3 class="title" ng-repeat-start"collection in days" ng-hide="fetchBy === 'unapproved'">
+                <!-- Whatever you want at the start of a day block put here -->
+                {{collection.date | date : 'fullDate'}}
             </h3>
 
-            <div ng-if="collection.posts.length === 0 && fetchBy !== 'unapproved'">
-              There are no posts from this day.
+            <div class="no-posts" ng-if="collection.posts.length === 0 && fetchBy !== 'unapproved'">
+                There are no posts from this day.
             </div>
 
             <div ng-show="noResults" class="center-align grey-text">No Questions Have Been Posted Yet<span ng-if="!currentUser">, Sign In To Post a Question</span></div>
@@ -45,7 +45,6 @@
               </div>
               <br>
             </div>
-            <hr>
         </div>
 
         <div ng-hide="noSearchResults">

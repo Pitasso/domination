@@ -1663,6 +1663,13 @@ header .login-btn {
 	line-height: 18px;
 	text-shadow: 0px 2px 4px rgba(0,0,0,0.50);
 }
+.post-list .no-posts {
+	text-align: center;
+}
+.post-list .load-more {
+	text-align: center;
+	margin: 30px 0;
+}
 .post-item,
 .follower-item {
 	height: 100px;
@@ -1778,10 +1785,6 @@ header .login-btn {
 .post-item .post-details .comments .icon {
 	font-size: 26px;
 	vertical-align: middle;
-}
-.load-more {
-	text-align: center;
-	margin: 30px 0;
 }
 
 /* ----- Post Styles ----- */
