@@ -245,6 +245,18 @@ body .layer {
 .bg-solid {
 	min-height: 800px;
 }
+.main {
+	height: 100%;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flexbox;
+	display: flex;
+
+	flex-direction: column;
+}
+.main .container {
+	flex-grow: 1;
+}
 input,
 button,
 select,
@@ -876,7 +888,7 @@ header {
 }
 header .logo {
 	float: left;
-	padding: 20px 15px;
+	padding: 15px 15px;
 	font-size: 21px;
 }
 header .logo:hover {
@@ -1449,6 +1461,7 @@ header .login-btn {
 	-o-align-items: center;
 	align-items: center;
 	-ms-flex-align: center;
+
 	display: -webkit-box;
 	display: -moz-box;
 	display: box;
@@ -1456,9 +1469,11 @@ header .login-btn {
 	display: -moz-flex;
 	display: -ms-flexbox;
 	display: flex;
+
 	-webkit-box-pack: center;
 	-moz-box-pack: center;
 	box-pack: center;
+
 	-webkit-justify-content: center;
 	-moz-justify-content: center;
 	-ms-justify-content: center;
@@ -2245,7 +2260,8 @@ h4.follower-title b {
 	border-radius: 3px 0 0 3px;
 }
 .input-field.date-select button {
-	font-size: 21px;
+	font-size: 19px;
+	padding: 6px 12px 5px;
 }
 .input-field.date-select button:focus,
 .input-field.date-select button:active, {
@@ -2319,16 +2335,26 @@ span[ng-message] {
 
 /* ----- Memebrship Page ----- */
 #membership-page .container {
+	width: 750px;
 	text-align: center;
 }
 #membership-page p.well {
-	margin-top: 40px;
+	margin: 35px 0;
+	text-align: left;
+}
+#membership-page p.well img {
+	width: 70px;
+	float: left; 
+	margin-right: 19px;
+}
+#membership-page .btn {
+	margin: 30px 5px 40px;
 }
 
 /* ----- System Elements Styles ----- */
 
 .spinner {
-	margin: 10px 50px 30px;
+	margin: 10px auto 30px;
 	height: 28px;
 	width: 28px;
 	animation: rotate 1s infinite linear;

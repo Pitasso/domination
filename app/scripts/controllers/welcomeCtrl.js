@@ -22,7 +22,6 @@ app.controller('WelcomeCtrl', ['$scope', '$http', '$rootScope', '$uibModalInstan
 				$scope.$apply();
 			})
 		})
-
 	}
 
 	$scope.requestMembership = function() {
@@ -40,8 +39,8 @@ app.controller('WelcomeCtrl', ['$scope', '$http', '$rootScope', '$uibModalInstan
 		})
 	}
 
- $scope.close = function() {
-	 $uibModalInstance.close();
- }
+	 $scope.close = function() {
+		 $uibModalInstance.close();
+	 }
 
 }])
