@@ -26,9 +26,9 @@
 				<span uib-dropdown on-toggle="toggled(open)">
 						<a href="" class="btn btn-default" id="simple-dropdown" uib-dropdown-toggle>Share</a>
 						<ul class="uib-dropdown-menu user-menu" aria-labelledby="simple-dropdown">
-							<li><a href="#" ng-click="">most upvoted</a></li>
-							<li><a href="#" ng-click="">newest</a></li>
-							<li><a href="#" ng-click="">oldest</a></li>
+							<li><a href="#" ng-click="">Tweet</a></li>
+							<li><a href="#" ng-click="">Share on Facebook</a></li>
+							<li><a href="#" ng-click="">Email</a></li>
 						</ul>
 				</span>
 
@@ -112,8 +112,8 @@
 
 					</div>
 					<div ng-show="post.instance">
-						<div ng-show="currentUser.instance.givenRole.name === 'registered'  || currentUser.instance.givenRole.name === 'guest'">
-							<div class="no-data" >Commenting is limited to community members. <br/> Please <a href="" ng-click="login()">Login</a> or <a ui-sref="Membership">Request membership</a>.</div>
+						<div ng-show="currentUser.instance.givenRole.name === 'registered'  || !currentUser ">
+							<div class="no-data" >Commenting is limited to community members. <br/> Please <a href="" ng-click="login()" ng-show="!currentUser">Login</a><a ui-sref="Membership" ng-show="currentUser.instance.givenRole.name === 'registered'">Request membership</a>.</div>
 						</div>
 					</div>
 

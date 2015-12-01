@@ -2353,6 +2353,9 @@ span[ng-message] {
 #membership-page .btn {
 	margin: 30px 5px 40px;
 }
+#membership-page .spinner {
+	margin: 40px auto 40px;
+}
 
 /* ----- System Elements Styles ----- */
 
@@ -2740,3 +2743,6 @@ span[ng-message] {
 		display: none !important;
 	}
 }
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+        display: none !important;
+    }

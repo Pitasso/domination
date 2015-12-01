@@ -3,7 +3,7 @@
 app.factory('Post', ['$q', '$stamplay', '$rootScope', 'algolia', function($q, $stamplay, $rootScope, algolia) {
 
 	var client = algolia.Client('7TMV8F22UN', 'b5e5aa05c764aa1718bc96b793078703');
-  var index = client.initIndex('KBQUESTIONS');
+  	var index = client.initIndex('KBQUESTIONS');
 
 	return {
 		newPost: function(details) {
