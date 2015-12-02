@@ -20,6 +20,14 @@ app.controller('PostViewCtrl', ['Post', '$scope', '$rootScope', '$state', '$stat
 		})
 	}
 
+  $scope.upvoteComment = function(comment) {
+    var owner = comment.instance.owner;
+    comment.upVote().then(function() {
+      comment.instance.owner = owner;
+      $scope.$apply();
+    })
+  }
+
     $scope.addComment = function(comment) {
         // $scope.processing_comment = true;
         Post.addComment(comment, $stateParams.slug, $scope.post.instance.owner.email).then(function(res) {

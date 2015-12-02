@@ -131,7 +131,7 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 	$scope.processing = true;
 
 
-// METHOD TRIGGERS BY SCROLL TO BOTTOM OF PAGE 
+// METHOD TRIGGERS BY SCROLL TO BOTTOM OF PAGE
 	$scope.loadNextPosts = function() {
 		$scope.getPosts($scope.fetchBy);
 		$scope.processing = true;
@@ -177,7 +177,6 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 		// 	})
 		// } else {
 		post.upVote().then(function() {
-			$scope.postCollection[$index] = post;
 			$scope.$apply();
 		})
 		// }
