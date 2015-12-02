@@ -9,8 +9,7 @@
 			</div>
 
 			<div ng-show="processed">
-				<p>You're in the line already. We have added your email address to the waiting list. <span ng-if="currentPosition"> — you are currently #{{ currentPosition }}.</span>
-				</p>
+				<p>You're in the line already. We have added your email address to the waiting list. <span ng-if="currentPosition"> — you are currently #{{ currentPosition }}.</span></p>
 				<h3>Want to cut the line and get your membership faster?</h3>
 				<p>Get 5 of your friends to signup with this unique link:</p>
 				<p><a href="{{share_link}}">{{ share_link }}</a></p>
@@ -23,6 +22,7 @@
 				<p>Get early access by referring your friends.<br/>The more friends that join, the sooner you'll get access.</p>
 			</div>
 		</div>
+
 
 		<div ng-if="!membershipRequested && !currentUser.instance.prefinery_id">
 			<p>Members can <span>upvote</span>, <span>comment</span> and <span>submit</span> new posts. For all the actions on the Gamers Net platfom you'll receive experience and medals that would allow you to levelup. The most active memebers would be granted with special prizes for the activities.</p>

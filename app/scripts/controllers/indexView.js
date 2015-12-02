@@ -131,7 +131,7 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 	$scope.processing = true;
 
 
-// METHOD TRIGGERS BY SCROLL TO BOTTOM OF PAGE 
+// METHOD TRIGGERS BY SCROLL TO BOTTOM OF PAGE
 	$scope.loadNextPosts = function() {
 		$scope.getPosts($scope.fetchBy);
 		$scope.processing = true;
@@ -183,7 +183,6 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 			})
 		} else {
 			post.upVote().then(function() {
-				$scope.postCollection[$index] = post;
 				$scope.$apply();
 			})
 		}

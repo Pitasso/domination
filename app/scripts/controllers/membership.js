@@ -40,6 +40,7 @@ app.controller('MembershipCtrl', ['$scope','$http', '$rootScope', '$state', '$st
                 $scope.share_link = data.data.share_link;
                 $scope.clicks = data.data.share_clicks_count;
                 $scope.signups = data.data.share_signups_count;
+                $scope.currentPosition = data.data.waitlist_position;
                 $scope.processed = true;
             }, function(err) {
                 console.log(err)
