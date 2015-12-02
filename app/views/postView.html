@@ -21,17 +21,15 @@
 			</div>
 			<div class="post-actions">
 				<a class="btn btn-primary btn-vote" ng-click="upvotePost(post);"><span class="counter">{{post.instance.actions.votes.total}}</span><span>Upvote</span></a>
-				<a class="btn btn-default" href="{{post.instance.url}}/?ref=domination" target="_blank">Check</a>
-				
+				<a class="btn btn-default" href="{{post.instance.url}}/?ref=domination" target="_blank">Check</a>				
 				<span uib-dropdown on-toggle="toggled(open)">
-						<a href="" class="btn btn-default" id="simple-dropdown" uib-dropdown-toggle>Share</a>
-						<ul class="uib-dropdown-menu user-menu" aria-labelledby="simple-dropdown">
-							<li><a href="#" ng-click="">Tweet</a></li>
-							<li><a href="#" ng-click="">Share on Facebook</a></li>
-							<li><a href="#" ng-click="">Email</a></li>
-						</ul>
+					<a href="" class="btn btn-default" id="simple-dropdown" uib-dropdown-toggle>Share</a>
+					<ul class="uib-dropdown-menu dropdown-menu-right" aria-labelledby="simple-dropdown">
+						<li><a href="#"><i class="icon ion-social-twitter"></i> Tweet</a></li>
+						<li><a href="#"><i class="icon ion-social-facebook"></i> Share</a></li>
+						<li><a href="#" ng-click=""><i class="icon ion-email"></i> Email</a></li>
+					</ul>
 				</span>
-
 			</div>
 		</section>
 
@@ -42,7 +40,9 @@
 						<uib-tab active="true" ng-if="post.instance.type === 'game'" >
 							<uib-tab-heading><h3 class="tab-heading">Video</h3></uib-tab-heading>
 							<div class="video embed-responsive embed-responsive-16by9">
-
+								<!-- <iframe src="http://player.twitch.tv/?video=v26905488&t=3h30m38s" frameborder="0"></iframe> -->
+								<!-- <iframe src="http://player.twitch.tv/?channel=dotamajor" frameborder="0"></iframe> -->
+								<!-- <iframe src="https://www.youtube.com/embed/NUI-mw5BsIg?autoplay=1&start=248" frameborder="0"></iframe> -->
 							</div>
 						</uib-tab>
 						<uib-tab>
