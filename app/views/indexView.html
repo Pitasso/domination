@@ -14,7 +14,6 @@
                 There are no posts from this day.
             </div>
 
-            <div ng-show="noResults" class="center-align grey-text">No Questions Have Been Posted Yet<span ng-if="!currentUser">, Sign In To Post a Question</span></div>
             <div ng-repeat="post in collection.posts | filter: { instance : { type : post_type } } : false" >
                 <div class="post-item">
                     <a class="post-upvote">

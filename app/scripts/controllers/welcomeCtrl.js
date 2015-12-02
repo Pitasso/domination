@@ -19,12 +19,14 @@ app.controller('WelcomeCtrl', ['$scope', '$http', '$rootScope', '$uibModalInstan
 			user.set("email", profile.email);
 			user.save().then(function() {
 				$scope.currentStep = 2;
+				$scope.processing = false;
 				$scope.$apply();
 			})
 		})
 	}
 
 	$scope.requestMembership = function() {
+		$scope.processing = true;
 		$http({
 			method: "POST",
 			url : "http://dota.domination.cc/api/codeblock/v1/run/prefinery",
