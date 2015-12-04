@@ -29,6 +29,7 @@
                         <a class="post-title" ng-if="post.instance.type === 'game'">
                           <img ng-src="{{post.instance.team_1[0].logo}}" style="max-height:30px"/> {{post.instance.team_1[0].name}} <span>vs</span>  {{post.instance.team_2[0].name}} <img ng-src="{{post.instance.team_2[0].logo}}" style="max-height:30px"/></a>
                         <a class="post-title" ng-if="post.instance.type === 'link'">{{post.instance.title}}</a>
+                        <a class="post-subtitle" ng-if="post.instance.type === 'link'">Originaly published on {{post.instance.url}} on {{ date }}</a>
                         <div class="post-meta" ng-if="post.instance.type === 'game'">{{post.instance.title}}</div>
                     </div>
                     <div class="post-details" >

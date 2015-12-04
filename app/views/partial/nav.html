@@ -1,10 +1,19 @@
-<nav class="navbar">
+<!-- <nav class="navbar">
   <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Sort</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a ng-click="getPosts('actions.votes.total', 0);" ng-class="{ 'current-post-sort' : fetchBy === 'actions.votes.total' }" >Trending</a></li>
         <li><a ng-click="getPosts('comment_count', 0);" ng-class="{ 'current-post-sort' : fetchBy === 'comment_count' }">Most Discussed</a></li>
-        <li ng-show="currentUser.instance.givenRole.name === 'moderator'"><a ng-click="getUnapproved();" ng-class="{ 'current-post-sort' : fetchBy === 'unapproved' }">Unapproved</a></li>
+        <li class="hidden-xs" ng-show="currentUser.instance.givenRole.name === 'moderator'"><a ng-click="getUnapproved();" ng-class="{ 'current-post-sort' : fetchBy === 'unapproved' }">Unapproved</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li uib-dropdown>
@@ -17,5 +26,43 @@
         </li>
       </ul>
     </div>
+
+  </div>
+</nav> -->
+
+
+<nav class="navbar">
+  <div class="container">
+    
+    <div class="nav-categories">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span>Categories</span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a ng-click="filterBy('')" ng-class="{ 'current-post-sort' : post_type === undefined || post_type === undefined }">All</a></li>
+          <li><a ng-click="filterBy('game')" ng-class="{ 'current-post-sort' : post_type === 'game' }">Games</a></li>
+          <li><a ng-click="filterBy('link')" ng-class="{ 'current-post-sort' : post_type === 'link' }">Links</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="nav-sort hidden-xs">
+      <ul class="nav navbar-nav navbar-right">
+        <li uib-dropdown>
+          <a id="simple-dropdown" uib-dropdown-toggle ng-init="sort_by = 'Trending'">{{ sort_by }} <i class="icon ion-arrow-down-b"></i></a>
+          <ul class="uib-dropdown-menu" aria-labelledby="simple-dropdown">
+            <li><a ng-click="getPosts('actions.votes.total', 0); sort_by = 'Trending'" ng-class="{ 'current-post-sort' : fetchBy === 'actions.votes.total' }" >Trending</a></li>
+            <li><a ng-click="getPosts('comment_count', 0); sort_by = 'Most Discussed'" ng-class="{ 'current-post-sort' : fetchBy === 'comment_count' }">Most Discussed</a></li>
+            <li ng-show="currentUser.instance.givenRole.name === 'moderator'"><a ng-click="getUnapproved(); sort_by = 'Unapproved'" ng-class="{ 'current-post-sort' : fetchBy === 'unapproved' }">Unapproved</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
   </div>
 </nav>
+

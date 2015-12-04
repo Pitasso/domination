@@ -36,6 +36,11 @@ var app = angular.module("Domination", [
             templateUrl: "app/views/settings.html",
             controller: "SettingsCtrl"
         })
+        .state("Invite", {
+            url: "/invite",
+            templateUrl: "app/views/invite.html",
+            controller: "InviteCtrl"
+        })
     $urlRouterProvider.otherwise("/");
 
 }])
