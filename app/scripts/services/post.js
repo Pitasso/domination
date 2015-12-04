@@ -34,6 +34,7 @@ app.factory('Post', ['$q', '$stamplay', '$rootScope', 'algolia', function($q, $s
 			.equalTo('dt_published', date)
 			.populateOwner()
 			.pagination(page, 10)
+			.populate()
 			.fetch().then(function() {
 				q.resolve(postCollection);
 			})
@@ -47,6 +48,7 @@ app.factory('Post', ['$q', '$stamplay', '$rootScope', 'algolia', function($q, $s
 			.equalTo('approved', false)
 			.populateOwner()
 			.pagination(1, 100)
+			.populate()
 			.fetch().then(function() {
 				q.resolve(postCollection);
 			})
@@ -57,7 +59,7 @@ app.factory('Post', ['$q', '$stamplay', '$rootScope', 'algolia', function($q, $s
 			var comments = $stamplay.Cobject('comment').Collection;
 			var user = $stamplay.User().Model;
 			var q = $q.defer();
-			post.equalTo('slug', slug).fetch().then(function() {
+			post.equalTo('slug', slug).populate().fetch().then(function() {
 				comments.equalTo('slug', slug).populateOwner().fetch().then(function() {
 					user.fetch(post.instance[0].instance.owner).then(function() {
 						post.instance[0].instance.owner = user.instance;

@@ -146,6 +146,8 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 
 		$scope.days[0].posts.splice(idx, 1);
 		post.instance.owner = post.instance.owner._id;
+		post.instance.team_1 = post.instance.team_1[0]._id;
+		post.instance.team_2 = post.instance.team_2[0]._id;
 		post.set("approved", true);
 		post.set("dt_published", published);
 		post.save().then(function() {
