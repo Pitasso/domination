@@ -3,7 +3,6 @@
 app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Search', '$uibModal', '$stamplay', '$stateParams', function($scope, $rootScope, $state, Post, Search, $uibModal, $stamplay, $stateParams) {
 
 	// var postList = this;
-
 	// postList.posts = [];
 	// postList.page = 1;
 	// postList.per_page = 10;
