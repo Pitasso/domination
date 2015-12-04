@@ -6,7 +6,9 @@ app.controller('SubmitPostCtrl', ['Post', 'Thumbnail', '$scope', '$rootScope', '
 	var index = client.initIndex('dota.teams');
 
 	$scope.search = function(query, team) {
-		if(query.length <= 1) return;
+		if(query === undefined || query.length <= 1) {
+			return;
+		}
 		var q = $q.defer();
 		index.search(query)
 		.then(function searchSuccess(content) {
@@ -23,12 +25,23 @@ app.controller('SubmitPostCtrl', ['Post', 'Thumbnail', '$scope', '$rootScope', '
 		return q.promise;
 	}
 
+	$scope.closeTypeahead = function(team) {
+		setTimeout(function() {
+			if(team === 'teams_1') {
+				console.log('1')
+				$scope.teams_1.length = 0;
+			} else if(team === 'teams_2') {
+				console.log('2')
+				$scope.teams_2.length = 0;
+			}
+			$scope.$apply();
+		}, 100)
+	}
 	$scope.setTeam1 = function(team) {
 		$scope.tabs.post.team_1 = {
 			id : team._id,
 			name : team.name
 		}
-		$scope.teams_1.length = 0;
 	}
 
 	$scope.setTeam2 = function(team) {
@@ -36,7 +49,6 @@ app.controller('SubmitPostCtrl', ['Post', 'Thumbnail', '$scope', '$rootScope', '
 			id : team._id,
 			name : team.name
 		}
-		$scope.teams_2.length = 0;
 	}
 
 	$scope.tabs = [];

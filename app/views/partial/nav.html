@@ -17,7 +17,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li uib-dropdown>
-          <a id="simple-dropdown" uib-dropdown-toggle>Category <i class="icon ion-arrow-down-b"></i></a>
+          <a id="simple-dropdown" uib-dropdown-toggle>{{ format(post_type) }}<i class="icon ion-arrow-down-b"></i></a>
           <ul class="uib-dropdown-menu" aria-labelledby="simple-dropdown">
             <li><a ng-click="filterBy('')" ng-class="{ 'current-post-sort' : post_type === undefined || post_type === undefined }">All</a></li>
             <li><a ng-click="filterBy('game')" ng-class="{ 'current-post-sort' : post_type === 'game' }">Games</a></li>
