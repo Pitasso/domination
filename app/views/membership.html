@@ -9,9 +9,7 @@
 			</div>
 
 			<div ng-show="processed">
-				<h4>Congrats!</h4>
-				<p>You're in the line already. We have added your email address to the waiting list.</p>
-				<h5 ng-if="currentPosition"> You are currently #{{ currentPosition }} in line.</h5>
+				<p>You're in the line already. We have added your email address to the waiting list. <span ng-if="currentPosition"> — you are currently #{{ currentPosition }}.</span></p>
 				<h3>Want to cut the line and get your membership faster?</h3>
 				<p>Get 5 of your friends to signup with this unique link:</p>
 				<p><a href="{{share_link}}">{{ share_link }}</a></p>

@@ -9,10 +9,10 @@ app.controller('AuthCtrl', ['Auth', '$scope', '$rootScope', '$uibModal', "$state
 			windowClass: "fullscreen",
 			animation: false,
 			resolve: {
-        		items: function() {
-          			return $scope.items;
-        }
-      }
+				items: function() {
+					return $scope.items;
+				}
+			}
 		})
 	}
 
@@ -24,7 +24,7 @@ app.controller('AuthCtrl', ['Auth', '$scope', '$rootScope', '$uibModal', "$state
 			animation: false,
 			resolve: {
 				items: function() {
-						return $scope.items;
+					return $scope.items;
 				}
 			}
 		})

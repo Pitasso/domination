@@ -1,7 +1,16 @@
 <a class="close lg" ng-click="$dismiss()"><i class="icon ion-ios-close-outline"></i></a>
 <div class="window-content">
-	<h3>Howdy!=)</h3>
-	<p>Submiting posts is for members only=( If you'd like to become part of our community and have full access to all the features, please apply for the membership.</p>
-	<a class="btn btn-primary" ui-sref="Membership" ng-click="$close()">Request membership</a>
-	<p class="notice">No worries, memebrship is totally Free. We just trying to maintain a healthy volume of posts and thoughtful conversations.</p>
+	<div ng-if="!currentUser || currentUser.instance.givenRole.name === 'guest'">
+		<h3>Sign in to upvote</h3>
+		<p>Gamers Net is a community to share and chat about the latest news, videos and changes in Dota and eSport universe. Join us :)</p>
+		<a class="btn btn-primary" ng-click="login()">Login with Twitter</a>
+		<p class="notice">We'll never post to Twitter without your permission.</p>
+	</div>
+
+	<div ng-if="currentUser && currentUser.instance.givenRole.name === 'registered'">
+		<h3>Howdy!=)</h3>
+		<p>Submiting posts is for members only=( If you'd like to become part of our community and have full access to all the features, please apply for the membership.</p>
+		<a class="btn btn-primary" ui-sref="Membership" ng-click="$close()">Request membership</a>
+		<p class="notice">No worries, memebrship is totally Free. We just trying to maintain a healthy volume of posts and thoughtful conversations.</p>
+	</div>
 </div>

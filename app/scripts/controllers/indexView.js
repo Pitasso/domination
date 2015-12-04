@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Search', '$uibModal', '$stamplay', '$stateParams', function($scope, $rootScope, $state, Post, Search, $uibModal, $stamplay, $stateParams) {
+app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post', 'Search', '$uibModal', '$stamplay', '$stateParams', function(Auth, $scope, $rootScope, $state, Post, Search, $uibModal, $stamplay, $stateParams) {
 
 	// var postList = this;
 	// postList.posts = [];
@@ -170,17 +170,23 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 
 
 	$scope.upvotePost = function($index, post) {
-		// if(!$rootScope.currentUser) {
-		// 	var loginModal = $uibModal.open({
-		// 		templateUrl: "app/views/partial/permission.html",
-		// 		windowClass: "login-window",
-		// 		animation: false
-		// 	})
-		// } else {
-		post.upVote().then(function() {
-			$scope.$apply();
-		})
-		// }
+		if(!$rootScope.currentUser) {
+			var loginModal = $uibModal.open({
+				templateUrl: "app/views/partial/permission.html",
+				controller: "AuthCtrl",
+				windowClass: "fullscreen",
+				animation: false,
+				resolve: {
+					items: function() {
+						return $scope.items;
+					}
+				}
+			})
+		} else {
+			post.upVote().then(function() {
+				$scope.$apply();
+			})
+		}
 	}
 
 	$scope.newPost = function() {
@@ -219,7 +225,6 @@ app.controller('IndexViewCtrl', ['$scope', '$rootScope', '$state', 'Post', 'Sear
 	}
 
 }]);
-
 
 // THIS CAN BE MOVED INTO ANOTHER FILE IN NEEDS BELOW
 

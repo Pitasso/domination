@@ -776,6 +776,10 @@ fieldset[disabled] .checkbox label {
 .open > a {
 	outline: 0;
 }
+.dropdown-menu-right {
+  right: 0;
+  left: auto;
+}
 .dropdown-backdrop {
 	position: fixed;
 	top: 0;
@@ -1923,6 +1927,23 @@ a.btn-vote {
 	padding: 6px 8px 6px 0;
 	margin-right: 8px;
 }
+.post-actions .dropdown-menu-right,
+.profile-actions .dropdown-menu-right {
+  	margin-top: 11px;
+  	min-width: 90px
+}
+.post-actions .dropdown-menu-right > li > a,
+.profile-actions .dropdown-menu-right > li > a {
+	padding: 4px 15px;
+}
+.post-actions .dropdown-menu-right > li > a > i,
+.profile-actions .dropdown-menu-right > li > a > i {
+	display: inline-block;
+	width: 10px;
+	text-align: center;
+	margin-right: 8px;
+	font-size: 15px;
+}
 main {
 	padding: 20px;
 }
@@ -2158,6 +2179,7 @@ aside section .team {
 }
 .profile-actions {
 	margin-top: 10px;
+	text-transform: uppercase;
 }
 #profile-main .nav {
 	margin-bottom: 30px;

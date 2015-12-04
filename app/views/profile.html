@@ -20,7 +20,14 @@
 			<div class="profile-actions">
 				<a class="btn btn-primary" ng-show="followingUser === false && followingUser !== undefined" ng-click="follow()">Follow</a>
 				<a class="btn btn-default" ng-show="followingUser && followingUser !== undefined" ng-click="unfollow()">Unfollow</a>
-				<!-- <a class="btn btn-default">Share</a> -->
+				<span uib-dropdown on-toggle="toggled(open)">
+					<a href="" class="btn btn-default" id="simple-dropdown" uib-dropdown-toggle>Share</a>
+					<ul class="uib-dropdown-menu dropdown-menu-right" aria-labelledby="simple-dropdown">
+						<li><a href="#"><i class="icon ion-social-twitter"></i> Tweet</a></li>
+						<li><a href="#"><i class="icon ion-social-facebook"></i> Share</a></li>
+						<li><a href="#" ng-click=""><i class="icon ion-email"></i> Email</a></li>
+					</ul>
+				</span>
 			</div>
 		</section>
 
