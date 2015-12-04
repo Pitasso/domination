@@ -254,6 +254,9 @@ body .layer {
 
 	flex-direction: column;
 }
+#settings-page .main {
+	height: auto;
+}
 .main .container {
 	flex-grow: 1;
 }
@@ -935,7 +938,6 @@ header .user-group {
 }
 header .user-group .profile-img {
 	width: 34px;
-	margin-right: 12px;
 	cursor: pointer;
 	-webkit-transition-duration: .3s;
 	transition-duration: .3s;
@@ -944,18 +946,21 @@ header .user-group ul.user-menu {
 	min-width: 120px;
 	margin-top: 5px;
 }
-header .user-group .submit-btn {
+header .user-group .submit-btn,
+header .user-group .search-btn {
 	font-size: 18px;
 	border-radius: 50%;
 	width: 33px;
 	height: 32px;
 	display: inline-block;
 	cursor: pointer;
+	margin-right: 12px;
 	flex: 1;
 	-webkit-transition-duration: .3s;
 	transition-duration: .3s;
 }
-header .user-group .submit-btn i {
+header .user-group .submit-btn i,
+header .user-group .search-btn i {
 	line-height: 30px;
 	padding: 8px;
 }
@@ -1795,8 +1800,6 @@ header .login-btn {
 
 #post-details {
 	display: block;
-	min-height: 690px;
-	height: 100%;
 	position: relative;
 	box-shadow: 0px -2px 4px 0px #000000;
 
@@ -1809,6 +1812,10 @@ header .login-btn {
 	display: -ms-flexbox;
 	display: flex;
 
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+
 }
 #post-details main, #post-details aside {
 	flex: 1 100%;
@@ -1819,7 +1826,14 @@ header .login-btn {
 }
 #post-details main {
 	padding: 10px 20px;
-
+}
+@media (max-width: 768px) {
+	#post-details {
+		flex-wrap: wrap;
+	}
+	#post-details aside {
+		flex: 1 0 100%;
+	}
 }
 #post-details h4 {
 	font-size: 13px;
@@ -2765,6 +2779,3 @@ span[ng-message] {
 		display: none !important;
 	}
 }
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-        display: none !important;
-    }

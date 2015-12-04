@@ -29,7 +29,7 @@ app.controller('WelcomeCtrl', ['$scope', '$http', '$rootScope', '$uibModalInstan
 		$scope.processing = true;
 		$http({
 			method: "POST",
-			url : "http://dota.domination.cc/api/codeblock/v1/run/prefinery",
+			url : "https://dota.joingamers.net/api/codeblock/v1/run/prefinery",
 			data : { "email": $rootScope.currentUser.instance.email }
 		}).then(function(data) {
 			$rootScope.currentUser.set('prefinery_id', data.data.id);
