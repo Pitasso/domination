@@ -45,7 +45,7 @@ app.controller('SubmitPostCtrl', ['Post', 'Thumbnail', '$scope', '$rootScope', '
 		$scope.tabs.post.team_2 = {};
 
 	$scope.newPost = function() {
-		var details = $scope.tabs.post
+		var details = $scope.tabs.post;
 		var slug = '';
 		if(details.type === 'link') {
 			slug = details.title.split(' ').join('-');
@@ -57,10 +57,9 @@ app.controller('SubmitPostCtrl', ['Post', 'Thumbnail', '$scope', '$rootScope', '
 		}
 		slug = slug.toLowerCase();
 		$scope.tabs.post.slug = slug;
-		var values = $scope.tabs.post;
-		console.log(values);
-		values.team_1 = $scope.tabs.post.team_1.id;
-		values.team_2 = $scope.tabs.post.team_2.id;
+		var values = angular.copy($scope.tabs.post);
+		values.team_1 = details.team_1.id;
+		values.team_2 = details.team_2.id;
 		// Thumbnail.getFromUrl(values.url).then(function(thumbnail) {
 		// 	values.thumbnail = thumbnail;
 			Post.newPost(values).then(function(post) {

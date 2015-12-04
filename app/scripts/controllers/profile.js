@@ -20,7 +20,7 @@ app.controller('ProfileCtrl', ['User', '$scope', "$rootScope", '$state', "$state
 
 	var getSubmitted = function(userId) {
 		var posts = new Stamplay.Cobject('post').Collection;
-		posts.equalTo("owner", userId).populateOwner().fetch().then(function() {
+		posts.equalTo("owner", userId).populateOwner().populate().fetch().then(function() {
 			$scope.submitted = posts.instance;
 			$scope.$apply();
 		})

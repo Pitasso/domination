@@ -1,24 +1,24 @@
 <div id="settings-page" class="main bg-solid">
 	<div class="container">
 		<h2>Account Settings</h2>
-		
+
 		<form>
 			<h4>Profile Info</h4>
 			<div class="input-field">
 				<label><i class="icon ion-email"></i>Email</label>
-				<input type="text"  name="title" placeholder="" value="{{ currentUser.instance.email }}">
+				<input type="text"  name="title" placeholder="" ng-model="settings.email">
 			</div>
 			<div class="input-field">
 				<label><i class="icon ion-person"></i>Username</label>
-				<input type="text"  name="title" placeholder="" value="{{ currentUser.instance.username }}">
+				<input type="text"  name="title" placeholder="" ng-model="settings.username">
 			</div>
 			<div class="input-field">
 				<label><i class="icon ion-pinpoint"></i>Role</label>
-				<input type="text"  name="title" placeholder="Please define your game style..." value="{{ currentUser.instance.gamestyle }}">
+				<input type="text"  name="title" placeholder="Please define your game style..." ng-model="settings.gamestyle">
 			</div>
 			<div class="input-field">
 				<label><i class="icon ion-ios-people"></i>Team</label>
-				<input type="text"  name="title" placeholder="What team are you in?" value="">
+				<input type="text"  name="title" placeholder="What team are you in?" ng-model="settings.team">
 			</div>
 
 			<hr>
@@ -26,39 +26,39 @@
 			<h4>Social</h4>
 			<div class="input-field">
 				<label><i class="icon ion-steam"></i>Steam ID</label>
-				<input type="text"  name="title" placeholder="Please add your Steam ID" value="">
+				<input type="text"  name="title" placeholder="Please add your Steam ID" ng-model="settings.steam_id">
 			</div>
 			<div class="input-field">
 				<label><i class="icon ion-social-twitter"></i>Twitter</label>
-				<input type="text"  name="title" placeholder="Please add your Twitter Handle" value="@{{ currentUser.instance.identities.twitter._json.screen_name }}">
+				<input type="text"  name="title" placeholder="Please add your Twitter Handle" ng-model="settings.twitter_handle">
 			</div>
 			<div class="input-field">
 				<label><i class="icon ion-social-facebook"></i>Facebook</label>
-				<input type="text"  name="title" placeholder="Please add your Facebook profile" value="">
+				<input type="text"  name="title" placeholder="Please add your Facebook profile" ng-model="settings.facebook_handle">
 			</div>
 			<div class="input-field">
 				<label><i class="icon ion-social-twitch-outline"></i>Twitch</label>
-				<input type="text"  name="title" placeholder="Please add your Twitch ID" value="">
+				<input type="text"  name="title" placeholder="Please add your Twitch ID" ng-model="settings.twitch_id">
 			</div>
 			<div class="input-field">
 				<label><i class="icon ion-social-youtube"></i>Youtube</label>
-				<input type="text"  name="title" placeholder="Please add your YouTube channel" value="">
+				<input type="text"  name="title" placeholder="Please add your YouTube channel" ng-model="settings.youtube_channel">
 			</div>
-			
+
 			<hr>
 
 			<h4>Email preferences</h4>
 			<div class="input-field email-preferences">
 				<label><i class="icon ion-paper-airplane"></i>Recieve email newsleter</label>
-				<select name="" id="">
+				<select name="" id="" ng-model="settings.email_preference">
 					<option selected="selected" value="Daily">Daily</option>
 					<option value="Weekly">Weekly</option>
 					<option value="Unsubscribe">Unsubscribe</option>
 				</select>
 			</div>
-							
+
 			<div class="input-field buttons">
-				<button type="submit" class="btn btn-primary">Update</button>
+				<button type="submit" class="btn btn-primary" ng-click="update()">Update</button>
 			</div>
 		</form>
 	</div>

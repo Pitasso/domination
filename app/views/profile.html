@@ -47,7 +47,7 @@
 								</div>
 								<div class="post-desc" ui-sref="Post({ slug : post.slug })">
 									<span class="post-category">{{ post.type }}</span>
-									<a class="post-title" ng-if="post.type === 'game'">{{ post.team_1 }} <span>vs</span> {{ post.team_2 }}</a>
+									<a class="post-title" ng-if="post.type === 'game'"><img ng-src="{{post.team_1[0].logo}}" style="max-height:30px;" /> {{ post.team_1[0].name }} <span>vs</span> {{ post.team_2[0].name }} <img ng-src="{{post.team_2[0].logo}}" style="max-height:30px;" /></a>
 									<a class="post-title" ng-if="post.type === 'link'">{{ post.title }}</a>
 									<div class="post-meta" ng-if="post.type === 'game'">{{ post.title }}</div>
 								</div>
@@ -72,7 +72,8 @@
 								</div>
 								<div class="post-desc" ui-sref="Post({ slug : post.instance.slug })">
 									<span class="post-category">{{post.instance.type}}</span>
-									<a class="post-title" ng-if="post.instance.type === 'game'">{{post.instance.team_1}} <span>vs</span> {{post.instance.team_2}}</a>
+									<a class="post-title" ng-if="post.instance.type === 'game'">
+										<img ng-src="{{post.instance.team_1[0].logo}}" style="max-height:30px;" />	{{post.instance.team_1[0].name}} <span>vs</span> {{post.instance.team_2[0].name}} <img ng-src="{{post.instance.team_2[0].logo}}" style="max-height:30px;" /></a>
 									<a class="post-title" ng-if="post.instance.type === 'link'">{{post.instance.title}}</a>
 									<div class="post-meta" ng-if="post.instance.type === 'game'">{{post.instance.title}}</div>
 								</div>
@@ -98,8 +99,8 @@
 								</div>
 								<div class="follower-desc">
 									<h4 class="follower-title">
-										{{follower.displayName.split(" ")[0]}} 
-										<b>{{follower.username}}</b> 
+										{{follower.displayName.split(" ")[0]}}
+										<b>{{follower.username}}</b>
 										<span ng-show="follower.displayName.split(' ').length > 1">{{follower.displayName.split(" ")[follower.displayName.split(" ").length - 1]}}</span>
 									</h4>
 									<div class="follower-subtitle">{{follower.gamestyle}}</div>
@@ -117,8 +118,8 @@
 								</div>
 								<div class="follower-desc">
 									<h4 class="follower-title">
-										{{follower.displayName.split(" ")[0]}} 
-										<b>{{follower.username}}</b> 
+										{{follower.displayName.split(" ")[0]}}
+										<b>{{follower.username}}</b>
 										<span ng-show="follower.displayName.split(' ').length > 1">{{follower.displayName.split(" ")[follower.displayName.split(" ").length - 1]}}</span>
 									</h4>
 									<div class="follower-subtitle">{{follower.gamestyle}}</div>

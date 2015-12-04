@@ -183,7 +183,11 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 				}
 			})
 		} else {
+			var team1 = post.instance.team_1;
+			var team2 = post.instance.team_2;
 			post.upVote().then(function() {
+				post.instance.team_1 = team1;
+				post.instance.team_2 = team2;
 				$scope.$apply();
 			})
 		}
