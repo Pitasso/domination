@@ -13,7 +13,7 @@
                     <img ng-src="{{ currentUser.instance.profileImg.split('_normal').join('') }}" id="simple-dropdown" uib-dropdown-toggle class="profile-img img-circle" />
                     <ul class="uib-dropdown-menu user-menu" aria-labelledby="simple-dropdown">
                         <li><a ui-sref="Profile ({ username : currentUser.instance.username })">Profile</a></li>
-                        <li><a ui-sref="Membership">Membership</a></li>
+                        <li><a ui-sref="Membership" ng-show="currentUser.instance.givenRole.name === 'registered'">Membership</a></li>
                         <li><a ui-sref="Settings">Settings</a></li>
                         <li><a href="#" ng-click="logout()">Logout</a></li>
                     </ul>

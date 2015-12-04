@@ -9,7 +9,7 @@ var app = angular.module("Domination", [
     "angularMoment",
     "ngMessages"
     ])
-.config(["$stateProvider", "$urlRouterProvider", "$locationProvider", "$httpProvider", function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+.config(["$stateProvider", "$urlRouterProvider", "$locationProvider", "$httpProvider", "$sceDelegateProvider", function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $sceDelegateProvider) {
     $stateProvider
         .state("Home", {
             url: "/",
@@ -43,7 +43,16 @@ var app = angular.module("Domination", [
         })
     $urlRouterProvider.otherwise("/");
 
+    $sceDelegateProvider.resourceUrlWhitelist([
+    // Allow same origin resource loads.
+    'self',
+    // Allow loading from our assets domain.  Notice the difference between * and **.
+    'https://www.youtube.com/embed/**',
+    'http://player.twitch.tv/**'
+    ])
+
 }])
+
 
 .run(["$stamplay", "$rootScope", "Auth", function($stamplay, $rootScope, Auth) {
     Stamplay.init("Domination");

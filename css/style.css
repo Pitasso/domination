@@ -1823,49 +1823,6 @@ header .login-btn {
 
 /* ----- Post Styles ----- */
 
-#post-details {
-	display: block;
-	position: relative;
-	box-shadow: 0px -2px 4px 0px #000000;
-
-	display: -webkit-box;
-	display: -moz-box;
-	display: box;
-
-	display: -webkit-flex;
-	display: -moz-flex;
-	display: -ms-flexbox;
-	display: flex;
-
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    box-flex: 1;
-
-}
-#post-details main, #post-details aside {
-	flex: 1 100%;
-}
-#post-details aside {
-	flex: 0 0 325px;
-	padding: 15px;
-}
-#post-details main {
-	padding: 10px 20px;
-}
-@media (max-width: 768px) {
-	#post-details {
-		flex-wrap: wrap;
-	}
-	#post-details aside {
-		flex: 1 0 100%;
-		border-left: none;
-	}
-}
-#post-details h4 {
-	font-size: 13px;
-	margin-bottom: 20px;
-	text-transform: uppercase;
-}
 #post-header {
 	text-align: center;
 	min-height: 100px;
@@ -1984,16 +1941,54 @@ a.btn-vote {
 	margin-right: 8px;
 	font-size: 15px;
 }
-main {
-	padding: 20px;
+#post-details {
+	display: block;
+	position: relative;
+	box-shadow: 0px -2px 4px 0px #000000;
+
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flexbox;
+	display: flex;
+
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+
+    /*flex-direction: column;*/
+
 }
-aside {
+#post-details main, #post-details aside {
+	flex: 1 100%;
+}
+#post-details aside {
+	flex: 0 0 325px;
+	padding: 15px;
+}
+#post-details main {
+	padding: 10px 20px;
+}
+@media (max-width: 768px) {
+	#post-details {
+		flex-wrap: wrap;
+	}
+	#post-details aside {
+		flex: 1 0 100%;
+		border-left: none;
+	}
+}
+
+#post-details aside {
 	padding-top: 15px;
 }
-aside section {
+#post-details aside section {
 	margin: 0 5px 20px;
 }
-aside label {
+#post-details aside label {
 	font-size: 13px;
 	margin-bottom: 10px;
 	text-transform: uppercase;
@@ -2001,6 +1996,11 @@ aside label {
 #post-details h3 {
 	font-size: 13px;
 	margin-bottom: 10px;
+	text-transform: uppercase;
+}
+#post-details h4 {
+	font-size: 13px;
+	margin-bottom: 20px;
 	text-transform: uppercase;
 }
 .user-img {
@@ -2356,6 +2356,8 @@ h4.follower-title b {
 .input-field.date-select button {
 	font-size: 19px;
 	padding: 6px 12px 5px;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
 }
 .input-field.date-select button:focus,
 .input-field.date-select button:active, {
@@ -2377,23 +2379,27 @@ h4.follower-title b {
 *:focus { 
 	outline:0; 
 }
-input:required:valid, textarea:required:valid {
-	background: rgba(31,25,17,0.80);
-	border:1px solid #C17A24;
+.ver-message {
+	position: absolute;
+	margin-left: 10px;
+	white-space: nowrap;
 }
-input:required:valid span > button {
-	border:1px solid #C17A24;
-
+.input-field.date-select .ver-message {
+	margin-left: 50px;
 }
 span[ng-message] {
-	background-color:rgba(31,25,17,0.80);
-	border:1px solid #4A2D14;
-	color:#8B572A;
-	font-weight:200;
+	display: block;
+	padding: 9px 10px 8px
 }
 @media (max-width: 768px) {
 	.submit-window ul {
 		padding-top: 105px;
+	}
+
+}
+@media (max-width: 420px) {
+	.submit-header {
+		width: auto;
 	}
 }
 
@@ -2531,11 +2537,12 @@ span[ng-message] {
 	min-height: 48px;
 	line-height: 1.5em;
 	word-break: break-all;
-	background-color: #323232;
+	background: #021B0D;
+	border: 1px solid #09511C;
 	padding: 10px 25px;
 	font-size: 1.1rem;
 	font-weight: 300;
-	color: #fff;
+	color: #7DB304;
 	display: -webkit-box;
 	display: -moz-box;
 	display: -ms-flexbox;

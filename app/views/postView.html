@@ -37,10 +37,10 @@
 			<main>
 				<div id="info" >
 					<uib-tabset>
-						<uib-tab active="true" ng-if="post.instance.type === 'game'" >
+						<uib-tab active="true" ng-if="post.instance.type === 'game' || post.instance.video_source" >
 							<uib-tab-heading><h3 class="tab-heading">Video</h3></uib-tab-heading>
 							<div class="video embed-responsive embed-responsive-16by9">
-								<!-- <iframe src="{{ post.instance.video_source }}={{ post.instance.video_id }}" frameborder="0"></iframe> -->
+								<iframe src="{{ post.instance.video_source }}" frameborder="0"></iframe>
 								<!-- <iframe src="http://player.twitch.tv/?video=v26905488&t=3h30m38s" frameborder="0"></iframe> -->
 								<!-- <iframe src="http://player.twitch.tv/?channel=dotamajor" frameborder="0"></iframe> -->
 								<!-- <iframe src="https://www.youtube.com/embed/NUI-mw5BsIg?autoplay=1&start=248" frameborder="0"></iframe> -->
@@ -87,7 +87,7 @@
 
 						<div class="comment-header">
 							<span class="user-name">{{ comment.instance.owner.displayName }}</span>
-							<span class="user-title">Ganker</span>
+							<span class="user-title">- {{ comment.instance.owner.gamestyle }}</span>
 						</div>
 
 						<div class="comment-body">

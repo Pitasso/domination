@@ -26,7 +26,6 @@ p span {
 input[type="text"],
 input[type="password"],
 textarea {
-	color: #B8A378;
 	background: rgba(31,25,17,0.80);
 	border: 1px solid #3E3A36;
 }
@@ -364,7 +363,18 @@ textarea:-ms-input-placeholder
 .input-field.date-select button {
 	border: 1px solid #3E3A36;
 }
-
+input:required:valid, textarea:required:valid {
+	background: rgba(31,25,17,0.80);
+	border: 1px solid #645840;
+}
+input:required:valid span > button {
+	border: 1px solid #645840;
+}
+span[ng-message] {
+	background: #270B01;
+	border: 1px solid #592702;
+	color: #DD4832;
+}
 /* ----- Settings styles ----- */
 #settings-page select {
 	color: #B8A378;

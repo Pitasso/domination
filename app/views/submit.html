@@ -24,25 +24,26 @@
 			<form name="link" ng-submit="newPost()">
 				<div class="input-field">
 					<label><i class="icon ion-ios-lightbulb"></i>Title</label>
-					<input type="text" ng-model="tabs.post.title"  ng-required="true" name="title" placeholder="Enter post title..." autofocus>
+					<input type="text" ng-model="tabs.post.title"  ng-required="true" name="title" placeholder="Enter post title...">
+					<div class="ver-message" ng-messages="link.title.$error" ng-if="link.title.$touched">
+						<span class="label label-default" ng-message="required">Title is required.</span>
+					</div>
 				</div>
 				<div class="input-field">
 					<label><i class="icon ion-link"></i>Link</label>
 					<input type="text" ng-model="tabs.post.url"  ng-required="true" name="link" placeholder="http://www...">
+					<div class="ver-message" ng-messages="link.link.$error" ng-if="link.link.$touched">
+						<span class="label label-default" ng-message="required">Link is required.</span>
+					</div>
 				</div>
 				<div class="input-field">
 					<label><i class="icon ion-android-create"></i>Desc</label>
-					<textarea type="text" ng-model="tabs.post.desc"  ng-required="true" name="desc" placeholder="Describe the post briefly..."></textarea>
-				</div>
-				<span ng-messages="link.title.$error" ng-if="link.title.$touched">
-						<span class="label label-default" ng-message="required">Title is required.</span>
-				</span>
-				<span ng-messages="link.link.$error" ng-if="link.link.$touched">
-						<span class="label label-default" ng-message="required">Link is required.</span>
-				</span>
-				<span ng-messages="link.desc.$error" ng-if="link.desc.$touched">
+					<textarea ng-model="tabs.post.desc"  ng-required="true" name="desc" placeholder="Describe the post briefly..."></textarea>
+					<div class="ver-message" ng-messages="link.desc.$error" ng-if="link.desc.$touched">
 						<span class="label label-default" ng-message="required">Description is required.</span>
-				</span>
+					</div>
+				</div>
+				
 				<div class="input-field submit-btn">
 					<button type="submit" class="btn btn-default">Submit</button>
 				</div>
@@ -53,11 +54,17 @@
 			<form name="game" ng-submit="newPost()">
 				<div class="input-field">
 					<label><i class="icon ion-ios-lightbulb"></i>Title</label>
-					<input type="text" ng-model="tabs.post.title" name="title" ng-required="true" placeholder="Enter post title..." autofocus>
+					<input type="text" ng-model="tabs.post.title" name="title" ng-required="true" placeholder="Enter post title...">
+					<div class="ver-message" ng-messages="game.title.$error" ng-if="game.title.$touched">
+						<span class="label label-default" ng-message="required">Title is required.</span>
+					</div>
 				</div>
 				<div class="input-field">
 					<label><i class="icon ion-ios-people"></i>Team 1</label>
-					<input type="text" ng-model="tabs.post.team_1.name" ng-blur="closeTypeahead('teams_1')" ng-change="search(tabs.post.team_1.name, 'team_1')" ng-model-options="{ debounce: 500 }" name="team_1" ng-required="true" placeholder="Enter first team name..." autofocus>
+					<input type="text" ng-model="tabs.post.team_1.name" ng-blur="closeTypeahead('teams_1')" ng-change="search(tabs.post.team_1.name, 'team_1')" ng-model-options="{ debounce: 500 }" name="team_1" ng-required="true" placeholder="Enter first team name...">
+					<div class="ver-message" ng-messages="game.team_1.$error" ng-if="game.team_1.$touched">
+						<span class="label label-default" ng-message="required">Team 1 is required.</span>
+					</div>
 				</div>
 				<div>
 					<div ng-show="teams_1.length > 0" style="z-index:3;position: absolute;top: 260px;left: 120px;width: 457px;background-color: rgba(230, 230, 230, 0.8);padding: 5px 15px;border-radius: 3px;max-height:200px;overflow:scroll">
@@ -69,51 +76,43 @@
 				<div class="input-field">
 					<label><i class="icon ion-ios-people"></i>Team 2</label>
 					<input type="text" ng-model="tabs.post.team_2.name" ng-blur="closeTypeahead('teams_2')" ng-change="search(tabs.post.team_2.name, 'team_2')" ng-model-options="{ debounce: 1500 }"  name="team_2" ng-required="true" placeholder="Enter second team name...">
+					<div class="ver-message" ng-messages="game.team_2.$error" ng-if="game.team_2.$touched">
+						<span class="label label-default" ng-message="required">Team 2 is required.</span>
+					</div>
 				</div>
 				<div>
 					<div ng-show="teams_2.length > 0" style="z-index:3;position: absolute;top: 260px;left: 120px;width: 457px;background-color: rgba(230, 230, 230, 0.8);padding: 5px 15px;border-radius: 3px;max-height:200px;overflow:scroll">
 						<div style="padding:5px;border-bottom:1px solid #424242" ng-repeat="team in teams_2" ng-click="setTeam2(team)">
 							<img ng-src="{{team.logo}}"  style="max-height:30px"/> {{team.name}} <span ng-if="team.name_short">({{team.name_short}})</span>
 						</div>
-					</div>
+					</div>					
 				</div>
 				<div class="input-field date-select" style="display:flex">
 					<label><i class="icon ion-android-calendar"></i>Date</label>
-
 					<input type="text" class="date_picker" show-weeks="false" class="form-control" placeholder="Select A Date.." ng-model="tabs.post.date"  name="date" ng-required="true" ng-click="status = !status" uib-datepicker-popup is-open="status" close-text="Close"/>
-
 					<span class="input-group-btn">
 						<button type="button" class="btn btn-default" ng-click="status = !status"><i class="icon ion-android-calendar"></i></button>
 					</span>
+					<div class="ver-message" ng-messages="game.date.$error" ng-if="game.date.$touched">
+						<span class="label label-default" ng-message="required">Date is required.</span>
+					</div>
 
 				</div>
 				<div class="input-field">
 					<label><i class="icon ion-link"></i>Link</label>
 					<input type="text" ng-model="tabs.post.url"  name="link" ng-required="true" placeholder="http://www...">
+					<div class="ver-message" ng-messages="game.link.$error" ng-if="game.link.$touched">
+						<span class="label label-default" ng-message="required">Link is required.</span>
+					</div>
 				</div>
 				<div class="input-field">
 					<label><i class="icon ion-android-create"></i>Desc</label>
-					<textarea type="text" ng-model="tabs.post.desc" name="desc" ng-required="true" placeholder="Describe the game briefly..."></textarea>
-				</div>
-
-				<span ng-messages="game.title.$error" ng-if="game.title.$touched">
-						<span class="label label-default" ng-message="required">Title is required.</span>
-				</span>
-				<span ng-messages="game.team_1.$error" ng-if="game.team_1.$touched">
-						<span class="label label-default" ng-message="required">Team 1 is required.</span>
-				</span>
-				<span ng-messages="game.team_2.$error" ng-if="game.team_2.$touched">
-						<span class="label label-default" ng-message="required">Team 2 is required.</span>
-				</span>
-				<span ng-messages="game.date.$error" ng-if="game.date.$touched">
-						<span class="label label-default" ng-message="required">Date is required.</span>
-				</span>
-				<span ng-messages="game.link.$error" ng-if="game.link.$touched">
-						<span class="label label-default" ng-message="required">Link is required.</span>
-				</span>
-				<span ng-messages="game.desc.$error" ng-if="game.desc.$touched">
+					<textarea ng-model="tabs.post.desc" name="desc" ng-required="true" placeholder="Describe the game briefly..."></textarea>
+					<div class="ver-message" ng-messages="game.desc.$error" ng-if="game.desc.$touched">
 						<span class="label label-default" ng-message="required">Description is required.</span>
-				</span>
+					</div>
+				</div>																
+				
 				<div class="input-field submit-btn">
 					<button type="submit" ng-disabled="!game.$valid" class="btn btn-default">Submit</button>
 				</div>

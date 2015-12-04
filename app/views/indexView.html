@@ -25,16 +25,16 @@
                         <img ng-src="{{post.instance.thumbnail}}" class="img-responsive">
                     </div>
                     <div class="post-desc" ui-sref="Post({ slug : post.instance.slug })">
-                        <span class="post-category hidden-xs">{{post.instance.type}}</span>
+                        <span class="post-category hidden-xs hidden-sm">{{post.instance.type}}</span>
                         <a class="post-title" ng-if="post.instance.type === 'game'">
                           <img ng-src="{{post.instance.team_1[0].logo}}" style="max-height:30px"/> {{ post.instance.team_1[0].name_short || post.instance.team_1[0].name }} <span>vs</span>  {{ post.instance.team_2[0].name_short || post.instance.team_2[0].name }} <img ng-src="{{post.instance.team_2[0].logo}}" style="max-height:30px"/></a>
                         <a class="post-title" ng-if="post.instance.type === 'link'">{{post.instance.title}}</a>
-                        <div class="post-meta" ng-if="post.instance.type === 'link'">Originaly published on {{post.instance.url}} on {{ post.instance.dt_create | date: 'EEE, d MMM' }}</div>
+                        <div class="post-meta hidden-xs hidden-sm" ng-if="post.instance.type === 'link'">Originaly published on {{ post.instance.url | hostnameFromUrl }} on {{ post.instance.dt_create | date: 'EEE, d MMM' }}</div>
                         <div class="post-meta" ng-if="post.instance.type === 'game'">{{post.instance.title}}</div>
                     </div>
                     <div class="post-details" >
                         <img ng-src="{{ post.instance.owner.profileImg.split('_normal').join('') }}" class="author-avatar img-circle hidden-xs"
-                        ui-sref="Profile({ username : post.instance.owner.username})">
+                        ui-sref="Profile({ username : post.instance.owner.username })">
                         <div class="comments" ng-hide="fetchBy === 'unapproved'"><span class="icon ion-ios-chatbubble-outline" aria-hidden="true"></span>  {{post.instance.comment_count}}</div>
                     </div>
                 </div>
