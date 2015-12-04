@@ -257,8 +257,11 @@ body .layer {
 #settings-page .main {
 	height: auto;
 }
-.main .container {
-	flex-grow: 1;
+@media (max-width: 768px) {
+	.main .container {
+		flex-grow: 1;
+		width: 100%;
+	}
 }
 input,
 button,
@@ -945,6 +948,8 @@ header .user-group .profile-img {
 header .user-group ul.user-menu {
 	min-width: 120px;
 	margin-top: 5px;
+	right: 0;
+  	left: auto;
 }
 header .user-group .submit-btn,
 header .user-group .search-btn {
@@ -1790,6 +1795,9 @@ header .login-btn {
 	flex-basis: 115px;
 }
 @media (max-width: 768px) {
+	.post-item {
+		width: 100%;
+	}
 	.post-item .post-details {
 		flex-basis: auto;
 	}
@@ -1850,6 +1858,7 @@ header .login-btn {
 	}
 	#post-details aside {
 		flex: 1 0 100%;
+		border-left: none;
 	}
 }
 #post-details h4 {
@@ -2261,7 +2270,7 @@ h4.follower-title b {
 		padding: 0;
 	}
 	#profile-header {
-		margin: 40px 0 0;
+		margin: 40px 0 20px;
 		flex-wrap: wrap;
 	}
 	.profile-avatar,

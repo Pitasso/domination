@@ -8,7 +8,7 @@
 
 			<div ng-if="post.instance.type === 'game'">
 				<h1 class="post-title">
-					<img ng-src="{{post.instance.team_1[0].logo}}" style="max-height:30px;" />{{post.instance.team_1[0].name}}<span>vs</span>{{post.instance.team_2[0].name}}<img ng-src="{{post.instance.team_2[0].logo}}" style="max-height:30px;" />
+					<img ng-src="{{post.instance.team_1[0].logo}}" />{{ post.instance.team_1[0].name_short || post.instance.team_1[0].name }}<span>vs</span>{{ post.instance.team_2[0].name_short || post.instance.team_2[0].name }}<img ng-src="{{post.instance.team_2[0].logo}}" />
 				</h1>
 				<h4>{{ post.instance.title }}</h4>
 			</div>
@@ -40,9 +40,10 @@
 						<uib-tab active="true" ng-if="post.instance.type === 'game'" >
 							<uib-tab-heading><h3 class="tab-heading">Video</h3></uib-tab-heading>
 							<div class="video embed-responsive embed-responsive-16by9">
+								<!-- <iframe src="{{ post.instance.video_source }}={{ post.instance.video_id }}" frameborder="0"></iframe> -->
 								<!-- <iframe src="http://player.twitch.tv/?video=v26905488&t=3h30m38s" frameborder="0"></iframe> -->
 								<!-- <iframe src="http://player.twitch.tv/?channel=dotamajor" frameborder="0"></iframe> -->
-								<iframe src="https://www.youtube.com/embed/NUI-mw5BsIg?autoplay=1&start=248" frameborder="0"></iframe>
+								<!-- <iframe src="https://www.youtube.com/embed/NUI-mw5BsIg?autoplay=1&start=248" frameborder="0"></iframe> -->
 							</div>
 						</uib-tab>
 						<uib-tab>
