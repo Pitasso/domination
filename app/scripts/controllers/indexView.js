@@ -73,6 +73,7 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 		$scope.post_type = type;
 	}
 
+
 	$scope.days = [];
 	$scope.processing = false;
 	var days = [];

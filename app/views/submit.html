@@ -57,23 +57,23 @@
 				</div>
 				<div class="input-field">
 					<label><i class="icon ion-ios-people"></i>Team 1</label>
-					<input type="text" ng-model="tabs.post.team_1.name" ng-change="search(tabs.post.team_1.name, 'team_1')" ng-model-options="{ debounce: 1500 }" name="team_1" ng-required="true" placeholder="Enter first team name..." autofocus>
+					<input type="text" ng-model="tabs.post.team_1.name" ng-blur="closeTypeahead('teams_1')" ng-change="search(tabs.post.team_1.name, 'team_1')" ng-model-options="{ debounce: 500 }" name="team_1" ng-required="true" placeholder="Enter first team name..." autofocus>
 				</div>
 				<div>
 					<div ng-show="teams_1.length > 0" style="z-index:3;position: absolute;top: 260px;left: 120px;width: 457px;background-color: rgba(230, 230, 230, 0.8);padding: 5px 15px;border-radius: 3px;max-height:200px;overflow:scroll">
 						<div style="padding:5px;border-bottom:1px solid #424242" ng-repeat="team in teams_1" ng-click="setTeam1(team)">
-							<img ng-src="{{team.logo}}"  style="max-height:30px"/> {{team.name}}
+							<img ng-src="{{team.logo}}"  style="max-height:30px"/> {{team.name}} <span ng-if="team.name_short">({{team.name_short}})</span>
 						</div>
 					</div>
 				</div>
 				<div class="input-field">
 					<label><i class="icon ion-ios-people"></i>Team 2</label>
-					<input type="text" ng-model="tabs.post.team_2.name" ng-change="search(tabs.post.team_2.name, 'team_2')" ng-model-options="{ debounce: 1500 }"  name="team_2" ng-required="true" placeholder="Enter second team name...">
+					<input type="text" ng-model="tabs.post.team_2.name" ng-blur="closeTypeahead('teams_2')" ng-change="search(tabs.post.team_2.name, 'team_2')" ng-model-options="{ debounce: 1500 }"  name="team_2" ng-required="true" placeholder="Enter second team name...">
 				</div>
 				<div>
 					<div ng-show="teams_2.length > 0" style="z-index:3;position: absolute;top: 260px;left: 120px;width: 457px;background-color: rgba(230, 230, 230, 0.8);padding: 5px 15px;border-radius: 3px;max-height:200px;overflow:scroll">
 						<div style="padding:5px;border-bottom:1px solid #424242" ng-repeat="team in teams_2" ng-click="setTeam2(team)">
-							<img ng-src="{{team.logo}}"  style="max-height:30px"/> {{team.name}}
+							<img ng-src="{{team.logo}}"  style="max-height:30px"/> {{team.name}} <span ng-if="team.name_short">({{team.name_short}})</span>
 						</div>
 					</div>
 				</div>
