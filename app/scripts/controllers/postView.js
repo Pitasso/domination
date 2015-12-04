@@ -63,7 +63,7 @@ app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state'
        $scope.upvoters = [];
        var user = new Stamplay.User().Model;
        upvoters.forEach(function(item, idx, arr) {
-        $http.get("https://domination.stamplayapp.com/api/user/v1/users/" + item)
+        $http.get("https://dota.joingamers.net/api/user/v1/users/" + item)
         .then(function(data) {
          $scope.upvoters[idx] = data.data
       }, function(err) {

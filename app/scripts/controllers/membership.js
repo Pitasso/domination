@@ -6,7 +6,7 @@ app.controller('MembershipCtrl', ['$scope','$http', '$rootScope', '$state', '$st
         $scope.processing = true;
         $http({
             method: "POST",
-            url : "http://dota.domination.cc/api/codeblock/v1/run/prefinery",
+            url : "https://dota.joingamers.net/api/codeblock/v1/run/prefinery",
             data : { "email": $rootScope.currentUser.instance.email }
         }).then(function(data) {
             $rootScope.currentUser.set('prefinery_id', data.data.id);
@@ -14,7 +14,7 @@ app.controller('MembershipCtrl', ['$scope','$http', '$rootScope', '$state', '$st
                 console.log('Requesting memebrship');
                 $scope.$apply();
                 $scope.membershipRequested = true;
-                $http.post("http://dota.domination.cc/api/codeblock/v1/run/prefinerydetails", { id : $rootScope.currentUser.instance.prefinery_id})
+                $http.post("https://dota.joingamers.net/api/codeblock/v1/run/prefinerydetails", { id : $rootScope.currentUser.instance.prefinery_id})
                 .then(function(data) {
                     $scope.share_link = data.data.share_link;
                     $scope.clicks = data.data.share_clicks_count;
@@ -35,7 +35,7 @@ app.controller('MembershipCtrl', ['$scope','$http', '$rootScope', '$state', '$st
             $scope.membershipRequested = false;
         } else {
             $scope.membershipRequested = true;
-            $http.post("http://dota.domination.cc/api/codeblock/v1/run/prefinerydetails", { id : $rootScope.currentUser.instance.prefinery_id})
+            $http.post("https://dota.joingamers.net/api/codeblock/v1/run/prefinerydetails", { id : $rootScope.currentUser.instance.prefinery_id})
             .then(function(data) {
                 $scope.share_link = data.data.share_link;
                 $scope.clicks = data.data.share_clicks_count;

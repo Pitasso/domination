@@ -28,7 +28,7 @@ app.factory('User', ['$q', '$http', '$stamplay', '$rootScope', function($q, $htt
 		getUpvoted: function(userId) {
 			// https://domination.stamplayapp.com/api/cobject/v1/post?where={%22actions.votes.users%22:{%22$in%22:%20[%225650b7236a5d9dab74915860%22]%20}}
 			var q = $q.defer();
-			$http.get('https://domination.stamplayapp.com/api/cobject/v1/post?where={"actions.votes.users":{"$in": ["' + userId + '"]}}').then(function(res) {
+			$http.get('https://dota.joingamers.net/api/cobject/v1/post?where={"actions.votes.users":{"$in": ["' + userId + '"]}}').then(function(res) {
 					q.resolve(res.data);
 			})
 			return q.promise;

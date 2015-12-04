@@ -48,11 +48,13 @@ header {
 	background: #211C16;
 	border-bottom: 1px solid rgba(141, 125, 110, 0.5);
 }
-header .user-group .submit-btn {
+header .user-group .submit-btn,
+header .user-group .search-btn {
 	color: #74675A;
 	border: 2px solid #74675A;
 }
-header .user-group .submit-btn:hover {
+header .user-group .submit-btn:hover,
+header .user-group .search-btn:hover {
 	color: #B8A378;
 	border-color: #B8A378;
 }
@@ -285,6 +287,11 @@ textarea:-ms-input-placeholder
 #post-details aside {
 	background: #2C2621;
 	border-left: 1px solid #645840;
+}
+@media (max-width: 768px) {
+	#post-details aside {
+		background-color: #16120E;
+	}
 }
 #post-details h4,
 #post-details aside label,

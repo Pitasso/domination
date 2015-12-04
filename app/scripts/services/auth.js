@@ -20,7 +20,7 @@ app.factory('Auth', ['$q', "$http", '$stamplay', '$uibModal', function($q, $http
 		},
 		getRole : function(id) {
 			var q = $q.defer();
-			$http.get("https://domination.stamplayapp.com/api/user/v1/roles/" + id)
+			$http.get("https://dota.joingamers.net/api/user/v1/roles/" + id)
 			.then(function success(res) {
 				q.resolve(res.data);
 			}, function error(err) {

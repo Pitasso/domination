@@ -21,7 +21,7 @@
                         <span  ng-hide="fetchBy === 'unapproved'" ng-click="upvotePost($index, post);" class="vote-counter">{{post.instance.actions.votes.total}}</span>
                         <span  ng-show="fetchBy === 'unapproved'" ng-click="approvePost(post)"><span><span class="icon ion-checkmark" aria-hidden="true"></span></span>
                     </a>
-                    <div class="post-thumbnail" ui-sref="Post({ slug : post.instance.slug })">
+                    <div class="post-thumbnail hidden-xs" ui-sref="Post({ slug : post.instance.slug })">
                         <img ng-src="{{post.instance.thumbnail}}" class="img-responsive">
                     </div>
                     <div class="post-desc" ui-sref="Post({ slug : post.instance.slug })">
@@ -31,7 +31,7 @@
                         <div class="post-meta" ng-if="post.instance.type === 'game'">{{post.instance.title}}</div>
                     </div>
                     <div class="post-details" >
-                        <img ng-src="{{ post.instance.owner.profileImg.split('_normal').join('') }}" class="author-avatar img-circle"
+                        <img ng-src="{{ post.instance.owner.profileImg.split('_normal').join('') }}" class="author-avatar img-circle hidden-xs"
                         ui-sref="Profile({ username : post.instance.owner.username})">
                         <div class="comments" ng-hide="fetchBy === 'unapproved'"><span class="icon ion-ios-chatbubble-outline" aria-hidden="true"></span>  {{post.instance.comment_count}}</div>
                     </div>
