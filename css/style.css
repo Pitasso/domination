@@ -968,6 +968,13 @@ header .login-btn {
 	float: right;
 	margin: 18px 0;
 }
+@media (max-width: 768px) {
+	header .user-group .user-menu {
+		right: 0;
+  		left: auto;
+	}
+}
+
 
 /* ----- Navigation ----- */
 
@@ -1018,17 +1025,20 @@ header .login-btn {
 	top: auto;
 	left: auto;
 }
-@media (min-width: 768px) {
-	.nav-tabs.nav-justified > li {
+.nav-tabs.nav-justified > li {
 		display: table-cell;
 		width: 1%;
-	}
-	.nav-tabs.nav-justified > li > a {
-		margin-bottom: 0;
-	}
+}
+.nav-tabs.nav-justified > li > a {
+	margin-bottom: 0;
 }
 .nav-tabs.nav-justified > li > a {
 	margin-right: 0;
+}
+@media (max-width: 768px) {
+	.nav-tabs.nav-justified > li > a {
+		margin-bottom: 0;
+	}
 }
 .nav-tabs.nav-justified > .active > a,
 .nav-tabs.nav-justified > .active > a:hover,
@@ -1770,12 +1780,20 @@ header .login-btn {
 	font-size: 18px;
 	cursor: pointer;
 }
+.post-item .post-title span {
+	font-size: 14px;
+}
 .post-item .post-meta {
 	margin: 7px 0 0 2px;
 }
 .post-item .post-details {
 	margin-right: 30px;
 	flex-basis: 115px;
+}
+@media (max-width: 768px) {
+	.post-item .post-details {
+		flex-basis: auto;
+	}
 }
 .post-item .post-details img {
 	margin-right: 15px;
@@ -2147,6 +2165,9 @@ aside section .team {
 
 /* ----- Profile Styles ----- */
 
+#profile-page .post-list {
+	padding: 0;
+}
 #profile-header {
 	margin: 70px 30px 60px;
 	display: -webkit-box;
@@ -2236,7 +2257,33 @@ h4.follower-title b {
 	display: inline-block;
 	height: 16px;
 }
-
+@media (max-width: 768px) {
+	#profile-page main {
+		padding: 0;
+	}
+	#profile-header {
+		margin: 40px 0 0;
+		flex-wrap: wrap;
+	}
+	.profile-avatar,
+	.profile-info,
+	.profile-actions {
+		flex: 1 0 100%;
+		text-align: center;
+		margin-bottom: 15px;
+	}
+	#profile-main .nav {
+		margin-bottom: 20px;
+	}
+	#profile-main .nav > li > a {
+		padding: 10px;
+		font-size: 14px;
+	}
+	.follower-item {
+		flex: 1 0 100%;
+		margin: 0 0 20px;
+	}
+}
 /* ----- Submit Post Window Styles ----- */
 
 .modal-dialog {
@@ -2336,6 +2383,11 @@ span[ng-message] {
 	color:#8B572A;
 	font-weight:200;
 }
+@media (max-width: 768px) {
+	.submit-window ul {
+		padding-top: 105px;
+	}
+}
 
 /* ----- Settings Page ----- */
 
@@ -2371,6 +2423,11 @@ span[ng-message] {
 	margin: 50px auto;
 	text-align: center;
 }
+@media (max-width: 768px) {
+	#settings-page .container {
+	width: 100%;
+}
+}
 
 /* ----- Memebrship Page ----- */
 #membership-page .container {
@@ -2391,6 +2448,21 @@ span[ng-message] {
 }
 #membership-page .spinner {
 	margin: 40px auto 40px;
+}
+@media (max-width: 768px) {
+	#membership-page .container {
+		width: 100%;
+	}
+	#membership-page p.well {
+		margin-top: 15px;
+		text-align: center;
+	}
+	#membership-page p.well img {
+		width: 100px;
+		float: none;
+		display: block;
+		margin: 0 auto 15px;
+	}
 }
 
 /* ----- System Elements Styles ----- */

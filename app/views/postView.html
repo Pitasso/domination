@@ -16,7 +16,7 @@
 
 		<section id="post-info">
 			<div class="post-meta">
-				<span class="category" ng-show='post.instance.type'>{{post.instance.type}}</span>
+				<span class="category hidden-xs" ng-show='post.instance.type'>{{post.instance.type}}</span>
 				<div class="dates" ng-if="post.instance.type === 'game'"><i class="icon ion-calendar"></i> {{post.instance.date | date: 'EEE, d MMM'}} {{ post.instance.time }}</div>
 			</div>
 			<div class="post-actions">
@@ -53,9 +53,7 @@
 
 				</div>
 				<section id="discussion" ng-hide="post.instance">
-					<div class="spinner" style="position: absolute;right: calc(50% - 60px);">
-
-					</div>
+					<div class="spinner"></div>
 				</section>
 				<section id="discussion" ng-show="post.instance">
 					<h3>Discussion</h3>
