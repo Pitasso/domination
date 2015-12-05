@@ -8,7 +8,7 @@
 
 			<div class="profile-info">
 				<h1 class="profile-title">{{ firstname }} <b>{{username}}</b> {{ lastname }}</h1>
-				<h2 class="profile-subtitle">{{ gamestyle }} <span ng-show="user_profile.instance.team === true && user_profile.instance.team !== undefined">- {{ Team }} <img src="images/eg.png" /></span></h2>
+				<h2 class="profile-subtitle">{{ user_profile.instance.gamestyle }} <span ng-show="user_profile.instance.team === true && user_profile.instance.team !== undefined">- {{ Team }} <img src="images/eg.png" /></span></h2>
 				<div class="profile-social">
 					<a ng-show="user_profile.instance.identities.twitter._json.screen_name" href="https://twitter.com/{{ user_profile.instance.identities.twitter._json.screen_name }}" target="_blank"><i class="icon ion-social-twitter"></i></a>
 					<a ng-show="user_profile.instance.twitch_id" href="http://www.twitch.tv/{{ user_profile.instance.twitch_id }}" target="_blank"><i class="icon ion-social-twitch-outline"></i></a>

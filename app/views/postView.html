@@ -1,39 +1,36 @@
-<div class="main">
-	<div class="post-view">
+<div id="post-view" class="main">
+	<section id="post-header">
+		<div ng-if="post.instance.type === 'link'">
+			<h1 class="post-title" >{{ post.instance.title}}</h1>
+		</div>
 
-		<section id="post-header">
-			<div ng-if="post.instance.type === 'link'">
-				<h1 class="post-title" >{{ post.instance.title}}</h1>
-			</div>
+		<div ng-if="post.instance.type === 'game'">
+			<h1><img ng-src="{{post.instance.team_1[0].logo}}" />{{ post.instance.team_1[0].name_short || post.instance.team_1[0].name }}<span>vs</span>{{ post.instance.team_2[0].name_short || post.instance.team_2[0].name }}<img ng-src="{{post.instance.team_2[0].logo}}" /></h1>
+			<h4>{{ post.instance.title }}</h4>
+		</div>
+	</section>
 
-			<div ng-if="post.instance.type === 'game'">
-				<h1 class="post-title">
-					<img ng-src="{{post.instance.team_1[0].logo}}" />{{ post.instance.team_1[0].name_short || post.instance.team_1[0].name }}<span>vs</span>{{ post.instance.team_2[0].name_short || post.instance.team_2[0].name }}<img ng-src="{{post.instance.team_2[0].logo}}" />
-				</h1>
-				<h4>{{ post.instance.title }}</h4>
-			</div>
-		</section>
+	<section id="post-info">
+		<div class="post-meta">
+			<span class="category hidden-xs" ng-show='post.instance.type'>{{post.instance.type}}</span>
+			<div class="dates" ng-if="post.instance.type === 'game'"><i class="icon ion-calendar"></i> {{post.instance.date | date: 'EEE, d MMM'}} {{ post.instance.time }}</div>
+		</div>
+		<div class="post-actions">
+			<a class="btn btn-primary btn-vote" ng-click="upvotePost(post);"><span class="counter">{{post.instance.actions.votes.total}}</span><span>Upvote</span></a>
+			<a class="btn btn-default" href="{{post.instance.url}}/?ref=domination" target="_blank">Check</a>				
+			<span uib-dropdown on-toggle="toggled(open)">
+				<a href="" class="btn btn-default" id="simple-dropdown" uib-dropdown-toggle>Share</a>
+				<ul class="uib-dropdown-menu dropdown-menu-right" aria-labelledby="simple-dropdown">
+					<li><a href="#"><i class="icon ion-social-twitter"></i> Tweet</a></li>
+					<li><a href="#"><i class="icon ion-social-facebook"></i> Share</a></li>
+					<li><a href="#" ng-click=""><i class="icon ion-email"></i> Email</a></li>
+				</ul>
+			</span>
+		</div>
+	</section>
 
-		<section id="post-info">
-			<div class="post-meta">
-				<span class="category hidden-xs" ng-show='post.instance.type'>{{post.instance.type}}</span>
-				<div class="dates" ng-if="post.instance.type === 'game'"><i class="icon ion-calendar"></i> {{post.instance.date | date: 'EEE, d MMM'}} {{ post.instance.time }}</div>
-			</div>
-			<div class="post-actions">
-				<a class="btn btn-primary btn-vote" ng-click="upvotePost(post);"><span class="counter">{{post.instance.actions.votes.total}}</span><span>Upvote</span></a>
-				<a class="btn btn-default" href="{{post.instance.url}}/?ref=domination" target="_blank">Check</a>				
-				<span uib-dropdown on-toggle="toggled(open)">
-					<a href="" class="btn btn-default" id="simple-dropdown" uib-dropdown-toggle>Share</a>
-					<ul class="uib-dropdown-menu dropdown-menu-right" aria-labelledby="simple-dropdown">
-						<li><a href="#"><i class="icon ion-social-twitter"></i> Tweet</a></li>
-						<li><a href="#"><i class="icon ion-social-facebook"></i> Share</a></li>
-						<li><a href="#" ng-click=""><i class="icon ion-email"></i> Email</a></li>
-					</ul>
-				</span>
-			</div>
-		</section>
-
-		<section id="post-details">
+	<section id="post-details">
+		<div class="post-body">
 			<main>
 				<div id="info" >
 					<uib-tabset>
@@ -183,7 +180,6 @@
 				</section>
 
 			</aside>
-
-		</section>
-	</div>
+		</div>
+	</section>
 </div>
