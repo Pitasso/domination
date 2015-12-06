@@ -46,6 +46,7 @@
 						<uib-tab>
 							<uib-tab-heading><h3 class="tab-heading">Details</h3></uib-tab-heading>
 							<p>{{post.instance.desc}}</p>
+							<p ng-show="post.instance.match_id"><a href="http://www.dotabuff.com/matches/{{ post.instance.match_id }}/?ref=joingamersnet" title="Game details" target="_blank">Detailed stats on the match</a></p> 
 						</uib-tab>
 					</uib-tabset>
 
@@ -56,7 +57,7 @@
 				<section id="discussion" ng-show="post.instance">
 					<h3>Discussion</h3>
 
-					<div class="no-data" ng-if="comments.length === 0">No comments have been left yet.</div>
+					<div class="no-data" ng-if="comments.length === 0">No comments have been left yet.<br/>Be the first one to leave your opinion.</div>
 
 					<span uib-dropdown on-toggle="toggled(open)" class="comment-filter" ng-hide="comments.length === 0" ng-init="comment_sort='-instance.actions.votes.total'; sort_method = 'Most Upvoted'">
 						<a href="" id="simple-dropdown" uib-dropdown-toggle>{{sort_method}} <i class="icon ion-arrow-down-b"></i></a>
@@ -123,7 +124,7 @@
 					</div>
 					<div ng-show="post.instance">
 						<div ng-show="currentUser.instance.givenRole.name === 'registered'  || !currentUser ">
-							<div class="no-data" >Commenting is limited to community members. <br/> Please <a href="" ng-click="login()" ng-show="!currentUser">Login</a><a ui-sref="Membership" ng-show="currentUser.instance.givenRole.name === 'registered'">Request membership</a>.</div>
+							<div class="no-data" >Commenting is limited to community members. <br/> Please <a href="" ng-click="login()" ng-show="!currentUser">Login</a><a ui-sref="Membership" ng-show="currentUser.instance.givenRole.name === 'registered'">Request membership</a> to leave your comment.</div>
 						</div>
 					</div>
 
