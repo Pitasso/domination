@@ -1,11 +1,11 @@
 <div id="post-view" class="main">
 	<section id="post-header">
 		<div ng-if="post.instance.type === 'link'">
-			<h1 class="post-title" >{{ post.instance.title}}</h1>
+			<h1>{{ post.instance.title}}</h1>
 		</div>
 
 		<div ng-if="post.instance.type === 'game'">
-			<h1><img ng-src="{{post.instance.team_1[0].logo}}" />{{ post.instance.team_1[0].name_short || post.instance.team_1[0].name }}<span>vs</span>{{ post.instance.team_2[0].name_short || post.instance.team_2[0].name }}<img ng-src="{{post.instance.team_2[0].logo}}" /></h1>
+			<h1><img ng-src="{{post.instance.team_1[0].logo}}" /><b class="hidden-xs">{{ post.instance.team_1[0].name_short || post.instance.team_1[0].name }}</b> <span>vs</span> <b class="hidden-xs">{{ post.instance.team_2[0].name_short || post.instance.team_2[0].name }}</b><img ng-src="{{post.instance.team_2[0].logo}}" /></h1>
 			<h4>{{ post.instance.title }}</h4>
 		</div>
 	</section>
