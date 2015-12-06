@@ -47,7 +47,9 @@ var app = angular.module("Domination", [
     // Allow same origin resource loads.
     'self',
     // Allow loading from our assets domain.  Notice the difference between * and **.
+    'http://www.youtube.com/embed/**',
     'https://www.youtube.com/embed/**',
+    'http://player.twitch.tv/**',
     'https://player.twitch.tv/**'
     ])
 
