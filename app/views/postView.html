@@ -18,14 +18,14 @@
 		<div class="post-actions">
 			<a class="btn btn-primary btn-vote" ng-click="upvotePost(post);"><span class="counter">{{post.instance.actions.votes.total}}</span><span>Upvote</span></a>
 			<a class="btn btn-default" href="{{post.instance.url}}/?ref=domination" target="_blank">Check</a>				
-			<span uib-dropdown on-toggle="toggled(open)">
+			<!-- <span uib-dropdown on-toggle="toggled(open)">
 				<a href="" class="btn btn-default" id="simple-dropdown" uib-dropdown-toggle>Share</a>
 				<ul class="uib-dropdown-menu dropdown-menu-right" aria-labelledby="simple-dropdown">
 					<li><a href="#"><i class="icon ion-social-twitter"></i> Tweet</a></li>
 					<li><a href="#"><i class="icon ion-social-facebook"></i> Share</a></li>
 					<li><a href="#" ng-click=""><i class="icon ion-email"></i> Email</a></li>
 				</ul>
-			</span>
+			</span> -->
 		</div>
 	</section>
 
@@ -97,7 +97,7 @@
 								<i class="icon ion-chevron-up"></i> {{comment.instance.actions.votes.total}}
 							</a>
 							<a href="" ng-click="reply_open = !reply_open"><i class="icon ion-reply"></i> Reply</a>
-							<a href="" class="share"><i class="icon ion-share"></i> Share</a>
+							<!-- <a href="" class="share"><i class="icon ion-share"></i> Share</a> -->
 							<span class="comment-time" am-time-ago="comment.instance.dt_create"></span>
 						</div>
 

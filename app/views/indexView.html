@@ -37,7 +37,9 @@
                     <div class="post-details" >
                         <img ng-src="{{ post.instance.owner.profileImg.split('_normal').join('') }}" class="author-avatar img-circle hidden-xs"
                         ui-sref="Profile({ username : post.instance.owner.username })">
-                        <div class="comments" ng-hide="fetchBy === 'unapproved'"><span class="icon ion-ios-chatbubble-outline" aria-hidden="true"></span>  {{post.instance.comment_count}}</div>
+                        <div class="comments" ng-hide="fetchBy === 'unapproved'" ui-sref="Post({ slug : post.instance.slug })">
+                            <span class="icon ion-ios-chatbubble-outline" aria-hidden="true"></span>  <!-- {{post.instance.comment_count}} -->
+                        </div>
                     </div>
                 </div>
             </div>

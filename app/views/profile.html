@@ -20,14 +20,14 @@
 			<div class="profile-actions">
 				<a class="btn btn-primary" ng-show="followingUser === false && followingUser !== undefined" ng-click="follow()">Follow</a>
 				<a class="btn btn-default" ng-show="followingUser && followingUser !== undefined" ng-click="unfollow()">Unfollow</a>
-				<span uib-dropdown on-toggle="toggled(open)">
+				<!-- <span uib-dropdown on-toggle="toggled(open)">
 					<a href="" class="btn btn-default" id="simple-dropdown" uib-dropdown-toggle>Share</a>
 					<ul class="uib-dropdown-menu dropdown-menu-right" aria-labelledby="simple-dropdown">
 						<li><a href="#"><i class="icon ion-social-twitter"></i> Tweet</a></li>
 						<li><a href="#"><i class="icon ion-social-facebook"></i> Share</a></li>
 						<li><a href="#" ng-click=""><i class="icon ion-email"></i> Email</a></li>
 					</ul>
-				</span>
+				</span> -->
 			</div>
 		</section>
 
@@ -48,10 +48,9 @@
 								<div class="post-desc" ui-sref="Post({ slug : post.slug })">
 
 									<span class="post-category hidden-xs hidden-sm">{{ post.type }}</span>
-									<a class="post-title" ng-if="post.type === 'game'"><img ng-src="{{post.team_1[0].logo}}" style="max-height:30px;" /> {{ post.team_1[0].name }} <span>vs</span> {{ post.team_2[0].name }} <img ng-src="{{post.team_2[0].logo}}" style="max-height:30px;" /></a>
+									<a class="post-title" ng-if="post.type === 'game'"><img ng-src="{{post.team_1[0].logo}}" style="max-height:30px;" /> <b>{{ post.team_1[0].name_short || post.team_1[0].name }}</b> <span>vs</span> <b>{{ post.team_2[0].name_short || post.team_2[0].name }}</b> <img ng-src="{{post.team_2[0].logo}}" style="max-height:30px;" /></a>
 									<div class="post-meta hidden-xs hidden-sm" ng-if="post.type === 'game'">{{ post.title }}</div>
 									<a class="post-title" ng-if="post.type === 'link'">{{ post.title }}</a>
-									<div class="post-meta hidden-xs hidden-sm" ng-if="post.type === 'link'">Originaly published on {{ post.url | hostnameFromUrl }} on {{ post.dt_create | date: 'EEE, d MMM' }}</div>
 									
 								</div>
 								<div class="post-details" >
@@ -76,10 +75,9 @@
 								<div class="post-desc" ui-sref="Post({ slug : post.instance.slug })">
 
 									<span class="post-category hidden-xs hidden-sm">{{post.instance.type}}</span>
-									<a class="post-title" ng-if="post.instance.type === 'game'"><img ng-src="{{post.instance.team_1[0].logo}}" style="max-height:30px;" />	{{post.instance.team_1[0].name}} <span>vs</span> {{post.instance.team_2[0].name}} <img ng-src="{{post.instance.team_2[0].logo}}" style="max-height:30px;" /></a>
+									<a class="post-title" ng-if="post.instance.type === 'game'"><img ng-src="{{post.instance.team_1[0].logo}}" style="max-height:30px;" />	<b>{{ post.instance.team_1[0].name_short || post.instance.team_1[0].name}}</b> <span>vs</span> <b>{{ post.instance.team_2[0].name_short || post.instance.team_2[0].name }}</b> <img ng-src="{{post.instance.team_2[0].logo}}" style="max-height:30px;" /></a>
 									<div class="post-meta hidden-xs hidden-sm" ng-if="post.instance.type === 'game'">{{post.instance.title}}</div>
 									<a class="post-title" ng-if="post.instance.type === 'link'">{{post.instance.title}}</a>
-									<div class="post-meta hidden-xs hidden-sm" ng-if="post.instance.type === 'link'">Originaly published on {{ post.instance.url | hostnameFromUrl }} on {{ post.instance.dt_create | date: 'EEE, d MMM' }}</div>
 									
 								</div>
 								<div class="post-details" >
