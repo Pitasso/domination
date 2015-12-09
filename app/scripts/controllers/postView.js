@@ -13,9 +13,12 @@ app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state'
     })
 
    $scope.upvotePost = function(post) {
+     var _post = angular.copy(post);
       post.upVote().then(function() {
           if(!$scope.upvoters) $scope.upvoters = [];
           $scope.upvoters.push($rootScope.currentUser.instance);
+          post.instance.team_1 = _post.instance.team_1;
+          post.instance.team_2 = _post.instance.team_2;
           $scope.$apply();
       })
     }

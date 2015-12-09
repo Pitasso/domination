@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post', 'Search', '$uibModal', '$stamplay', '$stateParams', function(Auth, $scope, $rootScope, $state, Post, Search, $uibModal, $stamplay, $stateParams) {
+app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post', 'Search', '$uibModal', '$stamplay', '$stateParams', "moment", function(Auth, $scope, $rootScope, $state, Post, Search, $uibModal, $stamplay, $stateParams, moment) {
 
 	// var postList = this;
 	// postList.posts = [];
@@ -94,7 +94,9 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 		Post.getPosts(sort, day).then(function(posts) {
 			days[currentDay] = {};
 			days[currentDay].posts = posts.instance;
-			days[currentDay].date = new Date(day);
+			day = Date.parse(day);
+			day = moment(day);
+			days[currentDay].date = day;
 			days[currentDay].page = posts.instance.length ? 1 : false;
 			$scope.days[currentDay] = days[currentDay];
 			currentDay += 1;
@@ -139,19 +141,21 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 
 
 	$scope.approvePost = function(post, idx) {
-		var today = new Date();
-		var day = today.getDate();
-		var month = today.getMonth() + 1;
-		var year = today.getFullYear();
-		var published = month + "-" + day + "-" + year;
+		var tomorrow = Date.today().add(1).days()
 
-		$scope.days[0].posts.splice(idx, 1);
+		var day = tomorrow.getDate();
+		var month = tomorrow.getMonth() + 1;
+		var year = tomorrow.getFullYear();
+		var published = month + "-" + day + "-" + year;
 		post.instance.owner = post.instance.owner._id;
-		post.instance.team_1 = post.instance.team_1[0]._id;
-		post.instance.team_2 = post.instance.team_2[0]._id;
+		if(post.instance.type === "game") {
+			post.instance.team_1 = post.instance.team_1[0]._id;
+			post.instance.team_2 = post.instance.team_2[0]._id;
+		}
 		post.set("approved", true);
 		post.set("dt_published", published);
 		post.save().then(function() {
+			$scope.days[0].posts.splice(idx, 1);
 			$scope.$apply();
 		})
 	}

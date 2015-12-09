@@ -65,15 +65,17 @@ app.controller('SubmitPostCtrl', ['Post', 'Thumbnail', '$scope', '$rootScope', '
 			var team_1 = details.team_1.name.split(' ').join("-");
 			var team_2 = details.team_2.name.split(' ').join("-");
 			var title = details.title.split(' ').join("-");
+			details.team_1 = details.team_1.id;
+			details.team_2 = details.team_2.id;
 			slug = team_1 + "-vs-" + team_2 + "-" + title;
 		}
 		slug = slug.toLowerCase();
 		$scope.tabs.post.slug = slug;
 		var values = angular.copy($scope.tabs.post);
-		values.team_1 = details.team_1.id;
-		values.team_2 = details.team_2.id;
+
 		// Thumbnail.getFromUrl(values.url).then(function(thumbnail) {
 		// 	values.thumbnail = thumbnail;
+
 			Post.newPost(values).then(function(post) {
 				Materialize.toast('Your post has been submitted.', 3000)
 				$uibModalInstance.close(post);
