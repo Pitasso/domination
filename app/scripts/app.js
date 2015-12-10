@@ -41,6 +41,14 @@ var app = angular.module("Domination", [
             templateUrl: "app/views/invite.html",
             controller: "InviteCtrl"
         })
+        .state("Terms", {
+            url: "/terms",
+            templateUrl: "app/views/terms.html",
+        })
+        .state("Privacy", {
+            url: "/privacy",
+            templateUrl: "app/views/privacy.html",
+        })
     $urlRouterProvider.otherwise("/");
 
     $sceDelegateProvider.resourceUrlWhitelist([

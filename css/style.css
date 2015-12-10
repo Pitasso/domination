@@ -2587,7 +2587,29 @@ span[ng-message] {
 @media (max-width: 768px) {
 	#settings-page .container {
 	width: 100%;
+	}
 }
+/* ----- Legal page ----- */
+#legal-page .container {
+	text-align: justify;
+}
+#legal-page .container h1 {
+	margin-top: 30px;
+	text-align: center;
+}
+#legal-page .container h1 + h5 {
+	text-align: center;
+}
+#legal-page .container h4 {
+	margin-top: 15px;
+}
+#legal-page .container p b {
+	color: #B8A378;
+}
+#legal-page .container .copyright {
+	margin: 40px 0;
+	text-align: center;
+
 }
 
 /* ----- Memebrship Page ----- */
