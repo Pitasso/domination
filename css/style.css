@@ -2609,7 +2609,13 @@ span[ng-message] {
 #legal-page .container .copyright {
 	margin: 40px 0;
 	text-align: center;
-
+}
+#legal-page .container .legal-address {
+	margin-top: 40px;
+}
+#legal-page .container .legal-address p,
+#legal-page .container .legal-address address {
+	text-align: right;
 }
 
 /* ----- Memebrship Page ----- */

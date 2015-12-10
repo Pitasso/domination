@@ -49,6 +49,10 @@ var app = angular.module("Domination", [
             url: "/privacy",
             templateUrl: "app/views/privacy.html",
         })
+        .state("Dispute", {
+            url: "/copyright-dispute",
+            templateUrl: "app/views/copyright-dispute.html",
+        })
     $urlRouterProvider.otherwise("/");
 
     $sceDelegateProvider.resourceUrlWhitelist([
