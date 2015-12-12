@@ -4,16 +4,35 @@
         <!-- <base href="/"> -->
         <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
 
-        <title>Gamers Net</title>
+        <!-- <title>Gamers Net</title> -->
         <link rel="canonical" href="https://dota.joingamers.net" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="description" content="Gamers Net is a community to share and chat about the latest news, videos and changes in Dota and eSports universe." />
+        <!-- <meta name="description" content="Gamers Net is a community to share and chat about the latest news, videos and changes in Dota and eSports universe." /> -->
 
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
         <link rel="shortcut icon" href="images/favicon.ico">
 
         <link href="bower_components/Ionicons/css/ionicons.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
+
+
+        <title>{{ post.instance.title || profile.instance.title || 'Gamers Net' }}</title>
+        <meta name="description" content="{{ post.description || 'Gamers Net is a community to share and chat about the latest news, videos and changes in Dota and eSports universe.'" />
+
+        <!-- Twitter summary card metadata. Unfortunately this won't work with crawlers that don't evaluate JavaScript -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:site" content="@joinGamersNet" />
+        <meta property="twitter:title" content="{{ post.instance.title }}" />
+        <meta property="twitter:description" content="{{ post.instance.description }}" />
+        <meta property="twitter:image" content="{{ post.instance.image }}" />
+        <meta property="twitter:url" content="{{ post.instance.url }}" />
+
+        <!-- open graph metadata. This won't work either! -->
+        <meta property="og:title" content="{{ post.instance.title }}" />
+        <meta property="og:site_name " content="Gamers Net" />
+        <meta property="og:url " content="{{ post.instance.url }}" />
+        <meta property="og:description" content="{{ post.instance.description }}" />
+        <meta property="og:image" content="{{ post.instance.thumbnail }}" />
         <!-- JS -->
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
