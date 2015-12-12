@@ -18,8 +18,8 @@
             <div ng-repeat="post in collection.posts | filter: { instance : { type : post_type } } : false" >
                 <div class="post-item">
                     <a class="post-upvote">
-                        <span  ng-hide="fetchBy === 'unapproved'" ng-click="upvotePost($index, post);" class="vote-arrow icon ion-chevron-up" aria-hidden="true" analytics-on="click" analytics-event="Post Upvoted"></span>
-                        <span  ng-hide="fetchBy === 'unapproved'" ng-click="upvotePost($index, post);" class="vote-counter" analytics-on="click" analytics-event="Post Uvoted">{{post.instance.actions.votes.total}}</span>
+                        <span  ng-hide="fetchBy === 'unapproved'" ng-click="upvotePost($index, post);" class="vote-arrow icon ion-chevron-up" aria-hidden="true"></span>
+                        <span  ng-hide="fetchBy === 'unapproved'" ng-click="upvotePost($index, post);" class="vote-counter">{{post.instance.actions.votes.total}}</span>
                         <span  ng-show="fetchBy === 'unapproved'" ng-click="approvePost(post)"><span><span class="icon ion-checkmark" aria-hidden="true"></span></span>
                     </a>
                     <div class="post-thumbnail hidden-xs" ui-sref="Post({ slug : post.instance.slug })">

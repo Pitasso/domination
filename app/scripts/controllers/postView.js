@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state', '$stateParams', '$stamplay', "$http", function(Post, Auth, $scope, $rootScope, $state, $stateParams, $stamplay, $http) {
+app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state', '$stateParams', '$stamplay', "$http", "$analytics", function(Post, Auth, $scope, $rootScope, $state, $stateParams, $stamplay, $http, $analytics) {
     var vm = this;
     vm.time = new Date();
 
@@ -20,6 +20,9 @@ app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state'
           post.instance.team_1 = _post.instance.team_1;
           post.instance.team_2 = _post.instance.team_2;
           $scope.$apply();
+          $analytics.eventTrack('Post Upvoted', {
+            userId: '$rootScope.currentUser'
+          });
       })
     }
 
