@@ -7,7 +7,9 @@ var app = angular.module("Domination", [
     "ngStamplay",
     "algoliasearch",
     "angularMoment",
-    "ngMessages"
+    "ngMessages",
+    'angulartics',
+    'angulartics.segment'
     ])
 .config(["$stateProvider", "$urlRouterProvider", "$locationProvider", "$httpProvider", "$sceDelegateProvider", function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $sceDelegateProvider) {
     $stateProvider
