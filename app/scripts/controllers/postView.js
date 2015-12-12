@@ -1,9 +1,8 @@
 'use strict';
 
-app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state', '$stateParams', '$stamplay', "$http", "$analytics", function(Post, Auth, $scope, $rootScope, $state, $stateParams, $stamplay, $http, $analytics) {
+app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state', '$stateParams', '$stamplay', "$http", function(Post, Auth, $scope, $rootScope, $state, $stateParams, $stamplay, $http) {
     var vm = this;
     vm.time = new Date();
-
 
     if(!$stateParams.slug) $state.go("Home");
     Post.getPostDetails($stateParams.slug).then(function(res) {
@@ -20,9 +19,6 @@ app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state'
           post.instance.team_1 = _post.instance.team_1;
           post.instance.team_2 = _post.instance.team_2;
           $scope.$apply();
-          $analytics.eventTrack('Post Upvoted', {
-            userId: '$rootScope.currentUser'
-          });
       })
     }
 

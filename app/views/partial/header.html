@@ -1,11 +1,11 @@
 <header class="header" ng-controller="AuthCtrl">
     <div class="container">
         <div>
-            <a class="logo" href="http://dota.joingamers.net"><img src="/images/logo.svg" height="40px"></a>
+            <a class="logo" ui-sref="Home"><img src="/images/logo.svg" height="40px"></a>
             <a class="login-btn btn btn-default" ng-show="currentUser === false && currentUser !== undefined;" ng-click="userLogin()">Login</a>
 
             <div class="user-group" ng-cloak ng-show="currentUser" ng-contoller="DropdwonCtrl">
-                <a class="search-btn visible-xs"><i class="icon ion-android-search"></i></a>
+                <!-- <a class="search-btn visible-xs"><i class="icon ion-android-search"></i></a> -->
                 <div ng-controller="IndexViewCtrl">
                     <a class="submit-btn" ng-click="newPost()" ng-show="currentUser"><i class="icon ion-plus"></i></a>
                 </div>

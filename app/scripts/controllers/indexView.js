@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post', 'Search', '$uibModal', '$stamplay', '$stateParams', "moment", "$analytics", function(Auth, $scope, $rootScope, $state, Post, Search, $uibModal, $stamplay, $stateParams, moment, $analytics) {
+app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post', 'Search', '$uibModal', '$stamplay', '$stateParams', "moment", function(Auth, $scope, $rootScope, $state, Post, Search, $uibModal, $stamplay, $stateParams, moment) {
 
 	// var postList = this;
 	// postList.posts = [];
@@ -194,7 +194,6 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 				post.instance.team_1 = team1;
 				post.instance.team_2 = team2;
 				$scope.$apply();
-				$analytics.eventTrack('Post Upvoted');
 			})
 		}
 	}
