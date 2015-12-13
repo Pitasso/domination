@@ -4,7 +4,6 @@ app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state'
     var vm = this;
     vm.time = new Date();
 
-
     if(!$stateParams.slug) $state.go("Home");
     Post.getPostDetails($stateParams.slug).then(function(res) {
         $scope.post = res.post;

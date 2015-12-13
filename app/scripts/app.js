@@ -8,7 +8,8 @@ var app = angular.module("Domination", [
     "algoliasearch",
     "angularMoment",
     "ngMessages",
-    "viewhead"
+    'angulartics',
+    'angulartics.segment'
     ])
 .config(["$stateProvider", "$urlRouterProvider", "$locationProvider", "$httpProvider", "$sceDelegateProvider", function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $sceDelegateProvider) {
     $stateProvider
@@ -41,6 +42,18 @@ var app = angular.module("Domination", [
             url: "/invite",
             templateUrl: "app/views/invite.html",
             controller: "InviteCtrl"
+        })
+        .state("Terms", {
+            url: "/terms",
+            templateUrl: "app/views/terms.html",
+        })
+        .state("Privacy", {
+            url: "/privacy",
+            templateUrl: "app/views/privacy.html",
+        })
+        .state("Dispute", {
+            url: "/copyright-dispute",
+            templateUrl: "app/views/copyright-dispute.html",
         })
     $urlRouterProvider.otherwise("/");
 
