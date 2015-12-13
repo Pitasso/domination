@@ -2,14 +2,14 @@
 <div class="window-content">
 	<div ng-if="!currentUser || currentUser.instance.givenRole.name === 'guest'">
 		<h3>Sign in to upvote</h3>
-		<p>Gamers Net is a community to share and chat about the latest news, videos and changes in Dota and eSport universe. Join us :)</p>
+		<p>Please sign in to upvote the post and join the community of dota-loving enthusiasts.</p>
 		<a class="btn btn-primary" ng-click="login()">Login with Twitter</a>
 		<p class="notice">We'll never post to Twitter without your permission.</p>
 	</div>
 
 	<div ng-if="currentUser && currentUser.instance.givenRole.name === 'registered'">
-		<h3>Howdy!=)</h3>
-		<p>Submiting posts is for members only=( If you'd like to become part of our community and have full access to all the features, please apply for the membership.</p>
+		<h3>Oops! “Submit Post” skill is not available for you yet</h3>
+		<p>You need to achieve “Proud Member” level to obtain this skill. To get there simply apply for your membership.</p>
 		<a class="btn btn-primary" ui-sref="Membership" ng-click="$close()">Request membership</a>
 		<p class="notice">No worries, memebrship is totally Free. We just trying to maintain a healthy volume of posts and thoughtful conversations.</p>
 	</div>

@@ -18,7 +18,7 @@
 					<input type="text" placeholder="Select your gamestyle..." ng-model="currentUser.instance.gamestyle" required>
 				</a>
 				<ul class="uib-dropdown-menu" aria-labelledby="simple-dropdown">
-					<li ng-repeat="style in ['Carry', 'Support', 'Top Laner', 'Mid Laner', 'Off Laner', 'Ganker', 'Jungler', 'Commentator', 'Broadcaster', 'eSport Enthusiast', 'Occasional Viewer']">
+					<li ng-repeat="style in ['Carry', 'Support', 'Top Laner', 'Mid Laner', 'Off Laner', 'Ganker', 'Jungler', 'Coach', 'Commentator', 'Caster', 'eSport Enthusiast', 'Occasional Viewer']">
 						<a ng-click="currentUser.instance.gamestyle = style" >{{style}}</a>
 					</li>
 				</ul>
@@ -32,12 +32,12 @@
 	</div>
 
 	<div ng-show="currentStep === 2">
-		<h3>Hooray! Your account created!</h3>
+		<h3>Congrats! Your account created!</h3>
 		<img src="images/badge-temp.png"/>
-		<h4>New Level Unlocked</h4>
-		<p>Now you can navigate and <span>upvote posts</span> to help your friends and other community members discover new valuable content based on your advice.</p>
+		<h4>Newbie Level Unlocked</h4>
+		<p>Now you can <span>Upvote Posts</span> to help your friends and other community members discover new interesting content based on your recommendations.</p>
 		<hr>
-		<p>To unlock new skills like <span>submitting</span> and <span>commentig on posts</span> you need to get Memebrship status.</p>
+		<p>To unlock new skills like <span>Submit Post</span> and <span>Comment on the Posts</span> you need to get Memebrship status.</p>
 		<a href="" class="btn btn-primary" ng-click="requestMembership()" ng-hide="processing">Request Memebrship</a>
 		<div class="btn" ng-show="processing">
 			<div class="spinner"></div>
