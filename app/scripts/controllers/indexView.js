@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post', 'Search', '$uibModal', '$stamplay', '$stateParams', "moment", "$analytics", function(Auth, $scope, $rootScope, $state, Post, Search, $uibModal, $stamplay, $stateParams, moment, $analytics) {
-	
+
 	$scope.filterBy = function(type) {
 		$scope.post_type = type;
 	}
@@ -40,6 +40,7 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 	// LOADS THE NEXT POSTS IN A PARTICULAR DAY
 	$scope.loadNextPage = function(sort, day, index) {
 		$scope.days[index].loading = true;
+		day = day._d;
 		var date = (day.getMonth() + 1) + "-" + day.getDate() + "-" + day.getFullYear();
 		$scope.days[index].page += 1;
 		Post.getPosts(sort, date, $scope.days[index].page).then(function(posts) {
@@ -77,22 +78,29 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 	}
 
 	$scope.approvePost = function(post, idx) {
+		if(post.instance.approved === true) return;
+		var _post = angular.copy(post);
 		var tomorrow = Date.today().add(1).days()
 
 		var day = tomorrow.getDate();
 		var month = tomorrow.getMonth() + 1;
 		var year = tomorrow.getFullYear();
 		var published = month + "-" + day + "-" + year;
-		post.instance.owner = post.instance.owner._id;
+		_post.instance.owner = post.instance.owner._id;
 		if(post.instance.type === "game") {
-			post.instance.team_1 = post.instance.team_1[0]._id;
-			post.instance.team_2 = post.instance.team_2[0]._id;
+			var team1 = post.instance.team_1;
+			var team2 = post.instance.team_2;
+			_post.instance.team_1 = post.instance.team_1[0]._id;
+			_post.instance.team_2 = post.instance.team_2[0]._id;
 		}
-		post.set("approved", true);
-		post.set("dt_published", published);
-		post.save().then(function() {
-			$scope.days[0].posts.splice(idx, 1);
+		_post.set("approved", true);
+		_post.set("dt_published", published);
+		_post.save().then(function() {
+			post.instance.approved = true;
+			$scope.days[0].posts[idx] = post;
 			$scope.$apply();
+
+			console.log($scope.days[0].posts[idx]);
 		})
 	}
 
@@ -119,7 +127,7 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 					items: function() {
 						return $scope.items;
 					}
-				}				
+				}
 			})
 			$analytics.eventTrack('Viewed Permission Denied Screen', {
 				message: "Upvote post skill is not available"
@@ -130,11 +138,11 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 			post.upVote().then(function() {
 				post.instance.team_1 = team1;
 				post.instance.team_2 = team2;
-				$scope.$apply();			
-				$analytics.eventTrack('Upvoted Post', {								  
+				$scope.$apply();
+				$analytics.eventTrack('Upvoted Post', {
 					"postId": post.instance._id,
 					"postSlug": post.instance.slug,
-					"from": 'Main Page' 					 
+					"from": 'Main Page'
 				});
 			}, function(err) {
             	Materialize.toast("You already upvoted this post!", 4000, 'warning')

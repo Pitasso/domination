@@ -100,7 +100,7 @@ var app = angular.module("Domination", [
         }
     });
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState) {
-      $rootScope.url = window.location.href;
+      // $rootScope.url = window.location.href;
       // var title = toParams.slug ? { val : toParams.slug, type : "slug" } :  { val : toParams.username, type : "username" };
       // if(title.type === "slug") {
       //   title.val = title.val.split("-");
