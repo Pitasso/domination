@@ -6,7 +6,31 @@
 		<p>Please finish your account setup and pick a username.</p>
 		<form ng-submit="finishProfile()">
 			<input type="text" placeholder="Pick a username..." ng-model="currentUser.instance.username" required>
-			<input type="text" placeholder="Define your game style..." ng-model="currentUser.instance.gamestyle">
+			<!-- <select ng-model="currentUser.instance.gamestyle">
+				<option value="" disabled selected>Select your gamestyle...</option>
+				<option disabled>Player</option>
+				<option value="">&nbsp;Carry</option>
+				<option value="">&nbsp;Mid Lanner</option>
+				<option value="">&nbsp;Support</option>
+			</select> -->
+			<span uib-dropdown on-toggle="toggled(open)">
+				<a href id="simple-dropdown" uib-dropdown-toggle>
+					<input type="text" placeholder="Select your gamestyle..." ng-model="currentUser.instance.gamestyle" value="{{ gamestyle }}" required>
+				</a>
+				<ul class="uib-dropdown-menu" aria-labelledby="simple-dropdown">
+					<li><a ng-click="gamestyle === 'Carry'">Carry</a></li>
+					<li><a ng-click="gamestyle === 'Support'">Support</a></li>
+					<li><a ng-click="gamestyle === 'Top Laner'">Top Laner</a></li>
+					<li><a ng-click="gamestyle === 'Mid Laner'">Mid Laner</a></li>
+					<li><a ng-click="gamestyle === 'Offlaner'">Offlaner</a></li>
+					<li><a ng-click="gamestyle === 'Ganker'">Ganker</a></li>
+					<li><a ng-click="gamestyle === 'Jungler'">Jungler</a></li>
+					<li><a ng-click="gamestyle === 'Commentator'">Commentator</a></li>
+					<li><a ng-click="gamestyle === 'Broadcaster'">Broadcaster</a></li>
+					<li><a ng-click="gamestyle === 'eSport Enthusiast'">eSport Enthusiast</a></li>
+					<li><a ng-click="gamestyle === 'Occasional Viewer'">Occasional Viewer</a></li>
+				</ul>
+			</span>
 			<input type="text" placeholder="Enter your email address..." ng-model="currentUser.instance.email" required>
 			<input type="submit" class="btn btn-large btn-default" ng-hide="processing" value="Finish" />
 			<div class="btn" ng-show="processing">

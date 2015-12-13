@@ -3,6 +3,7 @@
 app.controller('WelcomeCtrl', ['$scope', '$http', '$rootScope', '$uibModalInstance', '$state', "$stamplay", "$analytics", function($scope, $http, $rootScope, $uibModalInstance, $state, $stamplay, $analytics) {
 
 	$scope.currentStep = 1;
+	$scope.gamestyle = $rootScope.currentUser.instance.gamestyle;
 
 	$scope.finishProfile = function() {
 		$scope.processing = true;
