@@ -11,7 +11,7 @@ var app = angular.module("Domination", [
     'angulartics',
     'angulartics.segment'
     ])
-.config(["$stateProvider", "$urlRouterProvider", "$locationProvider", "$httpProvider", "$sceDelegateProvider", function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $sceDelegateProvider) {
+.config(["$stateProvider", "$urlRouterProvider", "$locationProvider", "$httpProvider", "$sceDelegateProvider", "$analyticsProvider", function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $sceDelegateProvider, $analyticsProvider) {
     $stateProvider
         .state("Home", {
             url: "/",
@@ -57,6 +57,9 @@ var app = angular.module("Domination", [
         })
     $urlRouterProvider.otherwise("/");
 
+    $analyticsProvider.firstPageview(false);
+    $analyticsProvider.virtualPageviews(false);
+
     $sceDelegateProvider.resourceUrlWhitelist([
     // Allow same origin resource loads.
     'self',
@@ -65,7 +68,7 @@ var app = angular.module("Domination", [
     'https://www.youtube.com/embed/**',
     'http://player.twitch.tv/**',
     'https://player.twitch.tv/**'
-    ])
+    ]);
 
 }])
 
@@ -79,7 +82,7 @@ var app = angular.module("Domination", [
               user.instance.givenRole = role;
               $rootScope.currentUser = user;
               analytics.identify($rootScope.currentUser.instance._id, {
-                  name: $rootScope.currentUser.instance.displayName,
+                  username: $rootScope.currentUser.instance.username,
                   email: $rootScope.currentUser.instance.email
                 });
 

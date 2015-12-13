@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('AuthCtrl', ['Auth', '$scope', '$rootScope', '$uibModal', "$state", function(Auth, $scope, $rootScope, $uibModal, $state ) {
+app.controller('AuthCtrl', ['Auth', '$scope', '$rootScope', '$uibModal', "$state", "$analytics", function(Auth, $scope, $rootScope, $uibModal, $state, $analytics) {
 
 	$scope.userLogin = function() {
 		var loginModal = $uibModal.open({
@@ -14,6 +14,7 @@ app.controller('AuthCtrl', ['Auth', '$scope', '$rootScope', '$uibModal', "$state
 				}
 			}
 		})
+		$analytics.eventTrack('Viewed Login Screen');
 	}
 
 	$rootScope.welcome = function() {
@@ -28,6 +29,7 @@ app.controller('AuthCtrl', ['Auth', '$scope', '$rootScope', '$uibModal', "$state
 				}
 			}
 		})
+		$analytics.eventTrack('Viewed Welcome Screen')
 		welcomeModal.result.then(function(membership_requested) {
 			if(membership_requested) {
 				$state.go("Membership");
@@ -35,7 +37,6 @@ app.controller('AuthCtrl', ['Auth', '$scope', '$rootScope', '$uibModal', "$state
 			console.log("Finished Setting Up Profile");
 		})
 	}
-
 	$scope.login = function() {
 		Auth.login();
 	}

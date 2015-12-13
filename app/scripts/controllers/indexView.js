@@ -1,85 +1,17 @@
 'use strict';
 
 app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post', 'Search', '$uibModal', '$stamplay', '$stateParams', "moment", "$analytics", function(Auth, $scope, $rootScope, $state, Post, Search, $uibModal, $stamplay, $stateParams, moment, $analytics) {
-
-	// var postList = this;
-	// postList.posts = [];
-	// postList.page = 1;
-	// postList.per_page = 10;
-	// postList.sort = '-dt_create';
-
-	// /* Loads the post given a sort parameter */
-	// postList.loadPosts = function(posts) {
-
-	// 	Post.getPosts().then(function(result) {
-	// 			if (postList.posts.add) {
-	// 				result.forEach(function(post) {
-	// 					postList.posts.add(post);
-	// 				})
-	// 			} else {
-	// 				postList.posts = result;
-	// 				postList.totalLength = postList.posts.totalElements;
-	// 			}
-	// 			postList.page++;
-	// 			postList.busy = false;
-	// 		});
-	// };
-
-	// postList.loadNext = function(page) {
-	// 	if (postList.posts.length !== postList.totalLength) {
-	// 		postList.busy = true;
-	// 		var params = {
-	// 			sort: postList.sort,
-	// 			page: page,
-	// 			per_page: postList.per_page,
-	// 			populate_owner: true,
-	// 			populate: true
-	// 		}
-
-	// 		postList.loadPosts(params);
-
-	// 	}
-	// };
-
-	// /* Listener on tab */
-	// postList.sortPost = function(sortOn) {
-	// 	postList.page = 1;
-	// 	postList.totalLength = 0;
-	// 	postList.posts = [];
-	// 	switch (sortOn) {
-	// 	case 'latest':
-	// 		postList.sort = '-dt_create';
-	// 		break;
-	// 	case 'tranding':
-	// 		postList.sort = '-actions.votes.total';
-	// 		break;
-	// 	default:
-	// 		postList.sort = '-dt_create';
-	// 		break;
-	// 	}
-
-	// 	postList.loadPosts({
-	// 		sort: postList.sort,
-	// 		page: postList.page,
-	// 		per_page: postList.per_page,
-	// 		populate_owner: true,
-	// 		populate: true
-
-	// 	});
-	// };
-
 	
-
 	$scope.filterBy = function(type) {
 		$scope.post_type = type;
 	}
-
 
 	$scope.days = [];
 	$scope.processing = false;
 	var days = [];
 	var today = new Date();
 	var currentDay = 0;
+
 
 	// LOADS NEXT DAY OF POSTS
 	$scope.getPosts = function(sort, start) {
@@ -105,7 +37,7 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 		})
 	}
 
-// LOADS THE NEXT POSTS IN A PARTICULAR DAY
+	// LOADS THE NEXT POSTS IN A PARTICULAR DAY
 	$scope.loadNextPage = function(sort, day, index) {
 		$scope.days[index].loading = true;
 		var date = (day.getMonth() + 1) + "-" + day.getDate() + "-" + day.getFullYear();
@@ -119,7 +51,7 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 		})
 	}
 
-// GET UNAPPROVED POSTINGS FOR MODERATOR
+	// GET UNAPPROVED POSTINGS FOR MODERATOR
 	$scope.getUnapproved = function() {
 		Post.getUnapproved().then(function(posts) {
 			$scope.days.length = 1;
@@ -129,17 +61,17 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 		})
 	}
 
-// INITIAL FETCH FOR POSTS
+	// INITIAL FETCH FOR POSTS
 	$scope.getPosts('actions.votes.total', currentDay);
 	$scope.processing = true;
+        
 
-
-// METHOD TRIGGERS BY SCROLL TO BOTTOM OF PAGE
+	// METHOD TRIGGERS BY SCROLL TO BOTTOM OF PAGE
 	$scope.loadNextPosts = function() {
 		$scope.getPosts($scope.fetchBy);
 		$scope.processing = true;
+		$analytics.eventTrack('Loaded more posts');
 	}
-
 
 	$scope.approvePost = function(post, idx) {
 		var tomorrow = Date.today().add(1).days()
@@ -161,7 +93,6 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 		})
 	}
 
-
 	if($stateParams.search) {
 		Search.searchPosts($stateParams.search).then(function(posts) {
 			if(posts.hits.length) {
@@ -174,7 +105,6 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 		})
 	}
 
-
 	$scope.upvotePost = function($index, post) {
 		if(!$rootScope.currentUser) {
 			var loginModal = $uibModal.open({
@@ -186,8 +116,11 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 					items: function() {
 						return $scope.items;
 					}
-				}
+				}				
 			})
+			$analytics.eventTrack('Viewed Permission Denied Screen', {
+				message: "Upvote post skill is not available"
+			});
 		} else {
 			var team1 = post.instance.team_1;
 			var team2 = post.instance.team_2;
@@ -197,9 +130,12 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 				$scope.$apply();			
 				$analytics.eventTrack('Upvoted Post', {								  
 					"postId": post.instance._id,
-					"postSlug": post.instance.slug					 
+					"postSlug": post.instance.slug,
+					"from": 'Main Page' 					 
 				});
-			})
+			}, function(err) {
+            	Materialize.toast("You already upvoted this post!", 4000, 'warning')
+        	})
 		}
 	}
 
@@ -215,6 +151,9 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 					}
 				}
 			})
+			$analytics.eventTrack('Viewed Permission Denied Screen', {
+				message: "Submit post skill is not available"
+			});
 		} else {
 			var postModal = $uibModal.open({
 				templateUrl: "app/views/submit.html",
@@ -237,6 +176,13 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 			})
 		}
 	}
+
+	var init = function () {
+   		$analytics.eventTrack('Viewed Page', {
+        	Page: "Main Page"
+	  	});
+	};
+	init();
 
 }]);
 

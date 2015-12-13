@@ -5,10 +5,14 @@ app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state'
     vm.time = new Date();
 
     if(!$stateParams.slug) $state.go("Home");
+
     Post.getPostDetails($stateParams.slug).then(function(res) {
         $scope.post = res.post;
         $scope.comments = res.comments.instance;
-        getUpvoters(res.post.instance.actions.votes.users)
+        getUpvoters(res.post.instance.actions.votes.users);
+        $analytics.eventTrack('Viewed Page', {
+            Page: $stateParams.slug
+        });
     })
 
     $scope.upvotePost = function(post) {
@@ -21,10 +25,11 @@ app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state'
             $scope.$apply();
             $analytics.eventTrack('Upvoted Post', {                 
                 "postId": post.instance._id,
-                "postSlug": post.instance.slug           
+                "postSlug": post.instance.slug,
+                "from": 'Post Page'            
             });
         }, function(err) {
-            Materialize.toast("You already upvoted this post!", 4000)
+            Materialize.toast("You already upvoted this post!", 4000, 'warning')
         })
     }
 
@@ -33,6 +38,8 @@ app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state'
         comment.upVote().then(function() {
             comment.instance.owner = owner;
             $scope.$apply();
+        }, function(err) {
+            Materialize.toast("You already upvoted this comment!", 4000, 'warning')
         })
     }
 

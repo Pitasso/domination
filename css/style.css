@@ -243,7 +243,7 @@ body .layer {
 	z-index: -999;
 }
 .bg-solid {
-	min-height: 800px;
+	height: 100%;
 }
 .main {
 	display: -webkit-flex;
@@ -2729,6 +2729,11 @@ span[ng-message] {
 	align-items: center;
 	-webkit-justify-content: space-between;
 	justify-content: space-between; 
+}
+.toast.warning {
+	background: #270B01;
+	border: 1px solid #592702;
+	color: #DD4832;
 }
 .toast .btn, .toast .btn-large, .toast .btn-flat {
 	margin: 0;
