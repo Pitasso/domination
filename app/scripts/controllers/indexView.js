@@ -80,22 +80,29 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 	}
 
 	$scope.approvePost = function(post, idx) {
+		if(post.instance.approved === true) return;
+		var _post = angular.copy(post);
 		var tomorrow = Date.today().add(1).days()
 
 		var day = tomorrow.getDate();
 		var month = tomorrow.getMonth() + 1;
 		var year = tomorrow.getFullYear();
 		var published = month + "-" + day + "-" + year;
-		post.instance.owner = post.instance.owner._id;
+		_post.instance.owner = post.instance.owner._id;
 		if(post.instance.type === "game") {
-			post.instance.team_1 = post.instance.team_1[0]._id;
-			post.instance.team_2 = post.instance.team_2[0]._id;
+			var team1 = post.instance.team_1;
+			var team2 = post.instance.team_2;
+			_post.instance.team_1 = post.instance.team_1[0]._id;
+			_post.instance.team_2 = post.instance.team_2[0]._id;
 		}
-		post.set("approved", true);
-		post.set("dt_published", published);
-		post.save().then(function() {
-			$scope.days[0].posts.splice(idx, 1);
+		_post.set("approved", true);
+		_post.set("dt_published", published);
+		_post.save().then(function() {
+			post.instance.approved = true;
+			$scope.days[0].posts[idx] = post;
 			$scope.$apply();
+
+			console.log($scope.days[0].posts[idx]);
 		})
 	}
 
