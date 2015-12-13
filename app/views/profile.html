@@ -1,3 +1,25 @@
+<!-- Title -->
+<update-title title="{{ firstname + ' ' + username + ' ' + lastname }}"></update-title>
+<update-meta name="description" content="{{ 'Gamers Net profile for ' + username }}"></update-meta>
+
+<!-- Facebook -->
+<update-meta property="og:title" content="{{ firstname lastname + " - " + username }}"></update-meta>
+<update-meta property="og:site_name " content="Gamers Net"></update-meta>
+<update-meta property="og:url" content="{{ url }}"></update-meta>
+<update-meta property="og:description" content="{{ 'Gamers Net profile for ' + username }}"></update-meta>
+<update-meta property="og:image" content="{{ user_profile.instance.profileImg }}"></update-meta>
+<update-meta property="og:locale" content="en_US"></update-meta>
+
+<!-- Twitter -->
+<update-meta property="twitter:card" content="summary_large_image"></update-meta>
+<update-meta property="twitter:site" content="@joinGamersNet" />
+<update-meta property="twitter:creator" content="@joinGamersNet" />
+<update-meta property="twitter:title" content="{{ firstname lastname + " - " + username }}"></update-meta>
+<update-meta property="twitter:description" content="{{ 'Gamers Net profile for ' + username }}"></update-meta>
+<update-meta property="twitter:image" content="{{ user_profile.instance.profileImg }}"></update-meta>
+<update-meta property="twitter:url" content="{{ url }}"></update-meta>
+
+
 <div id="profile-page" class="main">
 	<div class="container">
 
@@ -51,7 +73,7 @@
 									<a class="post-title" ng-if="post.type === 'game'"><img ng-src="{{post.team_1[0].logo}}" style="max-height:30px;" /> <b>{{ post.team_1[0].name_short || post.team_1[0].name }}</b> <span>vs</span> <b>{{ post.team_2[0].name_short || post.team_2[0].name }}</b> <img ng-src="{{post.team_2[0].logo}}" style="max-height:30px;" /></a>
 									<div class="post-meta hidden-xs hidden-sm" ng-if="post.type === 'game'">{{ post.title }}</div>
 									<a class="post-title" ng-if="post.type === 'link'">{{ post.title }}</a>
-									
+
 								</div>
 								<div class="post-details" >
 									<img ng-src="{{ post.owner.profileImg.split('_normal').join('') }}" class="author-avatar img-circle hidden-xs" ui-sref="Profile({ username : post.owner.username})">
@@ -78,7 +100,7 @@
 									<a class="post-title" ng-if="post.instance.type === 'game'"><img ng-src="{{post.instance.team_1[0].logo}}" style="max-height:30px;" />	<b>{{ post.instance.team_1[0].name_short || post.instance.team_1[0].name}}</b> <span>vs</span> <b>{{ post.instance.team_2[0].name_short || post.instance.team_2[0].name }}</b> <img ng-src="{{post.instance.team_2[0].logo}}" style="max-height:30px;" /></a>
 									<div class="post-meta hidden-xs hidden-sm" ng-if="post.instance.type === 'game'">{{post.instance.title}}</div>
 									<a class="post-title" ng-if="post.instance.type === 'link'">{{post.instance.title}}</a>
-									
+
 								</div>
 								<div class="post-details" >
 									<img ng-src="{{ post.instance.owner.profileImg.split('_normal').join('') }}" class="author-avatar img-circle hidden-xs" ui-sref="Profile({ username : post.instance.owner.username})">

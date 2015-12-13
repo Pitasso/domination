@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post', 'Search', '$uibModal', '$stamplay', '$stateParams', "moment", "$analytics", function(Auth, $scope, $rootScope, $state, Post, Search, $uibModal, $stamplay, $stateParams, moment, $analytics) {
-	
+
 	$scope.filterBy = function(type) {
 		$scope.post_type = type;
 	}
@@ -40,6 +40,7 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 	// LOADS THE NEXT POSTS IN A PARTICULAR DAY
 	$scope.loadNextPage = function(sort, day, index) {
 		$scope.days[index].loading = true;
+		day = day._d;
 		var date = (day.getMonth() + 1) + "-" + day.getDate() + "-" + day.getFullYear();
 		$scope.days[index].page += 1;
 		Post.getPosts(sort, date, $scope.days[index].page).then(function(posts) {
@@ -64,7 +65,7 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 	// INITIAL FETCH FOR POSTS
 	$scope.getPosts('actions.votes.total', currentDay);
 	$scope.processing = true;
-        
+
 
 	// METHOD TRIGGERS BY SCROLL TO BOTTOM OF PAGE
 	$scope.loadNextPosts = function() {
@@ -116,7 +117,7 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 					items: function() {
 						return $scope.items;
 					}
-				}				
+				}
 			})
 			$analytics.eventTrack('Viewed Permission Denied Screen', {
 				message: "Upvote post skill is not available"
@@ -127,11 +128,11 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 			post.upVote().then(function() {
 				post.instance.team_1 = team1;
 				post.instance.team_2 = team2;
-				$scope.$apply();			
-				$analytics.eventTrack('Upvoted Post', {								  
+				$scope.$apply();
+				$analytics.eventTrack('Upvoted Post', {
 					"postId": post.instance._id,
 					"postSlug": post.instance.slug,
-					"from": 'Main Page' 					 
+					"from": 'Main Page'
 				});
 			}, function(err) {
             	Materialize.toast("You already upvoted this post!", 4000, 'warning')
