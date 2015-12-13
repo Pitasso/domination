@@ -15,20 +15,12 @@
 			</select> -->
 			<span uib-dropdown on-toggle="toggled(open)">
 				<a href id="simple-dropdown" uib-dropdown-toggle>
-					<input type="text" placeholder="Select your gamestyle..." ng-model="currentUser.instance.gamestyle" value="{{ gamestyle }}" required>
+					<input type="text" placeholder="Select your gamestyle..." ng-model="currentUser.instance.gamestyle" required>
 				</a>
 				<ul class="uib-dropdown-menu" aria-labelledby="simple-dropdown">
-					<li><a ng-click="gamestyle === 'Carry'">Carry</a></li>
-					<li><a ng-click="gamestyle === 'Support'">Support</a></li>
-					<li><a ng-click="gamestyle === 'Top Laner'">Top Laner</a></li>
-					<li><a ng-click="gamestyle === 'Mid Laner'">Mid Laner</a></li>
-					<li><a ng-click="gamestyle === 'Offlaner'">Offlaner</a></li>
-					<li><a ng-click="gamestyle === 'Ganker'">Ganker</a></li>
-					<li><a ng-click="gamestyle === 'Jungler'">Jungler</a></li>
-					<li><a ng-click="gamestyle === 'Commentator'">Commentator</a></li>
-					<li><a ng-click="gamestyle === 'Broadcaster'">Broadcaster</a></li>
-					<li><a ng-click="gamestyle === 'eSport Enthusiast'">eSport Enthusiast</a></li>
-					<li><a ng-click="gamestyle === 'Occasional Viewer'">Occasional Viewer</a></li>
+					<li ng-repeat="style in ['Carry', 'Support', 'Top Laner', 'Mid Laner', 'Off Laner', 'Ganker', 'Jungler', 'Commentator', 'Broadcaster', 'eSport Enthusiast', 'Occasional Viewer']">
+						<a ng-click="currentUser.instance.gamestyle = style" >{{style}}</a>
+					</li>
 				</ul>
 			</span>
 			<input type="text" placeholder="Enter your email address..." ng-model="currentUser.instance.email" required>
