@@ -65,15 +65,15 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 	$scope.getPosts('actions.votes.total', currentDay);
 	$scope.processing = true;
 
-    $analytics.eventTrack('Viewed Page', {
-        Page: 'Main Page'
-    });
+    // $analytics.eventTrack('Viewed Page', {
+    //     Page: 'Main Page'
+    // });
 
 	// METHOD TRIGGERS BY SCROLL TO BOTTOM OF PAGE
 	$scope.loadNextPosts = function() {
 		$scope.getPosts($scope.fetchBy);
 		$scope.processing = true;
-		$analytics.eventTrack('Loaded more posts');
+		// $analytics.eventTrack('Loaded more posts');
 	}
 
 	$scope.approvePost = function(post, idx) {
