@@ -1,5 +1,31 @@
 CHANGELOG
 
+2015-12-11 3.10.1
+    * fix(nodejs): consistent timeouts between nodejs versions
+      We now use basic setTimeout functionnality instead of
+      req.setTimeout in nodejs to avoid inconsistencies between nodejs engines.
+      In node 0.10, req.setTimeout was a socket inactivity timeout
+      In node > 0.10? req.setTimeout is now a global timeout
+      + Node.js timeout is now 30s global per request (then incremental)
+      + Fixed an edge case where we had an uncaught exception in nodejs
+      + We only support 0.10+ now, node 0.8 never worked
+
+2015-12-08 3.10.0
+    * feat(gzip): ask the API for gzipped answers (nodejs)
+
+2015-12-04 3.9.4
+    * fix(process.env): set process back to normal in node v4
+
+2015-12-01 3.9.3
+    * fix(parse): set default timeout to 7.5s (indexing purposes)
+
+2015-11-02 3.9.2
+    * feat: react native build beta
+
+2015-11-02 3.9.1
+    * fix: throw on really bad usage instead of silently failing
+    * fix: make angular build cache work
+
 2015-10-23 3.9.0
     * feat: add similarSearch beta method
     * feat: add new way to generate secured api key using query parameters
