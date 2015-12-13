@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('MembershipCtrl', ['$scope','$http', '$rootScope', '$state', '$stateParams', '$stamplay', function($scope, $http, $rootScope, $state, $stateParams, $stamplay) {
+app.controller('MembershipCtrl', ['$scope','$http', '$rootScope', '$state', '$stateParams', '$stamplay', "$analytics", function($scope, $http, $rootScope, $state, $stateParams, $stamplay, $analytics) {
 
     $scope.requestMembership = function() {
         $scope.processing = true;
@@ -14,6 +14,9 @@ app.controller('MembershipCtrl', ['$scope','$http', '$rootScope', '$state', '$st
                 console.log('Requesting memebrship');
                 $scope.$apply();
                 $scope.membershipRequested = true;
+                $analytics.eventTrack('Requested Membership', {                               
+                    "From": "Membership Page"
+                });
                 $http.post("https://dota.joingamers.net/api/codeblock/v1/run/prefinerydetails", { id : $rootScope.currentUser.instance.prefinery_id})
                 .then(function(data) {
                     $scope.share_link = data.data.share_link;

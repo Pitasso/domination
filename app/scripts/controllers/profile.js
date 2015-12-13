@@ -1,20 +1,27 @@
 'use strict';
 
-app.controller('ProfileCtrl', ['User', '$scope', "$rootScope", '$state', "$stateParams", function(User, $scope, $rootScope, $state, $stateParams) {
+app.controller('ProfileCtrl', ['User', '$scope', "$rootScope", '$state', "$stateParams", "$analytics", function(User, $scope, $rootScope, $state, $stateParams, $analytics) {
 	var username = $stateParams.username;
 
 	$scope.follow = function() {
 		User.followUser($scope.user_profile.instance._id).then(function(followed) {
 			$scope.followingUser = true;
 			$scope.$apply();
-			Materialize.toast("You are now following " + $scope.user_profile.instance.username + ".", 3000)
+			$analytics.eventTrack('Followed a User', {
+				user: $scope.user_profile.instance.username
+			});
+			Materialize.toast("You are now following " + $scope.user_profile.instance.username + ".", 3000);
 		})
 	}
+
 	$scope.unfollow = function() {
 		User.unfollowUser($scope.user_profile.instance._id).then(function(followed) {
 			$scope.followingUser = false;
 			$scope.$apply();
-			Materialize.toast("You are no longer following " + $scope.user_profile.instance.username + ".", 3000)
+			$analytics.eventTrack('Unfollowed a User', {
+				user: $scope.user_profile.instance.username
+			});
+			Materialize.toast("You are no longer following " + $scope.user_profile.instance.username + ".", 3000);
 		})
 	}
 
@@ -91,7 +98,6 @@ app.controller('ProfileCtrl', ['User', '$scope', "$rootScope", '$state', "$state
 		getUpvoted(id);
 		getFollowedBy(id);
 		getFollowing(id);
-
 	});
 
 }])
