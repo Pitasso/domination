@@ -45,8 +45,10 @@ app.controller('WelcomeCtrl', ['$scope', '$http', '$rootScope', '$uibModalInstan
 		})
 	}
 
-	 $scope.close = function() {
-		 $uibModalInstance.close();
-	 }
+	$scope.close = function() {
+		$uibModalInstance.close();
+	}
 
+	$analytics.eventTrack('Viewed Welcome Screen')
+	
 }])

@@ -64,7 +64,10 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 	// INITIAL FETCH FOR POSTS
 	$scope.getPosts('actions.votes.total', currentDay);
 	$scope.processing = true;
-        
+
+    $analytics.eventTrack('Viewed Page', {
+        Page: 'Main Page'
+    });
 
 	// METHOD TRIGGERS BY SCROLL TO BOTTOM OF PAGE
 	$scope.loadNextPosts = function() {
@@ -176,13 +179,6 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 			})
 		}
 	}
-
-	var init = function () {
-   		$analytics.eventTrack('Viewed Page', {
-        	Page: "Main Page"
-	  	});
-	};
-	init();
 
 }]);
 

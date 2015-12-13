@@ -57,7 +57,6 @@ var app = angular.module("Domination", [
         })
     $urlRouterProvider.otherwise("/");
 
-    $analyticsProvider.firstPageview(false);
     $analyticsProvider.virtualPageviews(false);
 
     $sceDelegateProvider.resourceUrlWhitelist([
