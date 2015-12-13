@@ -20,6 +20,11 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 			currentDay = start;
 			$scope.days = [];
 		}
+		// Track if we are loading more posts.
+		if(currentDay > 0) {
+			// $analytics.eventTrack('Loaded more posts');
+			console.log("Loading more posts.")
+		}
 		if($scope.processing) return;
 		$scope.processing = true;
 		var day = new Date(today.getTime() - (currentDay * 24 * 60 * 60 * 1000));
@@ -64,6 +69,7 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 
 	// INITIAL FETCH FOR POSTS
 	$scope.getPosts('actions.votes.total', currentDay);
+	console.log("Initial post load.");
 	$scope.processing = true;
 
     // $analytics.eventTrack('Viewed Page', {
@@ -74,7 +80,6 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 	$scope.loadNextPosts = function() {
 		$scope.getPosts($scope.fetchBy);
 		$scope.processing = true;
-		// $analytics.eventTrack('Loaded more posts');
 	}
 
 	$scope.approvePost = function(post, idx) {
@@ -133,6 +138,7 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 				message: "Upvote post skill is not available"
 			});
 		} else {
+
 			var team1 = post.instance.team_1;
 			var team2 = post.instance.team_2;
 			post.upVote().then(function() {
@@ -145,48 +151,12 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 					"from": 'Main Page'
 				});
 			}, function(err) {
-            	Materialize.toast("You already upvoted this post!", 4000, 'warning')
-        	})
+        	Materialize.toast("You already upvoted this post!", 4000, 'warning')
+    	})
 		}
 	}
 
-	$scope.newPost = function() {
-		if($rootScope.currentUser.instance.givenRole.name === 'registered') {
-			var loginModal = $uibModal.open({
-				templateUrl: "app/views/partial/permission.html",
-				windowClass: "fullscreen",
-				animation: false,
-				resolve: {
-					items: function() {
-						return $scope.items;
-					}
-				}
-			})
-			$analytics.eventTrack('Viewed Permission Denied Screen', {
-				message: "Submit post skill is not available"
-			});
-		} else {
-			var postModal = $uibModal.open({
-				templateUrl: "app/views/submit.html",
-				controller : "SubmitPostCtrl",
-				windowClass: "submit-window",
-				resolve: {
-					post: function () {
-						return $scope.posts;
-					}
-				}
-			})
 
-			postModal.result.then(function(post) {
-				var newpost = new $stamplay.Cobject("post").Collection;
-				newpost.equalTo("_id", post.instance._id).populateOwner().fetch().then(function() {
-					console.log(newpost.instance[0])
-					$scope.postCollection.push(newpost.instance[0]);
-					$scope.$apply();
-				})
-			})
-		}
-	}
 
 }]);
 

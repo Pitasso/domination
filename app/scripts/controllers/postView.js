@@ -23,10 +23,10 @@ app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state'
             post.instance.team_1 = _post.instance.team_1;
             post.instance.team_2 = _post.instance.team_2;
             $scope.$apply();
-            $analytics.eventTrack('Upvoted Post', {                 
+            $analytics.eventTrack('Upvoted Post', {
                 "postId": post.instance._id,
                 "postSlug": post.instance.slug,
-                "from": 'Post Page'            
+                "from": 'Post Page'
             });
         }, function(err) {
             Materialize.toast("You already upvoted this post!", 4000, 'warning')
