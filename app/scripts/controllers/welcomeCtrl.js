@@ -21,7 +21,16 @@ app.controller('WelcomeCtrl', ['$scope', '$http', '$rootScope', '$uibModalInstan
 				$scope.currentStep = 2;
 				$scope.processing = false;
 				$scope.$apply();
-	            $analytics.eventTrack('Completed Account');
+        $analytics.eventTrack('Completed Account');
+				var send_email = new Stamplay.Webhook('account_created');
+				send_email.post({}).then(function (response) {
+				  // post success;
+				}, function( err ){
+				  // error callback
+					console.log(err);
+				});
+			}, function() {
+				// update failure
 			})
 		})
 	}
@@ -36,7 +45,7 @@ app.controller('WelcomeCtrl', ['$scope', '$http', '$rootScope', '$uibModalInstan
 			$rootScope.currentUser.set('prefinery_id', data.data.id);
 			$rootScope.currentUser.save().then(function() {
 				$uibModalInstance.close(true);
-				$analytics.eventTrack('Requested Membership', {								  
+				$analytics.eventTrack('Requested Membership', {
 					"From": "Welcome Screen"
 				});
 			})
@@ -50,5 +59,5 @@ app.controller('WelcomeCtrl', ['$scope', '$http', '$rootScope', '$uibModalInstan
 	}
 
 	$analytics.eventTrack('Viewed Welcome Screen')
-	
+
 }])

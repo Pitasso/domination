@@ -31,10 +31,10 @@ app.controller('SettingsCtrl', ['User', '$scope', '$state', "$stateParams", "$ro
 					return;
 				}
 				user.set('email', settings.email);
-				if(settings.username.length < 2) {
-					Materialize.toast("Please enter a username.", 4000);
-					return;
-				}
+				// if(settings.username.length < 2) {
+				// 	Materialize.toast("Please enter a username.", 4000);
+				// 	return;
+				// }
 				user.set('username', settings.username);
 				user.set('gamestyle', settings.gamestyle);
 				user.set('team', settings.team);
