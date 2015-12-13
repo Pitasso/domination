@@ -9,7 +9,8 @@ var app = angular.module("Domination", [
     "angularMoment",
     "ngMessages",
     'angulartics',
-    'angulartics.segment'
+    'angulartics.segment',
+    "updateMeta"
     ])
 .config(["$stateProvider", "$urlRouterProvider", "$locationProvider", "$httpProvider", "$sceDelegateProvider", "$analyticsProvider", function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $sceDelegateProvider, $analyticsProvider) {
     $stateProvider
@@ -98,10 +99,25 @@ var app = angular.module("Domination", [
             $rootScope.currentUser = false;
         }
     });
-    // $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState) {
-    //   if(toState.name !== "Membership" || fromState.name === "Membership") {
-    //     $rootScope.membership = false;
-    //     console.log(toState);
-    //   }
-    // })
+    $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState) {
+      $rootScope.url = window.location.href;
+      // var title = toParams.slug ? { val : toParams.slug, type : "slug" } :  { val : toParams.username, type : "username" };
+      // if(title.type === "slug") {
+      //   title.val = title.val.split("-");
+      //   title.val.forEach(function(item, idx, arr) {
+      //     if(item !== "vs") {
+      //       item = item.split("");
+      //       item[0] = item[0].toUpperCase();
+      //       title.val[idx] = item.join("");
+      //     }
+      //   })
+      //   title.val = title.val.join(" ")
+      // }
+      //
+      // $rootScope.title = title.val || "Gamers Net";
+       // if(toState.name !== "Membership" || fromState.name === "Membership") {
+      //   $rootScope.membership = false;
+      //   console.log(toState);
+      // }
+    })
 }]);

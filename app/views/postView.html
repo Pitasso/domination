@@ -1,3 +1,23 @@
+<!-- Title -->
+<update-title title="{{post.instance.title}}"></update-title>
+<!-- Facebook -->
+<update-meta property="og:title" content="{{ post.instance.title }}"></update-meta>
+<update-meta property="og:site_name " content="Gamers Net"></update-meta>
+<update-meta property="og:url" content="{{ url }}"></update-meta>
+<update-meta property="og:description" content="{{ post.instance.desc || 'Gamers Net is a community to share and chat about the latest news, videos and changes in Dota and eSports universe.'"></update-meta>
+<update-meta property="og:image" content="{{ post.instance.thumbnail }}"></update-meta>
+<!-- Twitter -->
+<update-meta property="twitter:card" content="summary_large_image"></update-meta>
+<update-meta property="twitter:site" content="@joinGamersNet" />
+<update-meta property="twitter:title" content="{{ post.instance.title }}"></update-meta>
+<update-meta property="twitter:description" content="{{ post.instance.desc }}"></update-meta>
+<update-meta property="twitter:image" content="{{ post.instance.thumbnail }}"></update-meta>
+<update-meta property="twitter:url" content="{{ url }}"></update-meta>
+
+
+
+
+<!-- Post View -->
 <div id="post-view" class="main">
 	<section id="post-header">
 		<div ng-if="post.instance.type === 'link'">

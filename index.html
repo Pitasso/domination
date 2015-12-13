@@ -11,6 +11,24 @@
 
         <meta name="description" content="Gamers Net is a community to share and chat about the latest news, videos and changes in Dota and eSports universe." />
 
+        <title>Gamers Net</title>
+        <meta name="description" content="{{ post.instance.desc || 'Gamers Net is a community to share and chat about the latest news, videos and changes in Dota and eSports universe.'" />
+
+        <!-- Twitter summary card metadata. Unfortunately this won't work with crawlers that don't evaluate JavaScript -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:site" content="@joinGamersNet" />
+        <meta property="twitter:title" content="Gamers Net" />
+        <meta property="twitter:description" content="{{ post.instance.desc }}" />
+        <meta property="twitter:image" content="https://" />
+        <meta property="twitter:url" content="{{ post.instance.url }}" />
+
+        <!-- open graph metadata. This won't work either! -->
+        <meta property="og:title" content="Gamers Net" />
+        <meta property="og:site_name " content="Gamers Net" />
+        <meta property="og:url " content="http://dota.joingamers.net/#/" />
+        <meta property="og:description" content="Gamers Net is a community to share and chat about the latest news, videos and changes in Dota and eSports universe." />
+        <meta property="og:image" content="images/favicon.ico" />
+        <!-- JS -->
 
         <link rel="shortcut icon" href="images/favicon.ico">
         <link href="bower_components/Ionicons/css/ionicons.min.css" rel="stylesheet">
@@ -46,17 +64,17 @@
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
         <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+        <script src="bower_components/angular-messages/angular-messages.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <script src="bower_components/stamplay-js-sdk/dist/stamplay.js"></script>
         <script src="bower_components/angular-stamplay/angular-stamplay.js"></script>
-        <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.angular.min.js"></script>
+        <script src="bower_components/algoliasearch/dist/algoliasearch.angular.js"></script>
         <script src="bower_components/Materialize/dist/js/materialize.js"></script>
-        <script src="js/bootstrap.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>
+        <script src="bower_components/moment/min/moment.min.js"></script>
+        <script src="bower_components/angular-moment/angular-moment.min.js"></script>
+        <script src="bower_components/DateJS/build/production/date.min.js"></script>
         <script src="bower_components/angulartics/dist/angulartics.min.js"></script>
+        <script src="bower_components/angular-update-meta/dist/update-meta.js"></script>
         <script src="bower_components/angulartics-segment/dist/angulartics-segment.min.js"></script>
         <!-- endbower -->
 
