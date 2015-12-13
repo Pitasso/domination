@@ -14,7 +14,7 @@ app.controller('MembershipCtrl', ['$scope','$http', '$rootScope', '$state', '$st
                 console.log('Requesting memebrship');
                 $scope.$apply();
                 $scope.membershipRequested = true;
-                // $analytics.eventTrack('Requested Membership', {                               
+                // $analytics.eventTrack('Requested Membership', {
                 //     "From": "Membership Page"
                 // });
                 $http.post("https://dota.joingamers.net/api/codeblock/v1/run/prefinerydetails", { id : $rootScope.currentUser.instance.prefinery_id})
