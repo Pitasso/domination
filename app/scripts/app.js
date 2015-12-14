@@ -82,6 +82,7 @@ var app = angular.module("Domination", [
               user.instance.givenRole = role;
               $rootScope.currentUser = user;
               analytics.identify($rootScope.currentUser.instance._id, {
+                  name: $rootScope.currentUser.instance.displayName,
                   username: $rootScope.currentUser.instance.username,
                   email: $rootScope.currentUser.instance.email
                 });
