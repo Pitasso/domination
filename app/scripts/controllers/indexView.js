@@ -72,10 +72,6 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 	console.log("Initial post load.");
 	$scope.processing = true;
 
-    // $analytics.eventTrack('Viewed Page', {
-    //     Page: 'Main Page'
-    // });
-
 	// METHOD TRIGGERS BY SCROLL TO BOTTOM OF PAGE
 	$scope.loadNextPosts = function() {
 		$scope.getPosts($scope.fetchBy);
@@ -156,7 +152,9 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 		}
 	}
 
-
+	$analytics.eventTrack('Viewed Page', {
+        Page: 'Main Page'
+    });
 
 }]);
 
