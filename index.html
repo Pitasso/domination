@@ -1,39 +1,20 @@
 <!DOCTYPE html>
 <html ng-app="Domination" lang="en">
     <head>
-        <!-- <base href="/"> -->
-        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+        <base href="/">
 
-        <!-- <title>Gamers Net</title> -->
-        <link rel="canonical" href="https://dota.joingamers.net" />
+        <title>Gamers Net</title>
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <!-- <meta name="description" content="Gamers Net is a community to share and chat about the latest news, videos and changes in Dota and eSports universe." /> -->
-
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-        <link rel="shortcut icon" href="images/favicon.ico">
 
+        <meta name="description" content="Gamers Net is a community to share and chat about the latest news, videos and changes in Dota and eSports universe." />
+
+
+        <link rel="shortcut icon" href="images/favicon.ico">
         <link href="bower_components/Ionicons/css/ionicons.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
-
-
-        <title>{{ post.instance.title || profile.instance.title || 'Gamers Net' }}</title>
-        <meta name="description" content="{{ post.instance.desc || 'Gamers Net is a community to share and chat about the latest news, videos and changes in Dota and eSports universe.'" />
-
-        <!-- Twitter summary card metadata. Unfortunately this won't work with crawlers that don't evaluate JavaScript -->
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:site" content="@joinGamersNet" />
-        <meta property="twitter:title" content="{{ post.instance.title }}" />
-        <meta property="twitter:description" content="{{ post.instance.desc }}" />
-        <meta property="twitter:image" content="{{ post.instance.image }}" />
-        <meta property="twitter:url" content="{{ post.instance.url }}" />
-
-        <!-- open graph metadata. This won't work either! -->
-        <meta property="og:title" content="{{ post.instance.title }}" />
-        <meta property="og:site_name " content="Gamers Net" />
-        <meta property="og:url " content="{{ post.instance.url }}" />
-        <meta property="og:description" content="{{ post.instance.descr }}" />
-        <meta property="og:image" content="{{ post.instance.thumbnail }}" />
-        <!-- JS -->
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,6 +28,7 @@
               window.location.href = "http:" +
               window.location.href.substring(window.location.protocol.length);
           }
+        </script>
         <script type="text/javascript">
             !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
             analytics.load("RynzC8v5WhQ94dSvRljIYE3wXDpyA1Ox");

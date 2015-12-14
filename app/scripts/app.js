@@ -70,7 +70,7 @@ var app = angular.module("Domination", [
 }])
 
 
-.run(["$stamplay", "$rootScope", "Auth", function($stamplay, $rootScope, Auth) {
+.run(["$stamplay", "$rootScope", "Auth", "$analytics", function($stamplay, $rootScope, Auth, $analytics) {
     Stamplay.init("Domination");
     Auth.currentUser().then(function(user) {
         if(user.isLogged()) {
@@ -78,6 +78,11 @@ var app = angular.module("Domination", [
             .then(function(role) {
               user.instance.givenRole = role;
               $rootScope.currentUser = user;
+              analytics.identify($rootScope.currentUser.instance._id, {
+                  name: $rootScope.currentUser.instance.displayName,
+                  email: $rootScope.currentUser.instance.email
+                });
+
               // $rootScope.resize = function(url) {
               //   if(!url) return;
               //   url = url.split("_normal").join("");

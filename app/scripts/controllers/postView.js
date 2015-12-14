@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state', '$stateParams', '$stamplay', "$http", function(Post, Auth, $scope, $rootScope, $state, $stateParams, $stamplay, $http) {
+app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state', '$stateParams', '$stamplay', "$http", "$analytics", function(Post, Auth, $scope, $rootScope, $state, $stateParams, $stamplay, $http, $analytics) {
     var vm = this;
     vm.time = new Date();
 
@@ -11,33 +11,39 @@ app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state'
         getUpvoters(res.post.instance.actions.votes.users)
     })
 
-   $scope.upvotePost = function(post) {
-     var _post = angular.copy(post);
-      post.upVote().then(function() {
-          if(!$scope.upvoters) $scope.upvoters = [];
-          $scope.upvoters.push($rootScope.currentUser.instance);
-          post.instance.team_1 = _post.instance.team_1;
-          post.instance.team_2 = _post.instance.team_2;
-          $scope.$apply();
-      })
+    $scope.upvotePost = function(post) {
+        var _post = angular.copy(post);
+        post.upVote().then(function() {
+            if(!$scope.upvoters) $scope.upvoters = [];
+            $scope.upvoters.push($rootScope.currentUser.instance);
+            post.instance.team_1 = _post.instance.team_1;
+            post.instance.team_2 = _post.instance.team_2;
+            $scope.$apply();
+            $analytics.eventTrack('Upvoted Post', {                 
+                "postId": post.instance._id,
+                "postSlug": post.instance.slug           
+            });
+        }, function(err) {
+            Materialize.toast("You already upvoted this post!", 4000)
+        })
     }
 
     $scope.upvoteComment = function(comment) {
         var owner = comment.instance.owner;
         comment.upVote().then(function() {
-        comment.instance.owner = owner;
-        $scope.$apply();
+            comment.instance.owner = owner;
+            $scope.$apply();
         })
     }
 
     $scope.addComment = function(comment) {
-        // $scope.processing_comment = true;
+    // $scope.processing_comment = true;
         Post.addComment(comment, $stateParams.slug, $scope.post.instance.owner.email).then(function(res) {
-           res.instance.owner = $rootScope.currentUser.instance;
-           incrementCommentCount();
-           $scope.comments.push(res);
-           $scope.comment_form = false;
-       })
+            res.instance.owner = $rootScope.currentUser.instance;
+            incrementCommentCount();
+            $scope.comments.push(res);
+            $scope.comment_form = false;
+        })
     }
 
     $scope.addReply = function(comment, reply, idx) {
@@ -68,7 +74,7 @@ app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state'
         upvoters.forEach(function(item, idx, arr) {
             $http.get("https://dota.joingamers.net/api/user/v1/users/" + item)
             .then(function(data) {
-            $scope.upvoters[idx] = data.data
+                $scope.upvoters[idx] = data.data
             }, function(err) {
                 console.error(err)
             })

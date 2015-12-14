@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('WelcomeCtrl', ['$scope', '$http', '$rootScope', '$uibModalInstance', '$state', "$stamplay", function($scope, $http, $rootScope, $uibModalInstance, $state, $stamplay) {
+app.controller('WelcomeCtrl', ['$scope', '$http', '$rootScope', '$uibModalInstance', '$state', "$stamplay", "$analytics", function($scope, $http, $rootScope, $uibModalInstance, $state, $stamplay, $analytics) {
 
 	$scope.currentStep = 1;
 
@@ -21,6 +21,7 @@ app.controller('WelcomeCtrl', ['$scope', '$http', '$rootScope', '$uibModalInstan
 				$scope.currentStep = 2;
 				$scope.processing = false;
 				$scope.$apply();
+	            $analytics.eventTrack('Completed Account');
 			})
 		})
 	}
@@ -35,6 +36,9 @@ app.controller('WelcomeCtrl', ['$scope', '$http', '$rootScope', '$uibModalInstan
 			$rootScope.currentUser.set('prefinery_id', data.data.id);
 			$rootScope.currentUser.save().then(function() {
 				$uibModalInstance.close(true);
+				$analytics.eventTrack('Requested Membership', {								  
+					"From": "Welcome Screen"
+				});
 			})
 		}, function(err) {
 			console.error(err);

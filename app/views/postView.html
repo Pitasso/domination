@@ -17,7 +17,7 @@
 		</div>
 		<div class="post-actions">
 			<a class="btn btn-primary btn-vote" ng-click="upvotePost(post);"><span class="counter">{{post.instance.actions.votes.total}}</span><span>Upvote</span></a>
-			<a class="btn btn-default" href="{{post.instance.url}}/?ref=domination" target="_blank">Check</a>
+			<a class="btn btn-default" href="{{post.instance.url}}/?ref=domination" target="_blank" analytics-on="click" analytics-event="Checked the Link">Check</a>
 			<!-- <span uib-dropdown on-toggle="toggled(open)">
 				<a href="" class="btn btn-default" id="simple-dropdown" uib-dropdown-toggle>Share</a>
 				<ul class="uib-dropdown-menu dropdown-menu-right" aria-labelledby="simple-dropdown">
@@ -47,7 +47,7 @@
 							<uib-tab-heading><h3 class="tab-heading">Details</h3></uib-tab-heading>
 							<p>{{post.instance.desc}}</p>
 
-							<p ng-show="post.instance.match_id"><a href="http://www.dotabuff.com/matches/{{ post.instance.match_id }}/?ref=joingamersnet" title="Game details" target="_blank">Detailed stats</a> on the match provided by Dotabuff</p>
+							<p ng-show="post.instance.match_id"><a href="http://www.dotabuff.com/matches/{{ post.instance.match_id }}/?ref=joingamersnet" title="Game details" target="_blank" analytics-on="click" analytics-event="Checked Game Details">Detailed stats</a> on the match provided by Dotabuff</p>
 						</uib-tab>
 					</uib-tabset>
 
