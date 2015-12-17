@@ -24,6 +24,11 @@ var app = angular.module("Domination", [
             templateUrl: "app/views/postView.html",
             controller: "PostViewCtrl"
         })
+        .state("Collection", {
+            url: "/collection",
+            templateUrl: "app/views/collectionView.html",
+            controller: "CollectionViewCtrl"
+        })
         .state("Profile", {
             url: "/user/:username",
             templateUrl: "app/views/profile.html",
