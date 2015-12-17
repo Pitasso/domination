@@ -30,14 +30,14 @@
                     </a>
 
                     <div class="post-thumbnail hidden-xs" ui-sref="Post({ slug : post.instance.slug })">
-                        <img ng-src="{{post.instance.thumbnail}}" class="img-responsive">
+                        <img ng-src="{{ post.instance.thumbnail || post.instance.tournament[0].thumbnail }}" class="img-responsive">
                     </div>
                     <div class="post-desc" ui-sref="Post({ slug : post.instance.slug })">
                         <span class="post-category hidden-xs hidden-sm">{{post.instance.type}}</span>
                         <a class="post-title" ng-if="post.instance.type === 'game'">
                           <img ng-src="{{post.instance.team_1[0].logo}}" /> <b>{{ post.instance.team_1[0].name_short || post.instance.team_1[0].name }}</b> <span>vs</span> <b>{{ post.instance.team_2[0].name_short || post.instance.team_2[0].name }}</b> <img ng-src="{{post.instance.team_2[0].logo}}" />
                         </a>
-                        <div class="post-meta hidden-xs" ng-if="post.instance.type === 'game'">{{post.instance.title}}</div>
+                        <div class="post-meta hidden-xs" ng-if="post.instance.type === 'game'">{{ post.instance.tournament[0].name }} {{post.instance.title}}</div>
                         <a class="post-title" ng-if="post.instance.type === 'link'">{{post.instance.title}}</a>
                         <!-- <div class="post-meta hidden-xs hidden-sm" ng-if="post.instance.type === 'link'">Originaly published on {{ post.instance.url | hostnameFromUrl }} on {{ post.instance.dt_create | date: 'EEE, d MMM' }}</div> -->
                     </div>
