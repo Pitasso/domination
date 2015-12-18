@@ -4,8 +4,12 @@
 	<div ng-if="!currentUser || currentUser.instance.givenRole.name === 'guest'">
 		<h3>Please Sign in to Upvote</h3>
 		<p>To keep the voting system relevant you can spend only one vote per post. But first, you need to sign in.</p>
-		<a class="btn btn-primary" ng-click="login()">Login with Twitter</a>
-		<p class="notice">We'll never post to Twitter without your permission.</p>
+		<div class="btn-block">
+			<a href="#!" class="btn btn-twitter" ng-click="login()" analytics-on="click" analytics-event="Logged in with Twitter"><i class="icon ion-social-twitter"></i> Sign in with Twitter</a>
+			<a href="#!" class="btn btn-facebook" ng-click="loginFacebook()" analytics-on="click" analytics-event="Logged in with Facebook"><i class="icon ion-social-facebook"></i> Sign in with Facebook</a>
+			<a href="#!" class="btn btn-steam" ng-click="loginSteam()" analytics-on="click" analytics-event="Logged in with Steam"><i class="icon ion-steam"></i> Sign in with Steam</a>
+		</div>
+		<p class="notice">We'll never post to Twitter or Facebook without your permission.</p>
 	</div>
 
 	<div ng-if="currentUser && currentUser.instance.givenRole.name === 'registered'">

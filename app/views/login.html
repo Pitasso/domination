@@ -2,8 +2,11 @@
 <div class="window-content">
 	<img src="images/round.png" width="175"/>
 	<h3>Login to Join The Community</h3>
-
 	<p>Gamers Net is a place to share and chat about the latest news, videos and trends in Dota2 and eSport universe. Join us :)</p>
-	<a class="btn btn-primary" ng-click="login()" analytics-on="click" analytics-event="Logged in with Twitter">Login with Twitter</a>
+	<div class="btn-block">
+		<a href="#!" class="btn btn-twitter" ng-click="login()" analytics-on="click" analytics-event="Logged in with Twitter"><i class="icon ion-social-twitter"></i> Sign in with Twitter</a>
+		<a href="#!" class="btn btn-facebook" ng-click="loginFacebook()" analytics-on="click" analytics-event="Logged in with Facebook"><i class="icon ion-social-facebook"></i> Sign in with Facebook</a>
+		<a href="#!" class="btn btn-steam" ng-click="loginSteam()" analytics-on="click" analytics-event="Logged in with Steam"><i class="icon ion-steam"></i> Sign in with Steam</a>
+	</div>
 	<p class="notice">We'll never post to Twitter without your permission.</p>	
 </div>

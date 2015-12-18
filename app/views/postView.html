@@ -58,7 +58,7 @@
 			<span uib-dropdown on-toggle="toggled(open)">
 				<a href="" class="btn btn-default" id="simple-dropdown" uib-dropdown-toggle analytics-on="click" analytics-event="Checked Betting Options">Bet</a>
 				<ul class="uib-dropdown-menu dropdown-menu-right" aria-labelledby="simple-dropdown">
-					<li><a href="http://dota2lounge.com/?ref=joinGamersNet" target="_blank">Dota2 Lounge</li>
+					<li><a href="http://dota2lounge.com/?ref=joinGamersNet" target="_blank">Dota2 Lounge</a></li>
 					<li><a href="https://unikrn.com/?ref=joinGamersNet" target="_blank">Unikrn</a></li>
 					<li><a href="http://www.gosugamers.net/dota2/gosubet/?ref=joinGamersNet" target="_blank">GosuGamers</a></li>
 				</ul>
@@ -77,7 +77,12 @@
 	<section id="post-details">
 		<div class="post-body">
 			<main>
-				<div id="info" >
+
+				<section id="discussion" ng-hide="post.instance" style="margin-top:50px;">
+					<div class="spinner"></div>
+				</section>
+
+				<div id="info" ng-show="post.instance">
 					<uib-tabset>
 						<uib-tab active="true" ng-if="post.instance.video_source" >
 							<uib-tab-heading><h3 class="tab-heading">Video</h3></uib-tab-heading>
@@ -97,9 +102,9 @@
 					</uib-tabset>
 
 				</div>
-				<section id="discussion" ng-hide="post.instance">
-					<div class="spinner"></div>
-				</section>
+
+
+
 				<section id="discussion" ng-show="post.instance">
 					<h3>Discussion</h3>
 

@@ -1527,8 +1527,22 @@ header .login-btn {
 .fullscreen .window-content p.notice {
 	font-size: 14px;
 }
+.fullscreen .btn-block {
+	margin: 25px 0;
+}
 .fullscreen .window-content .btn {
-	margin: 20px 0 30px;
+	display: block;
+	margin: 10px auto 10px;
+    width: 35%;
+    padding: 10px;
+    text-align: left;
+}
+.fullscreen .window-content .btn i {
+	float: left;
+    width: 20px;
+    font-size: 16px;
+    text-align: center;
+    margin-right: 10px;
 }
 .fullscreen .window-content form {
 	margin-top: 30px;

@@ -234,6 +234,39 @@ textarea:-ms-input-placeholder
 .btn-vote:hover .counter {
 	border-color: #E5E5E5;
 }
+.btn-twitter {
+	background: #0C2239;
+	border: 1px solid #115776;
+	color: #26C2FF;
+}
+.btn-twitter:focus,
+.btn-twitter:hover {
+	background: #0E2B49;
+	border: 1px solid #115776;
+	color: #26C2FF;
+}
+.btn-facebook {
+	background: #0B1729;
+	border: 1px solid #052E6C;
+	color: #3382FF;
+}
+.btn-facebook:focus,
+.btn-facebook:hover {
+	background: #0D1E38;
+	border: 1px solid #052E6C;
+	color: #3382FF;
+}
+.btn-steam {
+	background: #06160D;
+	border: 1px solid #0B4F1D;
+	color: #7DB304;
+}
+.btn-steam:focus,
+.btn-steam:hover {
+	background: #072012;
+	border: 1px solid #0B4F1D;
+	color: #7DB304;
+}
 /* ----- Post List Styles ----- */
 .post-list .title {
 	color: #B8A378;

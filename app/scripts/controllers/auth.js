@@ -44,6 +44,12 @@ app.controller('AuthCtrl', ['Auth', '$scope', '$rootScope', '$uibModal', "$state
 		$analytics.eventTrack('Logged Out');
 		Auth.logout();
 	}
+	$scope.loginFacebook = function() {
+		Materialize.toast("Oops something went wrong!", 4000, 'warning')
+	}
+	$scope.loginSteam = function()  {
+		Materialize.toast("Oops something went wrong!", 4000, 'warning')	
+	}
 	$scope.search = function() {
 		$state.go("Home", {search: $scope.post_query })
 	}
