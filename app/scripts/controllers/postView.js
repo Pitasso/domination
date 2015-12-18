@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state', '$stateParams', '$stamplay', "$http", "$analytics", function(Post, Auth, $scope, $rootScope, $state, $stateParams, $stamplay, $http, $analytics) {
+app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state', '$stateParams', '$stamplay', "$http", "$analytics", '$uibModal', function(Post, Auth, $scope, $rootScope, $state, $stateParams, $stamplay, $http, $analytics, $uibModal) {
     var vm = this;
     vm.time = new Date();
 
@@ -16,22 +16,39 @@ app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state'
     })
 
     $scope.upvotePost = function(post) {
-        var _post = angular.copy(post);
-        post.upVote().then(function() {
-            if(!$scope.upvoters) $scope.upvoters = [];
-            $scope.upvoters.push($rootScope.currentUser.instance);
-            post.instance.team_1 = _post.instance.team_1;
-            post.instance.team_2 = _post.instance.team_2;
-            post.instance.tournament = _post.instance.tournament;
-            $scope.$apply();
-            $analytics.eventTrack('Upvoted Post', {
-                "postId": post.instance._id,
-                "postSlug": post.instance.slug,
-                "from": 'Post Page'
+        if(!$rootScope.currentUser) {
+            var loginModal = $uibModal.open({
+                templateUrl: "app/views/partial/permission.html",
+                controller: "AuthCtrl",
+                windowClass: "fullscreen",
+                animation: false,
+                resolve: {
+                    items: function() {
+                        return $scope.items;
+                    }
+                }
+            })
+            $analytics.eventTrack('Viewed Permission Denied Screen', {
+                message: "Upvote post skill is not available"
             });
-        }, function(err) {
-            Materialize.toast("You already upvoted this post!", 4000, 'warning')
-        })
+        } else {
+            var _post = angular.copy(post);
+            post.upVote().then(function() {
+                if(!$scope.upvoters) $scope.upvoters = [];
+                $scope.upvoters.push($rootScope.currentUser.instance);
+                post.instance.team_1 = _post.instance.team_1;
+                post.instance.team_2 = _post.instance.team_2;
+                post.instance.tournament = _post.instance.tournament;
+                $scope.$apply();
+                $analytics.eventTrack('Upvoted Post', {
+                    "postId": post.instance._id,
+                    "postSlug": post.instance.slug,
+                    "from": 'Post Page'
+                });
+            }, function(err) {
+                Materialize.toast("You already upvoted this post!", 4000, 'warning')
+            })
+        }
     }
 
     $scope.upvoteComment = function(comment) {
