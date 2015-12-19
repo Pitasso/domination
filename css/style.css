@@ -2234,6 +2234,9 @@ a.btn-vote {
 	width: 100%;
 	padding: 50px;
 }
+.tab-pane .no-data {
+	margin-top: 0
+}
 .post-comment,
 .comment-reply {
 	position: relative;

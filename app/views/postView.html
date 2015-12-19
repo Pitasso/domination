@@ -90,8 +90,8 @@
 						</uib-tab>
 						<uib-tab>
 							<uib-tab-heading><h3 class="tab-heading">Details</h3></uib-tab-heading>
-							<p>{{post.instance.desc}}</p>
-
+							<p ng-if="post.instance.desc || post.instance.desc >= 0">{{post.instance.desc}}</p>
+							<div class="no-data" ng-if="!post.instance.desc || post.instance.desc === 0">There is no detailed analysis on the game yet. Let's create it together! <br>Leave your opinion about the game in comments or send it to analyst@joingamers.net</div>
 							<p ng-show="post.instance.match_id"><a href="http://www.dotabuff.com/matches/{{ post.instance.match_id }}/?ref=joingamersnet" title="Game details" target="_blank" analytics-on="click" analytics-event="Checked Game Details">Detailed stats</a> on the match provided by Dotabuff</p>
 						</uib-tab>
 					</uib-tabset>
@@ -103,7 +103,7 @@
 				<section id="discussion" ng-show="post.instance">
 					<h3>Discussion</h3>
 
-					<div class="no-data" ng-if="comments.length === 0">No comments have been left yet.<br/>Be the first one to leave your opinion.</div>
+					<div class="no-data" ng-if="comments.length === 0">No comments have been left yet.<br/>Be the first to comment.</div>
 
 					<span uib-dropdown on-toggle="toggled(open)" class="comment-filter" ng-hide="comments.length === 0" ng-init="comment_sort='-instance.actions.votes.total'; sort_method = 'Most Upvoted'">
 						<a href="" id="simple-dropdown" uib-dropdown-toggle>{{sort_method}} <i class="icon ion-arrow-down-b"></i></a>
