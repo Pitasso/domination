@@ -98,9 +98,7 @@ app.controller('ProfileCtrl', ['User', '$scope', "$rootScope", '$state', "$state
 		getUpvoted(id);
 		getFollowedBy(id);
 		getFollowing(id);
-		$analytics.eventTrack('Viewed Page', {
-        	Page: "Profile Page"
-	  	});
+		$analytics.eventTrack('Viewed Profile Page');
 	});
 
 }])

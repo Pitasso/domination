@@ -137,9 +137,11 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 
 			var team1 = post.instance.team_1;
 			var team2 = post.instance.team_2;
+			var tournament = post.instance.tournament;
 			post.upVote().then(function() {
 				post.instance.team_1 = team1;
 				post.instance.team_2 = team2;
+				post.instance.tournament = tournament;
 				$scope.$apply();
 				$analytics.eventTrack('Upvoted Post', {
 					"postId": post.instance._id,
@@ -152,9 +154,7 @@ app.controller('IndexViewCtrl', ['Auth', '$scope', '$rootScope', '$state', 'Post
 		}
 	}
 
-	$analytics.eventTrack('Viewed Page', {
-        Page: 'Main Page'
-    });
+	$analytics.eventTrack('Viewed Main Page');
 
 }]);
 

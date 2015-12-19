@@ -43,7 +43,7 @@
 
 		<div ng-if="post.instance.type === 'game'">
 			<h1><img ng-src="{{post.instance.team_1[0].logo}}" /><b class="hidden-xs">{{ post.instance.team_1[0].name_short || post.instance.team_1[0].name }}</b> <span>vs</span> <b class="hidden-xs">{{ post.instance.team_2[0].name_short || post.instance.team_2[0].name }}</b><img ng-src="{{post.instance.team_2[0].logo}}" /></h1>
-			<h4>{{ post.instance.title }}</h4>
+			<h4>{{ post.instance.tournament[0].name }} {{ post.instance.title }}</h4>
 		</div>
 	</section>
 
@@ -55,6 +55,14 @@
 		<div class="post-actions">
 			<a class="btn btn-primary btn-vote" ng-click="upvotePost(post);"><span class="counter">{{post.instance.actions.votes.total}}</span><span>Upvote</span></a>
 			<a class="btn btn-default" href="{{post.instance.url}}" target="_blank" analytics-on="click" analytics-event="Checked the Link">Check</a>
+			<span uib-dropdown on-toggle="toggled(open)">
+				<a href="" class="btn btn-default" id="simple-dropdown" uib-dropdown-toggle analytics-on="click" analytics-event="Checked Betting Options">Bet</a>
+				<ul class="uib-dropdown-menu dropdown-menu-right" aria-labelledby="simple-dropdown">
+					<li><a href="http://dota2lounge.com/?ref=joinGamersNet" target="_blank">Dota2 Lounge</li>
+					<li><a href="https://unikrn.com/?ref=joinGamersNet" target="_blank">Unikrn</a></li>
+					<li><a href="http://www.gosugamers.net/dota2/gosubet/?ref=joinGamersNet" target="_blank">GosuGamers</a></li>
+				</ul>
+			</span>
 			<!-- <span uib-dropdown on-toggle="toggled(open)">
 				<a href="" class="btn btn-default" id="simple-dropdown" uib-dropdown-toggle>Share</a>
 				<ul class="uib-dropdown-menu dropdown-menu-right" aria-labelledby="simple-dropdown">
@@ -71,7 +79,7 @@
 			<main>
 				<div id="info" >
 					<uib-tabset>
-						<uib-tab active="true" ng-if="post.instance.type === 'game' || post.instance.video_source" >
+						<uib-tab active="true" ng-if="post.instance.video_source" >
 							<uib-tab-heading><h3 class="tab-heading">Video</h3></uib-tab-heading>
 							<div class="video embed-responsive embed-responsive-16by9">
 								<iframe src="{{ post.instance.video_source }}" frameborder="0"></iframe>
@@ -182,7 +190,7 @@
 
 			<aside>
 				<section id="submited-by" ng-show="post.instance">
-					<label>SUBMITED ON {{ post.instance.dt_create | date:'MMM d' }}</label>
+					<label>SUBMITED BY</label>
 					<div>
 						<img class="user-img img-circle" ng-src="{{post.instance.owner.profileImg}}" ui-sref="Profile({username : post.instance.owner.username})"/>
 					</div>
@@ -201,7 +209,7 @@
 				</section>
 
 				<section id="upvoted-by" ng-show="post.instance.actions.votes.total !== 0 && post.instance" style="max-height:300px;overflow:scroll;">
-					<label>UPVOTED</label>
+					<label>UPVOTED BY</label>
 					<div>
 						<img class="user-img img-circle" ng-src="{{user.profileImg}}" ng-repeat="user in upvoters track by $index" ui-sref="Profile({username : user.username})"/>
 					</div>

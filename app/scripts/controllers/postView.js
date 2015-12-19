@@ -10,7 +10,7 @@ app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state'
         $scope.post = res.post;
         $scope.comments = res.comments.instance;
         getUpvoters(res.post.instance.actions.votes.users);
-        $analytics.eventTrack('Viewed Page', {
+        $analytics.eventTrack('Viewed Post Page', {
             Page: $stateParams.slug
         });
     })
@@ -22,6 +22,7 @@ app.controller('PostViewCtrl', ['Post', 'Auth', '$scope', '$rootScope', '$state'
             $scope.upvoters.push($rootScope.currentUser.instance);
             post.instance.team_1 = _post.instance.team_1;
             post.instance.team_2 = _post.instance.team_2;
+            post.instance.tournament = _post.instance.tournament;
             $scope.$apply();
             $analytics.eventTrack('Upvoted Post', {
                 "postId": post.instance._id,
